@@ -1,0 +1,26 @@
+.login_form {
+  display: flex;
+  flex-direction: column;
+}
+
+.a_links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.a_links a {
+  cursor: pointer;
+}
+
+.a_links a:hover {
+  color: red;
+}
+
+.vl {
+  border-left: 2px solid rgb(0, 0, 0);
+  height: 25px;
+  margin-left: 20px;
+  margin-right: 20px;
+}

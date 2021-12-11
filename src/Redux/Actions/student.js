@@ -8,7 +8,7 @@ export const studentLogin = (user) =>{
         if (res.status == 201) {
             const {token, user } = res.data;
             localStorage.setItem("token", token);
-            localStorage.setItem("user", JSON,stringify(user));
+            localStorage.setItem("user", JSON.stringify(user));
 
             dispatch({
                 type: studentConstants.STUDENT_LOGIN_SUCCESS,

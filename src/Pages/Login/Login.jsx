@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { teacherLogin, teacherLogout } from "../../Redux/Actions/teacher";
+import { studentLogin } from "../../Redux/Actions/student";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { checkBoxState } from "../../Redux/Actions/userRole";
@@ -28,7 +29,13 @@ const Login = () => {
       dispatch(teacherLogin(user));
       dispatch(checkBoxState(checkbox));
     } else {
-      console.log("Student Login in progress");
+      console.log(checkbox);
+      const user = {
+        username,
+        password,
+      };
+
+      dispatch(studentLogin(user));
       dispatch(checkBoxState(checkbox));
     }
   };

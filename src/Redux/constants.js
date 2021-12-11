@@ -7,3 +7,8 @@ export const teacherConstants = {
   TEACHER_LOGOUT_SUCCESS: "TEACHER_LOGOUT_SUCCESS",
   TEACHER_LOGOUT_FAILURE: "TEACHER_LOGOUT_FAILURE",
 };
+
+export const userRoleConstants = {
+  ADMIN: "ADMIN",
+  USER: "USER",
+};

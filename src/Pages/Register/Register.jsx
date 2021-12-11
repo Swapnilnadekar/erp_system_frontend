@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import "./Register.css"
+import "./Register.css";
 
 const Register = (props) => {
   const [credentials, setCredentials] = useState({
@@ -78,7 +78,9 @@ const Register = (props) => {
             id="cpassword"
             onChange={onChange}
           />
-          <Button type="submit" variant="contained">Sign Up</Button>
+          <Button type="submit" variant="contained">
+            Sign Up
+          </Button>
           <div className="a_links">
             <h4>Have an account?</h4>
             <div className="vl"></div>

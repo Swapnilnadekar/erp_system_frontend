@@ -3,30 +3,38 @@ import { useDispatch, useSelector } from "react-redux";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { teacherLogin, teacherLogout } from "../../Redux/Actions/teacher";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import { checkBoxState } from "../../Redux/Actions/userRole";
 import "./Login.css";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [checkbox, setCheckbox] = useState(false);
   const teacher = useSelector((state) => state.teacher);
   const dispatch = useDispatch();
 
   const userLogin = (e) => {
     e.preventDefault();
-    const user = {
-      username,
-      password,
-    };
 
-    dispatch(teacherLogin(user));
+    if (checkbox == true) {
+      console.log(checkbox);
+      const user = {
+        username,
+        password,
+      };
+
+      dispatch(teacherLogin(user));
+      dispatch(checkBoxState(checkbox));
+    } else {
+      console.log("Student Login in progress");
+      dispatch(checkBoxState(checkbox));
+    }
   };
 
-  // const logout = () => {
-  //   dispatch(teacherLogout());
-  // };
-
   if (teacher.authenticate) {
-    alert("Logged in Successfully");
+    console.log("Logged in");
   }
 
   return (
@@ -53,6 +61,18 @@ const Login = () => {
           <a>Forgot Password</a>
           <div class="vl"></div>
           <a href="/register">New user register</a>
+          <div class="vl"></div>
+          <FormControlLabel
+            control={
+              <Checkbox
+                onChange={(e) => {
+                  setCheckbox(e.target.checked);
+                }}
+                value={checkbox}
+              />
+            }
+            label="I am an admin"
+          />
           <h4></h4>
         </div>
       </form>

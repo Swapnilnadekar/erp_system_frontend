@@ -20,7 +20,6 @@ const Login = () => {
     e.preventDefault();
 
     if (checkbox == true) {
-      console.log(checkbox);
       const user = {
         username,
         password,
@@ -29,7 +28,6 @@ const Login = () => {
       dispatch(teacherLogin(user));
       dispatch(checkBoxState(checkbox));
     } else {
-      console.log(checkbox);
       const user = {
         username,
         password,

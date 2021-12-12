@@ -42,7 +42,25 @@ const Register = (props) => {
         console.log("Error");
       }
     } else {
-      // Swapnil Student code
+      const newUser = {
+        name,
+        email,
+        branch,
+        roll_no,
+        dob,
+        contact,
+        username,
+        password,
+      };
+      const result = await axios.post(
+        `http://localhost:2000/student/register`,
+        newUser
+      );
+      if (result.status === 201) {
+        console.log("New User added");
+      } else {
+        console.log("Error");
+      }
     }
 
     setName("");
@@ -120,7 +138,7 @@ const Register = (props) => {
         <div className="a_links">
           <h4>Have an account ?</h4>
           <a href="/">&nbsp;Login</a>
-          <div class="vl"></div>
+          <div className="vl"></div>
           <FormControlLabel
             control={
               <Checkbox

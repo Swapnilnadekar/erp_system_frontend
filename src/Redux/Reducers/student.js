@@ -7,7 +7,7 @@ const initState = {
     email: "",
     branch: "",
     roll_no: "",
-    DOB: "",
+    dob: "",
     contact: "",
     username: "",
   },

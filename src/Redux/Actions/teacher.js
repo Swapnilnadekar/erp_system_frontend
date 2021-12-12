@@ -1,5 +1,5 @@
 import { teacherConstants } from "../constants";
-import axios from "../axios";
+import axios from "axios";
 
 export const teacherLogin = (user) => {
   return async (dispatch) => {

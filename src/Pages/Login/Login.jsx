@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Redirect, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -7,18 +7,30 @@ import { studentLogin } from "../../Redux/Actions/student";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { checkBoxState } from "../../Redux/Actions/userRole";
+import { useNavigate } from "react-router-dom";
+
+
 import "./Login.css";
+import student from "../../Redux/Reducers/student";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [checkbox, setCheckbox] = useState(false);
   const teacher = useSelector((state) => state.teacher);
+  const student = useSelector((state) => state.student);
   const dispatch = useDispatch();
+  
+  useEffect(() => {
+    if(student.authenticate){
+      navigate("/home");
+    }
+  }, [student])
 
   const userLogin = (e) => {
     e.preventDefault();
-
+    
     if (checkbox == true) {
       const user = {
         username,
@@ -41,6 +53,10 @@ const Login = () => {
   if (teacher.authenticate) {
     console.log("Logged in");
   }
+  // if (student.authenticate) {
+  //   return <Redirect to="/home" />;
+  // }
+  
 
   return (
     <div className="login_container">

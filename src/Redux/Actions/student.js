@@ -27,23 +27,3 @@ export const studentLogin = (user) => {
     }
   };
 };
-
-export const studentLogout = () => {
-  return async (dispatch) => {
-    dispatch({ type: studentConstants.STUDENT_LOGOUT_REQUEST });
-
-    const res = await axios.post(`/student/signout`);
-
-    if (res.status == 201) {
-      localStorage.clear();
-      dispatch({
-        type: studentConstants.STUDENT_LOGOUT_SUCCESS,
-      });
-    } else {
-      dispatch({
-        type: studentConstants.STUDENT_LOGOUT_FAILURE,
-        payload: { error: "error" },
-      });
-    }
-  };
-};

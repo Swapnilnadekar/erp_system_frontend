@@ -3,6 +3,7 @@ import {
   teacherConstants,
   studentConstants,
 } from "../constants";
+import axios from "../axios";
 
 export const checkBoxState = (state) => {
   console.log(state);
@@ -40,6 +41,48 @@ export const isUserLoggedIn = () => {
       //   type: studentConstants.STUDENT_LOGIN_FAILURE,
       //   payload: { error: "Failed to Login" },
       // });
+    }
+  };
+};
+
+export const userLogout = () => {
+  return async (dispatch) => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user.role === "student") {
+        dispatch({ type: studentConstants.STUDENT_LOGOUT_REQUEST });
+        const res = await axios.post(`/student/signout`);
+
+        if (res.status == 201) {
+          localStorage.clear();
+          dispatch({
+            type: studentConstants.STUDENT_LOGOUT_SUCCESS,
+          });
+        } else {
+          dispatch({
+            type: studentConstants.STUDENT_LOGOUT_FAILURE,
+            payload: { error: "error" },
+          });
+        }
+      } else {
+        dispatch({ type: teacherConstants.TEACHER_LOGOUT_REQUEST });
+
+        const res = await axios.post(`/admin/teacher/signout`);
+
+        if (res.status == 201) {
+          localStorage.clear();
+          dispatch({
+            type: teacherConstants.TEACHER_LOGOUT_SUCCESS,
+          });
+        } else {
+          dispatch({
+            type: teacherConstants.TEACHER_LOGOUT_FAILURE,
+            payload: { error: "error" },
+          });
+        }
+      }
     }
   };
 };

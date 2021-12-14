@@ -10,14 +10,17 @@ import "./Home.css";
 
 const Home = () => {
     const user = useSelector(state => state.student);
+    
     useEffect(() => {
        console.log(user);
-    }, [user])
+    }, [])
+    
+  
+
     return (
         <div className="home_container">
         <Header />
         <div className="card">
-            
         <Card className="cards">
             <CardActionArea>
                 <CardMedia
@@ -32,6 +35,7 @@ const Home = () => {
                         Student Details
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
+                        
                         Student Name: {user.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">

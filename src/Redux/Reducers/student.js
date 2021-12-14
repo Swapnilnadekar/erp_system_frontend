@@ -43,16 +43,18 @@ export default (state = initState, action) => {
         loading: false,
         error: action.payload.error,
       };
+      break;
 
-    // case studentConstants.STUDENT_LOGOUT_REQUEST:
-    //     state = { ...state, loading:true, };
-    //     break;
+    case studentConstants.STUDENT_LOGOUT_REQUEST:
+        state = { ...state, loading:true };
+        break;
 
-    // case studentConstants.STUDENT_LOGOUT_SUCCESS:
-    //     state : { ...initState, loading: true,};
-    //     break;
-    // case studentConstants.STUDENT_LOGOUT_FAILURE:
-    //     state: { ...initState, error: action.payload.error, loading: false,};
+    case studentConstants.STUDENT_LOGOUT_SUCCESS:
+        state = { ...initState, loading: true};
+        break;
+    case studentConstants.STUDENT_LOGOUT_FAILURE:
+        state = { ...initState, error: action.payload.error, loading: false};
+        break;
   }
   return state;
 };

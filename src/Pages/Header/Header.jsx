@@ -1,6 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { studentLogout } from '../../Redux/Actions/student';
 
-const header = () => {
+
+const Header = () => {
+      const dispatch = useDispatch();
+
+      const userLogout =(e) =>{
+        e.preventDefault();
+      }
+      if(true)
+        dispatch(userLogout(user));
+      }
+  
+
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-black bg-black">
@@ -22,8 +35,9 @@ const header = () => {
             <form className="d-flex">
               <button className="btn btn-outline-success mx-3" type="submit" >Contact</button>
               <button className="btn btn-outline-success mx-3" type="submit">Edit Profile</button>
-              <button className="btn btn-outline-success mx-3" type="submit">LogOut</button>
+              
             </form>
+            <button className="btn btn-outline-success mx-3" type="submit" onClick={userLogout}>LogOut</button>
           </div>
         </div>
       </nav>
@@ -31,5 +45,5 @@ const header = () => {
   )
 }
 
-export default header
+export default Header
 

@@ -5,6 +5,7 @@ import Register from "./Pages/Register/Register";
 import Home from "./Pages/Home/Home";
 import { useDispatch, useSelector } from "react-redux";
 import { isUserLoggedIn } from "./Redux/Actions/commonUserCode";
+import PrivateRoute from "./PrivateRoute";
 
 const App = () => {
   const teacher = useSelector((state) => state.teacher);
@@ -21,8 +22,22 @@ const App = () => {
     <div className="app_container">
       <Routes>
         <Route exact path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route exact path="/home" element={<Home />} />
+        <Route
+          path="/register"
+          element={
+            <PrivateRoute>
+              <Register />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );

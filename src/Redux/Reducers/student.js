@@ -11,6 +11,7 @@ const initState = {
     contact: "",
     username: "",
   },
+  role: "student",
   authenticate: false,
   authenticating: false,
   loading: false,

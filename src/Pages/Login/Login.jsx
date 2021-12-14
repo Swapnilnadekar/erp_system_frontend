@@ -23,8 +23,12 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [checkbox, setCheckbox] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [passwordError, setPassswordError] = useState(false);
+
   const teacher = useSelector((state) => state.teacher);
   const student = useSelector((state) => state.student);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,8 +40,10 @@ const Login = () => {
   const userLogin = (e) => {
     e.preventDefault();
     if (document.getElementById("login_username").value.length == 0) {
+      setNameError(true);
       alert("Enter username");
     } else if (document.getElementById("login_password").value.length == 0) {
+      setPassswordError(true);
       alert("Enter password");
     } else {
       if (checkbox == true) {
@@ -78,22 +84,15 @@ const Login = () => {
           color="info"
           fullWidth="true"
           style={{ margin: "5px", color: "white" }}
+          error={nameError}
         />
-        {/* <TextField
-          id="login_password"
-          label="Password"
-          variant="outlined"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          color="info"
-          fullWidth="true"
-          style={{ margin: "5px", color: "white" }}
-        /> */}
         <FormControl sx={{ m: 1, width: "100%" }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">
             Password
           </InputLabel>
           <OutlinedInput
+            label="Password"
+            error={passwordError}
             id="login_password"
             type={showPassword ? "text" : "password"}
             value={password}
@@ -129,8 +128,8 @@ const Login = () => {
         </Button>
         <div className="a_links">
           <a href="">Forgot Password</a>
-          <div class="vl"></div>
-          <a href="/register">New user register</a>
+          {/* <div class="vl"></div>
+          <a href="/register">New user register</a> */}
           <div class="vl"></div>
           <FormControlLabel
             control={
@@ -144,7 +143,6 @@ const Login = () => {
             }
             label="I am an admin"
           />
-          <h4></h4>
         </div>
       </form>
     </div>

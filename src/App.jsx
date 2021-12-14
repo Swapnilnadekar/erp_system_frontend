@@ -1,20 +1,28 @@
-import React, {useEffect } from "react";
+import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import Home from "./Pages/Home/Home";
-import { useSelector } from "react-redux";
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { isUserLoggedIn } from "./Redux/Actions/commonUserCode";
 
 const App = () => {
+  const teacher = useSelector((state) => state.teacher);
+  const student = useSelector((state) => state.student);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!teacher.authenticate || !student.authenticate) {
+      dispatch(isUserLoggedIn());
+    }
+  }, [teacher.authenticate, student.authenticate]);
 
   return (
     <div className="app_container">
       <Routes>
         <Route exact path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-         <Route exact path="/home" element={<Home />} />
+        <Route exact path="/home" element={<Home />} />
       </Routes>
     </div>
   );

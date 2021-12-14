@@ -28,25 +28,6 @@ export const studentLogin = (user) => {
   };
 };
 
-export const isUserLoggedIn = () => {
-  return async (dispatch) => {
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      const user = JSON.parse(localStorage.getItem("user"));
-      dispatch({
-        type: studentConstants.STUDENT_LOGIN_SUCCESS,
-        payload: { token, user },
-      });
-    } else {
-      dispatch({
-        type: studentConstants.STUDENT_LOGIN_FAILURE,
-        payload: { error: "Failed to Login" },
-      });
-    }
-  };
-};
-
 export const studentLogout = () => {
   return async (dispatch) => {
     dispatch({ type: studentConstants.STUDENT_LOGOUT_REQUEST });

@@ -43,15 +43,15 @@ export default (state = initState, action) => {
         error: action.payload.error,
       };
 
-    // case authConstants.USER_LOGOUT_REQUEST:
-    //   state = { ...state, loading: true };
-    //   break;
+    case teacherConstants.TEACHER_LOGOUT_REQUEST:
+      state = { ...state, loading: true };
+      break;
 
-    // case authConstants.USER_LOGOUT_SUCCESS:
-    //   state = { ...initState, loading: false };
+    case teacherConstants.TEACHER_LOGOUT_SUCCESS:
+      state = { ...initState, loading: false };
 
-    // case authConstants.USER_LOGOUT_FAILURE:
-    //   state = { ...initState, error: "error", loading: false };
+    case teacherConstants.TEACHER_LOGOUT_FAILURE:
+      state = { ...initState, error: "error", loading: false };
   }
   return state;
 };

@@ -28,23 +28,3 @@ export const teacherLogin = (user) => {
     }
   };
 };
-
-export const teacherLogout = () => {
-  return async (dispatch) => {
-    dispatch({ type: teacherConstants.TEACHER_LOGOUT_REQUEST });
-
-    const res = await axios.post(`/admin/teacher/signout`);
-
-    if (res.status == 201) {
-      localStorage.clear();
-      dispatch({
-        type: teacherConstants.TEACHER_LOGOUT_SUCCESS,
-      });
-    } else {
-      dispatch({
-        type: teacherConstants.TEACHER_LOGOUT_FAILURE,
-        payload: { error: "error" },
-      });
-    }
-  };
-};

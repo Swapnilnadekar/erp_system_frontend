@@ -21,14 +21,10 @@ const Header = (props) => {
         <div className="logo">
           <h1>ERP System</h1>
         </div>
-        <div className="links">
-          <NavLink className="nav_link" to="/">
+        <div className="header_links">
+          <NavLink className="nav_link" to="/home">
             Home
           </NavLink>
-          {/* <NavLink className="nav_link">Students</NavLink>
-          <NavLink className="nav_link">Add Admin</NavLink>
-          <NavLink className="nav_link">Contact us</NavLink>
-          <NavLink className="nav_link">Edit Profile</NavLink> */}
           <ul onClick={logout}>Logout</ul>
         </div>
       </div>

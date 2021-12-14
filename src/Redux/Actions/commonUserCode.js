@@ -6,13 +6,10 @@ import {
 import axios from "../axios";
 
 export const checkBoxState = (state) => {
-  console.log(state);
   return async (dispatch) => {
     if (state === true) {
-      console.log("state = true");
       dispatch({ type: userRoleConstants.ADMIN });
     } else {
-      console.log("state = false");
       dispatch({ type: userRoleConstants.USER });
     }
   };
@@ -25,11 +22,13 @@ export const isUserLoggedIn = () => {
     if (token) {
       const user = JSON.parse(localStorage.getItem("user"));
       if (user.role === "student") {
+        console.log("Student Success");
         dispatch({
           type: studentConstants.STUDENT_LOGIN_SUCCESS,
           payload: { token, user },
         });
       } else {
+        console.log("Teacher Success");
         dispatch({
           type: teacherConstants.TEACHER_LOGIN_SUCCESS,
           payload: { token, user },

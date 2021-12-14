@@ -10,6 +10,7 @@ const initState = {
     branch: "",
     userName: "",
   },
+  role: "teacher",
   authenticate: false,
   authenticating: false,
   loading: false,

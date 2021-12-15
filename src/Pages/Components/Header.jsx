@@ -6,10 +6,9 @@ import { userLogout } from "../../Redux/Actions/commonUserCode";
 
 const Header = (props) => {
   const teacher = useSelector((state) => state.teacher);
-  const student = useSelector((state) => state.student);
   const dispatch = useDispatch();
 
-  useEffect(() => {}, [student.authenticate, teacher.authenticate]);
+  useEffect(() => {}, [teacher.authenticate]);
 
   const logout = () => {
     dispatch(userLogout());
@@ -25,6 +24,8 @@ const Header = (props) => {
           <NavLink className="nav_link" to="/home">
             Home
           </NavLink>
+          {teacher.authenticate ? (<NavLink className="nav_link" to="/register">
+            Register</NavLink>):("")}
           <ul onClick={logout}>Logout</ul>
         </div>
       </div>

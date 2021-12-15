@@ -53,7 +53,7 @@ const Login = () => {
         };
 
         dispatch(teacherLogin(user));
-        dispatch(checkBoxState(checkbox));
+        // dispatch(checkBoxState(checkbox), teacher, student);
       } else {
         const user = {
           username,
@@ -61,9 +61,12 @@ const Login = () => {
         };
 
         dispatch(studentLogin(user));
-        dispatch(checkBoxState(checkbox));
+        // dispatch(checkBoxState(checkbox));
       }
     }
+
+    setUsername("");
+    setPassword("");
   };
 
   if (teacher.authenticate) {

@@ -5,15 +5,19 @@
   align-items: center;
 }
 
+.user_details {
+  width: 90%;
+}
+
 .user_details_card {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(250, 255, 184);
+  background-color: rgb(184 255 218);
   padding: 20px;
   border-radius: 20px;
-  margin-top: 60px;
+  margin-top: 120px;
   box-shadow: 15px 15px 20px black;
   width: 40%;
 }
@@ -23,17 +27,27 @@
   width: 230px;
 }
 
-.user_details1 {
+.user_role_container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-variant-caps: all-petite-caps;
 }
 
-.user_details2 {
+.name_branch_container {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  
+  justify-content: space-between;
 }
 
+.contact_email_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
+.roll_dob_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

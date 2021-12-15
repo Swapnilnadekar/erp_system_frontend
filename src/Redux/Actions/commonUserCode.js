@@ -5,16 +5,6 @@ import {
 } from "../constants";
 import axios from "../axios";
 
-export const checkBoxState = (state) => {
-  return async (dispatch) => {
-    if (state === true) {
-      dispatch({ type: userRoleConstants.ADMIN });
-    } else {
-      dispatch({ type: userRoleConstants.USER });
-    }
-  };
-};
-
 export const isUserLoggedIn = () => {
   return async (dispatch) => {
     const token = localStorage.getItem("token");
@@ -59,6 +49,7 @@ export const userLogout = () => {
           dispatch({
             type: studentConstants.STUDENT_LOGOUT_SUCCESS,
           });
+          dispatch({ type: userRoleConstants.USER });
         } else {
           dispatch({
             type: studentConstants.STUDENT_LOGOUT_FAILURE,
@@ -75,6 +66,7 @@ export const userLogout = () => {
           dispatch({
             type: teacherConstants.TEACHER_LOGOUT_SUCCESS,
           });
+          dispatch({ type: userRoleConstants.USER });
         } else {
           dispatch({
             type: teacherConstants.TEACHER_LOGOUT_FAILURE,

@@ -11,9 +11,13 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import Header from "../Components/Header";
 import "./Register.css";
 
+import { useDispatch, useSelector } from "react-redux";
+
 const Register = () => {
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [branch, setBranch] = useState("");
@@ -26,10 +30,21 @@ const Register = () => {
   const [checkbox, setCheckbox] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showCPassword, setShowCPassword] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+
 
   const submitForm = async (e) => {
     e.preventDefault();
-
+    // if 
+    // (document.getElementById("register_name").value.length == 0) {
+    //   setNameError(true);
+    //   alert("Enter Name");
+    // } else if (document.getElementById("register_email").value.length == 0) {
+    //   setEmailError(true);
+    //   alert("Enter password");
+    // } else
+    // {
     if (checkbox == true) {
       const newUser = {
         name,
@@ -80,9 +95,13 @@ const Register = () => {
       setPassword("");
       setCpassword("");
     }
+  
   };
 
+
   return (
+    <>
+    <Header />
     <div className="register_container">
       <h1>ERP System</h1>
       <form className="register_form" onSubmit={submitForm}>
@@ -95,6 +114,7 @@ const Register = () => {
           onChange={(e) => setName(e.target.value)}
           value={name}
           style={{ width: "65%", margin: "4px" }}
+          error={nameError}
         />
         <div
           className="email_contact_container"
@@ -108,6 +128,7 @@ const Register = () => {
             variant="outlined"
             id="email"
             onChange={(e) => setEmail(e.target.value)}
+            error={emailError}
           />
           <TextField
             value={contact}
@@ -258,6 +279,7 @@ const Register = () => {
         </div>
       </form>
     </div>
+    </>
   );
 };
 

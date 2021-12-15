@@ -25,6 +25,7 @@ const Home = () => {
           />
           {teacher.authenticate ? (
             <div className="user_details">
+              <h6>{teacher.user.role}</h6>
               <h6>Name: {teacher.user.name}</h6>
               <h6>Email: {teacher.user.email}</h6>
               <h6>Contact: {teacher.user.contact}</h6>
@@ -32,12 +33,19 @@ const Home = () => {
             </div>
           ) : (
             <div className="user_details">
+              <div className="user_details1">
+                <h6>{student.role}</h6>
+              </div>
               <h6>Name: {student.user.name}</h6>
               <h6>Email: {student.user.email}</h6>
               <h6>Contact: {student.user.contact}</h6>
-              <h6>Branch: {student.user.branch}</h6>
-              <h6>Date of birth: {student.user.branch}</h6>
-              <h6>Roll No.: {student.user.branch}</h6>
+
+              <div className="user_details2">
+                <h6>Branch: {student.user.branch}</h6>
+                
+                <h6>Roll No.: {student.user.roll_no}</h6>
+              </div>
+              <h6>Date of birth: {student.user.dob}</h6>
             </div>
           )}
         </div>

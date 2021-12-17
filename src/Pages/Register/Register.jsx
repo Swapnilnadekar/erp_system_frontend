@@ -48,7 +48,7 @@ const Register = () => {
       alert("Enter username");
     } else if (document.getElementById("register_email").value.length == 0) {
       setEmailError(true);
-      alert("Enter email");
+      alert("Enter email");r
     }
     else if (document.getElementById("register_contact").value.length == 0) {
       setContactError(true);

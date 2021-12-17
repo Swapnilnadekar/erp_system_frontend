@@ -30,65 +30,106 @@ const Register = () => {
   const [checkbox, setCheckbox] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showCPassword, setShowCPassword] = useState(false);
+  const [nameError, setNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [contactError, setContactError] = useState(false);
+  const [branchError, setBranchError] = useState(false);
+  const [roll_noError, setRoll_noError] = useState(false);
+  const [usernameError, setUsernameError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [cpasswordError, setCpasswordError] = useState(false);
   const [role, setRole] = useState("student");
 
   const submitForm = async (e) => {
     e.preventDefault();
 
-    if (password !== cpassword) {
-      alert("Please enter same password in confirm password");
-      return;
+    if (document.getElementById("register_name").value.length == 0) {
+      setNameError(true);
+      alert("Enter username");
+    } else if (document.getElementById("register_email").value.length == 0) {
+      setEmailError(true);
+      alert("Enter email");
     }
-
-    if (checkbox == true) {
-      const newUser = {
-        name,
-        email,
-        branch,
-        contact,
-        username,
-        password,
-      };
-
-      const result = await axios.post(
-        `http://localhost:2000/admin/teacher/register`,
-        newUser
-      );
-      if (result.status === 201) {
-        console.log("New User added");
-      } else {
-        console.log("Error");
-      }
-    } else {
-      const newUser = {
-        name,
-        email,
-        branch,
-        roll_no,
-        dob,
-        contact,
-        username,
-        password,
-      };
-      const result = await axios.post(
-        `http://localhost:2000/student/register`,
-        newUser
-      );
-      if (result.status === 201) {
-        alert("New User added");
-      } else {
-        alert("error");
+    else if (document.getElementById("register_contact").value.length == 0) {
+      setContactError(true);
+      alert("Enter contact");
+    }
+    else if (document.getElementById("register_branch").value.length == 0) {
+      setBranchError(true);
+      alert("Enter branch");
+    }
+    else if (document.getElementById("register_roll").value.length == 0) {
+      setRoll_noError(true);
+      alert("Enter roll_no");
+    }
+    else if (document.getElementById("register_username").value.length == 0) {
+      setUsernameError(true);
+      alert("Enter username");
+    }
+    else if (document.getElementById("register_password").value.length == 0) {
+      setPasswordError(true);
+      alert("Enter password");
+    }
+    else if (document.getElementById("register_cpassword").value.length == 0) {
+      setCpasswordError(true);
+      alert("Enter confirm password");
+    }
+     else {
+      if (password !== cpassword) {
+        alert("Please enter same password in confirm password");
+        return;
       }
 
-      setName("");
-      setEmail("");
-      setBranch("");
-      setRoll_no(0);
-      setDob(new Date());
-      setContact("");
-      setUsername("");
-      setPassword("");
-      setCpassword("");
+      if (checkbox == true) {
+        const newUser = {
+          name,
+          email,
+          branch,
+          contact,
+          username,
+          password,
+        };
+
+        const result = await axios.post(
+          `http://localhost:2000/admin/teacher/register`,
+          newUser
+        );
+        if (result.status === 201) {
+          console.log("New User added");
+        } else {
+          console.log("Error");
+        }
+      } else {
+        const newUser = {
+          name,
+          email,
+          branch,
+          roll_no,
+          dob,
+          contact,
+          username,
+          password,
+        };
+        const result = await axios.post(
+          `http://localhost:2000/student/register`,
+          newUser
+        );
+        if (result.status === 201) {
+          alert("New User added");
+        } else {
+          alert("error");
+        }
+
+        setName("");
+        setEmail("");
+        setBranch("");
+        setRoll_no(0);
+        setDob(new Date());
+        setContact("");
+        setUsername("");
+        setPassword("");
+        setCpassword("");
+      }
     }
   };
 
@@ -100,10 +141,10 @@ const Register = () => {
           color="info"
           label="Name"
           variant="outlined"
-          id="name"
           onChange={(e) => setName(e.target.value)}
           value={name}
           style={{ width: "65%", margin: "4px" }}
+          error={nameError}
         />
         <div
           className="email_contact_container"
@@ -115,7 +156,7 @@ const Register = () => {
             color="info"
             label="Email ID"
             variant="outlined"
-            id="email"
+            error={emailError}
             onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
@@ -124,8 +165,8 @@ const Register = () => {
             color="info"
             label="Mobile No."
             variant="outlined"
-            id="contact"
             onChange={(e) => setContact(e.target.value)}
+            error={contactError}
           />
         </div>
         <TextField
@@ -134,8 +175,8 @@ const Register = () => {
           color="info"
           label="Branch"
           variant="outlined"
-          id="branch"
           onChange={(e) => setBranch(e.target.value)}
+          error={branchError}
         />
         <TextField
           value={username}
@@ -143,9 +184,9 @@ const Register = () => {
           color="info"
           label="Username"
           variant="outlined"
-          id="username"
           onChange={(e) => setUsername(e.target.value)}
           style={{ width: "65%", margin: "4px" }}
+          error={usernameError}
         />
         <FormControl sx={{ m: 1, width: "65%" }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">
@@ -155,6 +196,7 @@ const Register = () => {
             id="register_password"
             type={showPassword ? "text" : "password"}
             value={password}
+            error={passwordError}
             onChange={(e) => setPassword(e.target.value)}
             endAdornment={
               <InputAdornment position="end">
@@ -176,9 +218,10 @@ const Register = () => {
             Confirm Password
           </InputLabel>
           <OutlinedInput
-            id="login_c_password"
+            id="register_cpassword"
             type={showCPassword ? "text" : "password"}
             value={cpassword}
+            error={cpasswordError}
             onChange={(e) => setCpassword(e.target.value)}
             endAdornment={
               <InputAdornment position="end">
@@ -215,7 +258,7 @@ const Register = () => {
           color="info"
           label="Name"
           variant="outlined"
-          id="name"
+          error={nameError}
           onChange={(e) => setName(e.target.value)}
           value={name}
           style={{ width: "65%", margin: "4px" }}
@@ -230,7 +273,7 @@ const Register = () => {
             color="info"
             label="Email ID"
             variant="outlined"
-            id="email"
+            error={emailError}
             onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
@@ -239,7 +282,7 @@ const Register = () => {
             color="info"
             label="Mobile No."
             variant="outlined"
-            id="contact"
+            error={contactError}
             onChange={(e) => setContact(e.target.value)}
           />
         </div>
@@ -253,7 +296,7 @@ const Register = () => {
             color="info"
             label="Branch"
             variant="outlined"
-            id="branch"
+            error={branchError}
             onChange={(e) => setBranch(e.target.value)}
           />
           <TextField
@@ -262,7 +305,7 @@ const Register = () => {
             color="info"
             label="Roll No."
             variant="outlined"
-            id="roll_no"
+            error={roll_noError}
             onChange={(e) => setRoll_no(e.target.value)}
           />
         </div>
@@ -282,7 +325,7 @@ const Register = () => {
           color="info"
           label="Username"
           variant="outlined"
-          id="username"
+          error={usernameError}
           onChange={(e) => setUsername(e.target.value)}
           style={{ width: "65%", margin: "4px" }}
         />
@@ -294,6 +337,7 @@ const Register = () => {
             id="register_password"
             type={showPassword ? "text" : "password"}
             value={password}
+            error={passwordError}
             onChange={(e) => setPassword(e.target.value)}
             endAdornment={
               <InputAdornment position="end">
@@ -315,9 +359,10 @@ const Register = () => {
             Confirm Password
           </InputLabel>
           <OutlinedInput
-            id="login_c_password"
+            id="register_cpassword"
             type={showCPassword ? "text" : "password"}
             value={cpassword}
+            error={cpasswordError}
             onChange={(e) => setCpassword(e.target.value)}
             endAdornment={
               <InputAdornment position="end">

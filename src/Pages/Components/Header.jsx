@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import "./Header.css";
+import LogoutIcon from "@mui/icons-material/Logout";
+import IconButton from "@mui/material/IconButton";
 import { userLogout } from "../../Redux/Actions/commonUserCode";
 
 const Header = (props) => {
@@ -35,7 +37,14 @@ const Header = (props) => {
             </>
           ) : ("")}
           <ul onClick={logout}>Logout</ul>
+          ) : (
+            ""
+          )}
         </div>
+        <IconButton aria-label="logout" onClick={logout} className="logout_btn">
+          <LogoutIcon />
+          <ul>Logout</ul>
+        </IconButton>
       </div>
       {props.children}
     </>

@@ -48,33 +48,28 @@ const Register = () => {
       alert("Enter username");
     } else if (document.getElementById("register_email").value.length == 0) {
       setEmailError(true);
-      alert("Enter email");r
-    }
-    else if (document.getElementById("register_contact").value.length == 0) {
+      alert("Enter email");
+    } else if (document.getElementById("register_contact").value.length == 0) {
       setContactError(true);
       alert("Enter contact");
-    }
-    else if (document.getElementById("register_branch").value.length == 0) {
+    } else if (document.getElementById("register_branch").value.length == 0) {
       setBranchError(true);
       alert("Enter branch");
-    }
-    else if (document.getElementById("register_roll").value.length == 0) {
+    } else if (document.getElementById("register_roll").value.length == 0) {
       setRoll_noError(true);
       alert("Enter roll_no");
-    }
-    else if (document.getElementById("register_username").value.length == 0) {
+    } else if (document.getElementById("register_username").value.length == 0) {
       setUsernameError(true);
       alert("Enter username");
-    }
-    else if (document.getElementById("register_password").value.length == 0) {
+    } else if (document.getElementById("register_password").value.length == 0) {
       setPasswordError(true);
       alert("Enter password");
-    }
-    else if (document.getElementById("register_cpassword").value.length == 0) {
+    } else if (
+      document.getElementById("register_cpassword").value.length == 0
+    ) {
       setCpasswordError(true);
       alert("Enter confirm password");
-    }
-     else {
+    } else {
       if (password !== cpassword) {
         alert("Please enter same password in confirm password");
         return;

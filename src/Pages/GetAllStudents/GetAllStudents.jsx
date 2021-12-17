@@ -12,6 +12,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import IconButton from "@mui/material/IconButton";
 import "./GetAllStudents.css";
 
 const GetAllStudents = () => {
@@ -85,8 +86,16 @@ const GetAllStudents = () => {
                     <StyledTableCell align="centre">
                       {std.dob.toString().substring(0, 10)}
                     </StyledTableCell>
-                    <DeleteIcon />
-                    <ModeEditIcon />
+                    <StyledTableCell align="centre">
+                      <div className="delete_update_btn_container">
+                        <IconButton aria-label="delete item">
+                          <DeleteIcon className="delete_btn" />
+                        </IconButton>
+                        <IconButton aria-label="edit item">
+                          <ModeEditIcon className="edit_btn" />
+                        </IconButton>
+                      </div>
+                    </StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>

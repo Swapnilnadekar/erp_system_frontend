@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../Components/Header";
-import { getAllStudents } from "../../Redux/Actions/student";
+import { getAllStudents, deleteStudents } from "../../Redux/Actions/student";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -23,6 +23,8 @@ const GetAllStudents = () => {
     dispatch(getAllStudents());
   }, []);
 
+
+  
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.black,
@@ -88,9 +90,10 @@ const GetAllStudents = () => {
                     </StyledTableCell>
                     <StyledTableCell align="centre">
                       <div className="delete_update_btn_container">
-                        <IconButton aria-label="delete item">
+                        <IconButton aria-label="delete item" onClick={()=>{dispatch(deleteStudents(std.std_id))}}>
                           <DeleteIcon className="delete_btn" />
                         </IconButton>
+                          <IconButton aria-label="edit item">
                         <IconButton aria-label="edit item">
                           <ModeEditIcon className="edit_btn" />
                         </IconButton>

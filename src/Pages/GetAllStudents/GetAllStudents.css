@@ -1,0 +1,16 @@
+.all_students_container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.student_table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  margin-top: 70px;
+  width: 100%;
+}

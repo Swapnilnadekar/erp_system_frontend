@@ -6,6 +6,7 @@ import Home from "./Pages/Home/Home";
 import { useDispatch, useSelector } from "react-redux";
 import { isUserLoggedIn } from "./Redux/Actions/commonUserCode";
 import PrivateRoute from "./PrivateRoute";
+import GetAllStudents from "./Pages/GetAllStudents/GetAllStudents";
 
 const App = () => {
   const teacher = useSelector((state) => state.teacher);
@@ -35,6 +36,14 @@ const App = () => {
           element={
             <PrivateRoute>
               <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/get-all-students"
+          element={
+            <PrivateRoute>
+              <GetAllStudents />
             </PrivateRoute>
           }
         />

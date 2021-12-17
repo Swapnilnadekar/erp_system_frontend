@@ -38,3 +38,30 @@ export const studentLogin = (user) => {
     }
   };
 };
+
+export const getAllStudents = () => {
+  return async (dispatch) => {
+    dispatch({
+      type: studentConstants.GET_ALL_STUDENTS_REQEUST,
+    });
+
+    const res = await axios.get(`/admin/teacher/get-all-student-data`);
+
+    if (res.status == 201) {
+      const { result } = res.data;
+      dispatch({
+        type: studentConstants.GET_ALL_STUDENTS_SUCCESS,
+        payload: {
+          students_list: result,
+        },
+      });
+    } else {
+      dispatch({
+        type: studentConstants.GET_ALL_STUDENTS_FAILURE,
+        payload: {
+          error: res.data.error,
+        },
+      });
+    }
+  };
+};

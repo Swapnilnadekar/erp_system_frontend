@@ -65,3 +65,30 @@ export const getAllStudents = () => {
     }
   };
 };
+
+export const deleteStudents = (std_id) => {
+  return async (dispatch) => {
+    dispatch({
+      type: studentConstants.DELETE_STUDENT_REQEUST,
+    });
+
+    const res = await axios.delete(`/admin/teacher/deleteStudentData`, std_id);
+
+    if (res.status == 201) {
+      const { result } = res.data;
+      dispatch({
+        type: studentConstants.DELETE_STUDENT_SUCCESS,
+        payload: {
+          students_list: result,
+        },
+      });
+    } else {
+      dispatch({
+        type: studentConstants.DELETE_STUDENT_FAILURE,
+        payload: {
+          error: res.data.error,
+        },
+      });
+    }
+  };
+};

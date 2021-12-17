@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../Components/Header";
-import { getAllStudents } from "../../Redux/Actions/student";
+import { getAllStudents, deleteStudents } from "../../Redux/Actions/student";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -12,6 +12,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import IconButton from "@mui/material/IconButton";
 import "./GetAllStudents.css";
 
 const GetAllStudents = () => {
@@ -22,6 +23,8 @@ const GetAllStudents = () => {
     dispatch(getAllStudents());
   }, []);
 
+
+  
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.black,
@@ -85,8 +88,16 @@ const GetAllStudents = () => {
                     <StyledTableCell align="centre">
                       {std.dob.toString().substring(0, 10)}
                     </StyledTableCell>
-                    <DeleteIcon />
-                    <ModeEditIcon />
+                    <StyledTableCell align="centre">
+                      <div className="delete_update_btn_container">
+                        <IconButton aria-label="delete item" onClick={()=>{dispatch(deleteStudents(std.std_id))}}>
+                          <DeleteIcon className="delete_btn" />
+                        </IconButton>
+                          <IconButton aria-label="edit item">
+                          <ModeEditIcon className="edit_btn" />
+                        </IconButton>
+                      </div>
+                    </StyledTableCell>
                   </StyledTableRow>
                 ))}
               </TableBody>

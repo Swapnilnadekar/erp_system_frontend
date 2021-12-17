@@ -25,6 +25,7 @@ const Header = (props) => {
             Home
           </NavLink>
           {teacher.authenticate ? (
+            <>
               <NavLink className="nav_link" to="/register">
                 Register
               </NavLink>
@@ -32,9 +33,7 @@ const Header = (props) => {
                 Students
               </NavLink>
             </>
-          ) : (
-            ""
-          )}
+          ) : ("")}
           <ul onClick={logout}>Logout</ul>
         </div>
       </div>

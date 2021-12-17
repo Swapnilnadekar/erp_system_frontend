@@ -94,6 +94,7 @@ const GetAllStudents = () => {
                           <DeleteIcon className="delete_btn" />
                         </IconButton>
                           <IconButton aria-label="edit item">
+                        <IconButton aria-label="edit item">
                           <ModeEditIcon className="edit_btn" />
                         </IconButton>
                       </div>

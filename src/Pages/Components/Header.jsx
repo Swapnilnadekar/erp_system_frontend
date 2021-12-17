@@ -25,6 +25,7 @@ const Header = (props) => {
             Home
           </NavLink>
           {teacher.authenticate ? (
+            <>
               <NavLink className="nav_link" to="/register">
                 Register
               </NavLink>

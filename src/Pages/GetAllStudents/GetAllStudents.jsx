@@ -23,8 +23,6 @@ const GetAllStudents = () => {
     dispatch(getAllStudents());
   }, []);
 
-
-  
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.black,
@@ -90,10 +88,20 @@ const GetAllStudents = () => {
                     </StyledTableCell>
                     <StyledTableCell align="centre">
                       <div className="delete_update_btn_container">
-                        <IconButton aria-label="delete item" onClick={()=>{dispatch(deleteStudents(std.std_id))}}>
+                        <IconButton
+                          aria-label="delete item"
+                          onClick={() => {
+                            if (
+                              window.confirm(
+                                "Are you sure you want to delete ?"
+                              )
+                            ) {
+                              dispatch(deleteStudents(std.std_id));
+                            }
+                          }}
+                        >
                           <DeleteIcon className="delete_btn" />
                         </IconButton>
-                          <IconButton aria-label="edit item">
                         <IconButton aria-label="edit item">
                           <ModeEditIcon className="edit_btn" />
                         </IconButton>

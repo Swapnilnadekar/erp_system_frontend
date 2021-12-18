@@ -72,7 +72,7 @@ export const deleteStudents = (std_id) => {
       type: studentConstants.DELETE_STUDENT_REQEUST,
     });
 
-    const res = await axios.delete(`/admin/teacher/deleteStudentData`, std_id);
+    const res = await axios.delete(`/admin/teacher/delete-student/${std_id}`);
 
     if (res.status == 201) {
       const { result } = res.data;
@@ -85,6 +85,31 @@ export const deleteStudents = (std_id) => {
     } else {
       dispatch({
         type: studentConstants.DELETE_STUDENT_FAILURE,
+        payload: {
+          error: res.data.error,
+        },
+      });
+    }
+  };
+};
+
+export const registerStudent = (student) => {
+  console.log(student);
+  return async (dispatch) => {
+    dispatch({ type: studentConstants.ADD_NEW_STUDENT_REQEUST });
+    const res = await axios.post(`/student/register`, student);
+
+    if (res.status == 201) {
+      const { result } = res.data;
+      dispatch({
+        type: studentConstants.ADD_NEW_STUDENT_SUCCESS,
+        payload: {
+          student: result,
+        },
+      });
+    } else {
+      dispatch({
+        type: studentConstants.ADD_NEW_STUDENT_FAILURE,
         payload: {
           error: res.data.error,
         },

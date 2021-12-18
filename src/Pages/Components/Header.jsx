@@ -35,8 +35,6 @@ const Header = (props) => {
                 Students
               </NavLink>
             </>
-          ) : ("")}
-          <ul onClick={logout}>Logout</ul>
           ) : (
             ""
           )}

@@ -16,6 +16,8 @@ import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import "./Register.css";
+import { useDispatch } from "react-redux";
+import { registerStudent } from "../../Redux/Actions/student";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -40,6 +42,8 @@ const Register = () => {
   const [cpasswordError, setCpasswordError] = useState(false);
   const [role, setRole] = useState("student");
 
+  const dispatch = useDispatch();
+
   const submitForm = async (e) => {
     e.preventDefault();
 
@@ -49,8 +53,7 @@ const Register = () => {
     } else if (document.getElementById("register_email").value.length == 0) {
       setEmailError(true);
       alert("Enter email");
-    }
-    else if (document.getElementById("register_contact").value.length == 0) {
+    } else if (document.getElementById("register_contact").value.length == 0) {
       setContactError(true);
       alert("Enter contact");
     } else if (document.getElementById("register_branch").value.length == 0) {
@@ -95,8 +98,18 @@ const Register = () => {
         } else {
           console.log("Error");
         }
+
+        setName("");
+        setEmail("");
+        setBranch("");
+        setRoll_no(0);
+        setDob(new Date());
+        setContact("");
+        setUsername("");
+        setPassword("");
+        setCpassword("");
       } else {
-        const newUser = {
+        const newStudent = {
           name,
           email,
           branch,
@@ -106,15 +119,8 @@ const Register = () => {
           username,
           password,
         };
-        const result = await axios.post(
-          `http://localhost:2000/student/register`,
-          newUser
-        );
-        if (result.status === 201) {
-          alert("New User added");
-        } else {
-          alert("error");
-        }
+
+        dispatch(registerStudent(newStudent));
 
         setName("");
         setEmail("");

@@ -55,7 +55,6 @@ export default (state = initState, action) => {
     case studentConstants.STUDENT_LOGOUT_FAILURE:
       state = { ...initState, error: action.payload.error, loading: false };
 
-
     case studentConstants.DELETE_STUDENT_REQEUST:
       state = { ...state, loading: true };
       break;
@@ -73,4 +72,3 @@ export default (state = initState, action) => {
   }
   return state;
 };
-

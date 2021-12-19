@@ -43,20 +43,27 @@ export default (state = initState, action) => {
       state = { ...state, loading: false, error: action.payload.error };
       break;
 
-    // case studentConstants.DELETE_STUDENT_REQEUST:
-    //   state = { ...state, loading: true };
-    //   break;
+    case studentConstants.UPDATE_STUDENT_REQEUST:
+      state = { ...state, loading: true };
+      break;
 
-    // case studentConstants.DELETE_STUDENT_SUCCESS:
-    //   state = {
-    //     ...state,
-    //     loading: false,
-    //   };
-    //   break;
+    case studentConstants.UPDATE_STUDENT_SUCCESS:
+      var updatedStudent = action.payload.student;
+      var updatedList = state.students_list.filter((current) => {
+        return current.std_id !== updatedStudent.std_id;
+      });
+      updatedList = [...updatedList, updatedStudent];
 
-    // case studentConstants.DELETE_STUDENT_FAILURE:
-    //   state = { ...state, loading: false, error: action.payload.error };
-    //   break;
+      state = {
+        ...state,
+        students_list: updatedList,
+        loading: false,
+      };
+      break;
+
+    case studentConstants.UPDATE_STUDENT_FAILURE:
+      state = { ...state, loading: false, error: action.payload.error };
+      break;
   }
   return state;
 };

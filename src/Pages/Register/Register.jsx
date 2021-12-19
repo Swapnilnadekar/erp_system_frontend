@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import axios from "axios";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import IconButton from "@mui/material/IconButton";
@@ -9,7 +8,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import Header from "../Components/Header";
+import Header from "../Components/Header/Header";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
@@ -18,6 +17,7 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import "./Register.css";
 import { useDispatch } from "react-redux";
 import { registerStudent } from "../../Redux/Actions/student";
+import { registerTeacher } from "../../Redux/Actions/teacher";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -59,9 +59,6 @@ const Register = () => {
     } else if (document.getElementById("register_branch").value.length == 0) {
       setBranchError(true);
       alert("Enter branch");
-    } else if (document.getElementById("register_roll").value.length == 0) {
-      setRoll_noError(true);
-      alert("Enter roll_no");
     } else if (document.getElementById("register_username").value.length == 0) {
       setUsernameError(true);
       alert("Enter username");
@@ -79,8 +76,8 @@ const Register = () => {
         return;
       }
 
-      if (checkbox == true) {
-        const newUser = {
+      if (role === "admin") {
+        const teacher = {
           name,
           email,
           branch,
@@ -89,15 +86,7 @@ const Register = () => {
           password,
         };
 
-        const result = await axios.post(
-          `http://localhost:2000/admin/teacher/register`,
-          newUser
-        );
-        if (result.status === 201) {
-          console.log("New User added");
-        } else {
-          console.log("Error");
-        }
+        dispatch(registerTeacher(teacher));
 
         setName("");
         setEmail("");

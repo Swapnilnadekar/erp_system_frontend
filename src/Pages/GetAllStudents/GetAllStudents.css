@@ -37,3 +37,13 @@
 .edit_btn:hover {
   color: rgb(131, 255, 131);
 }
+
+.box_style {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: rgb(204, 204, 204);
+  border: 2px solid rgb(0, 0, 0);
+}

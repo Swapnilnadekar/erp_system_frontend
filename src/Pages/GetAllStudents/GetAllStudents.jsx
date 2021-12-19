@@ -1,7 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "../Components/Header";
-import { getAllStudents, deleteStudents } from "../../Redux/Actions/student";
+import Header from "../Components/Header/Header";
+import {
+  getAllStudents,
+  deleteStudents,
+  updateStudent,
+} from "../../Redux/Actions/student";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -13,15 +17,67 @@ import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import IconButton from "@mui/material/IconButton";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import { TextField } from "@mui/material";
+import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import CheckIcon from "@mui/icons-material/Check";
+import Button from "@mui/material/Button";
 import "./GetAllStudents.css";
 
 const GetAllStudents = () => {
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [branch, setBranch] = useState("");
+  const [roll_no, setRoll_no] = useState("");
+  const [dob, setDob] = useState(new Date());
+  const [contact, setContact] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [std_id, setStd_id] = useState(0);
+  const [nameError, setNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [contactError, setContactError] = useState(false);
+  const [branchError, setBranchError] = useState(false);
+  const [roll_noError, setRoll_noError] = useState(false);
+
   const studentsList = useSelector((state) => state.studentList.students_list);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllStudents());
   }, []);
+
+  const updateData = () => {
+    const updatedStudent = {
+      std_id,
+      name,
+      email,
+      branch,
+      roll_no,
+      dob,
+      contact,
+      username,
+      password,
+    };
+
+    dispatch(updateStudent(updatedStudent));
+    handleClose();
+  };
+
+  const setDate = (e) => {
+    var date = new Date(e),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
+    var date = [date.getFullYear(), mnth, day].join("-");
+    setDob(date);
+  };
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -42,6 +98,96 @@ const GetAllStudents = () => {
       border: 0,
     },
   }));
+
+  const modalFunc = () => {
+    return (
+      <div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box className="box_style">
+            <div className="edit_form">
+              <TextField
+                id="register_name"
+                color="info"
+                label="Name"
+                variant="outlined"
+                error={nameError}
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+                style={{ width: "65%", margin: "4px" }}
+              />
+              <div
+                className="email_contact_container"
+                style={{ width: "65%", margin: "4px" }}
+              >
+                <TextField
+                  value={email}
+                  id="register_email"
+                  color="info"
+                  label="Email ID"
+                  variant="outlined"
+                  error={emailError}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <TextField
+                  value={contact}
+                  id="register_contact"
+                  color="info"
+                  label="Mobile No."
+                  variant="outlined"
+                  error={contactError}
+                  onChange={(e) => setContact(e.target.value)}
+                />
+              </div>
+              <div
+                className="class_details_container"
+                style={{ width: "65%", margin: "4px" }}
+              >
+                <TextField
+                  value={branch}
+                  id="register_branch"
+                  color="info"
+                  label="Branch"
+                  variant="outlined"
+                  error={branchError}
+                  onChange={(e) => setBranch(e.target.value)}
+                />
+                <TextField
+                  value={roll_no}
+                  id="register_roll"
+                  color="info"
+                  label="Roll No."
+                  variant="outlined"
+                  error={roll_noError}
+                  onChange={(e) => setRoll_no(e.target.value)}
+                />
+              </div>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DesktopDatePicker
+                  label="Date of birth"
+                  inputFormat="MM/dd/yyyy"
+                  value={dob}
+                  onChange={setDate}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </LocalizationProvider>
+            </div>
+            <Button
+              variant="outlined"
+              startIcon={<CheckIcon />}
+              onClick={updateData}
+            >
+              Update
+            </Button>
+          </Box>
+        </Modal>
+      </div>
+    );
+  };
 
   return (
     <>
@@ -102,7 +248,15 @@ const GetAllStudents = () => {
                         >
                           <DeleteIcon className="delete_btn" />
                         </IconButton>
-                        <IconButton aria-label="edit item">
+                        <IconButton
+                          aria-label="edit item"
+                          onClick={() => {
+                            setStd_id(std.std_id);
+                            setUsername(std.username);
+                            setPassword(std.password);
+                            setOpen(true);
+                          }}
+                        >
                           <ModeEditIcon className="edit_btn" />
                         </IconButton>
                       </div>
@@ -114,6 +268,7 @@ const GetAllStudents = () => {
           </TableContainer>
         </div>
       </div>
+      {modalFunc()}
     </>
   );
 };

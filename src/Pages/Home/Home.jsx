@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Header from "../Components/Header";
+import Header from "../Components/Header/Header";
 import { useSelector } from "react-redux";
 import Avatar from "@mui/material/Avatar";
 import "./Home.css";

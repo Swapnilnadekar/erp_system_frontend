@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./Header.css";
 import LogoutIcon from "@mui/icons-material/Logout";
 import IconButton from "@mui/material/IconButton";
-import { userLogout } from "../../Redux/Actions/commonUserCode";
+import { userLogout } from "../../../Redux/Actions/commonUserCode";
 
 const Header = (props) => {
   const teacher = useSelector((state) => state.teacher);

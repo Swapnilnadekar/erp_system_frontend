@@ -94,7 +94,6 @@ export const deleteStudents = (std_id) => {
 };
 
 export const registerStudent = (student) => {
-  console.log(student);
   return async (dispatch) => {
     dispatch({ type: studentConstants.ADD_NEW_STUDENT_REQEUST });
     const res = await axios.post(`/student/register`, student);
@@ -110,6 +109,30 @@ export const registerStudent = (student) => {
     } else {
       dispatch({
         type: studentConstants.ADD_NEW_STUDENT_FAILURE,
+        payload: {
+          error: res.data.error,
+        },
+      });
+    }
+  };
+};
+
+export const updateStudent = (updated) => {
+  return async (dispatch) => {
+    dispatch({ type: studentConstants.UPDATE_STUDENT_REQEUST });
+    const res = await axios.put(`/admin/teacher/edit-student-data`, updated);
+
+    if (res.status == 201) {
+      const { result } = res.data;
+      dispatch({
+        type: studentConstants.UPDATE_STUDENT_SUCCESS,
+        payload: {
+          student: result,
+        },
+      });
+    } else {
+      dispatch({
+        type: studentConstants.UPDATE_STUDENT_FAILURE,
         payload: {
           error: res.data.error,
         },

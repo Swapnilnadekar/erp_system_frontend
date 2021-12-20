@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { isUserLoggedIn } from "./Redux/Actions/commonUserCode";
 import PrivateRoute from "./PrivateRoute";
 import GetAllStudents from "./Pages/GetAllStudents/GetAllStudents";
+import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 
 const App = () => {
   const teacher = useSelector((state) => state.teacher);
@@ -47,7 +48,9 @@ const App = () => {
             </PrivateRoute>
           }
         />
+         <Route path="*" element={<ErrorPage />}></Route>
       </Routes>
+     
     </div>
   );
 };

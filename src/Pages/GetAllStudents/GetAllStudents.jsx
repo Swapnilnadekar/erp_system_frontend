@@ -110,6 +110,7 @@ const GetAllStudents = () => {
         >
           <Box className="box_style">
             <div className="edit_form">
+              <h3>Edit Student Details</h3>
               <TextField
                 id="register_name"
                 color="info"

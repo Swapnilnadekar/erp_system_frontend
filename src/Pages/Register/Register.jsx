@@ -29,7 +29,6 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
-  const [checkbox, setCheckbox] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showCPassword, setShowCPassword] = useState(false);
   const [nameError, setNameError] = useState(false);
@@ -124,7 +123,15 @@ const Register = () => {
     }
   };
 
-  const teacherFormData = () => {
+  const setDate = (e) => {
+    var date = new Date(e),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
+    var date = [date.getFullYear(), mnth, day].join("-");
+    setDob(date);
+  };
+
+  const adminFormData = (role) => {
     return (
       <>
         <TextField
@@ -231,14 +238,6 @@ const Register = () => {
         </FormControl>
       </>
     );
-  };
-
-  const setDate = (e) => {
-    var date = new Date(e),
-      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-      day = ("0" + date.getDate()).slice(-2);
-    var date = [date.getFullYear(), mnth, day].join("-");
-    setDob(date);
   };
 
   const studentFormData = () => {
@@ -394,12 +393,21 @@ const Register = () => {
                 Student
               </MenuItem>
               <MenuItem value={"admin"} style={{ color: "black" }}>
+                Teacher
+              </MenuItem>
+              <MenuItem value={"admin"} style={{ color: "black" }}>
                 Admin
+              </MenuItem>
+              <MenuItem value={"admin"} style={{ color: "black" }}>
+                HOD
+              </MenuItem>
+              <MenuItem value={"admin"} style={{ color: "black" }}>
+                Principal
               </MenuItem>
             </Select>
           </div>
 
-          {role == "student" ? studentFormData() : teacherFormData()}
+          {role == "student" ? studentFormData(role) : adminFormData(role)}
 
           <Button
             type="submit"

@@ -18,14 +18,15 @@ const Home = () => {
       <Header />
       <div className="home_container">
         <div className="user_details_card">
-          <Avatar
-            alt="Remy Sharp"
-            src="https://www.zica.org/images/icon-student.jpg"
-            style={{ height: "200px", width: "230px" }}
-          />
+         
           {teacher.authenticate ? (
             <div className="user_details">
               <div className="user_role_container">
+                 <Avatar
+            alt="Remy Sharp"
+            src="https://www.clipartmax.com/png/full/319-3191274_male-avatar-admin-profile.png"
+            style={{ height: "200px", width: "230px" }}
+          />
                 <h6>{teacher.user.role}</h6>
               </div>
               <div className="name_branch_container">
@@ -40,6 +41,11 @@ const Home = () => {
           ) : (
             <div className="user_details">
               <div className="user_role_container">
+              <Avatar
+            alt="Remy Sharp"
+            src="https://www.zica.org/images/icon-student.jpg"
+            style={{ height: "200px", width: "230px" }}
+          />
                 <h6>{student.user.role}</h6>
               </div>
               <div className="name_branch_container">

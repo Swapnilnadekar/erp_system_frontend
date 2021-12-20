@@ -39,11 +39,33 @@
 }
 
 .box_style {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 400px;
-  background-color: rgb(204, 204, 204);
-  border: 2px solid rgb(0, 0, 0);
+  transform: translate(-50%, -70%);
+  height: 400px;
+  width: 700px;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(27, 9, 9);
+  border-radius: 30px;
+}
+
+
+.edit_form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.class_details_container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
 }

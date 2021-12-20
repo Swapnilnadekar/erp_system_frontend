@@ -45,7 +45,7 @@ export const getAllStudents = () => {
       type: studentConstants.GET_ALL_STUDENTS_REQEUST,
     });
 
-    const res = await axios.get(`/admin/teacher/get-all-student-data`);
+    const res = await axios.get(`/student/get-all-student-data`);
 
     if (res.status == 201) {
       const { result } = res.data;
@@ -72,7 +72,7 @@ export const deleteStudents = (std_id) => {
       type: studentConstants.DELETE_STUDENT_REQEUST,
     });
 
-    const res = await axios.delete(`/admin/teacher/delete-student/${std_id}`);
+    const res = await axios.delete(`/student/delete-student/${std_id}`);
 
     if (res.status == 201) {
       const { result } = res.data;
@@ -120,7 +120,7 @@ export const registerStudent = (student) => {
 export const updateStudent = (updated) => {
   return async (dispatch) => {
     dispatch({ type: studentConstants.UPDATE_STUDENT_REQEUST });
-    const res = await axios.put(`/admin/teacher/edit-student-data`, updated);
+    const res = await axios.put(`/student/edit-student-data`, updated);
 
     if (res.status == 201) {
       const { result } = res.data;

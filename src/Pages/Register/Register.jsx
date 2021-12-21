@@ -176,6 +176,7 @@ const Register = () => {
           onChange={(e) => setBranch(e.target.value)}
           error={branchError}
         />
+         
         <TextField
           value={username}
           id="register_username"
@@ -409,6 +410,7 @@ const Register = () => {
 
           {role == "student" ? studentFormData(role) : adminFormData(role)}
 
+          
           <Button
             type="submit"
             variant="contained"

@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 1;
 }
 
 .student_table {
@@ -20,6 +21,7 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-around;
+  z-index: 0;
 }
 
 .delete_btn {
@@ -54,18 +56,16 @@
   border-radius: 30px;
 }
 
-
-.edit_form{
+.edit_form {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 }
 
-.class_details_container{
+.class_details_container {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-
 }

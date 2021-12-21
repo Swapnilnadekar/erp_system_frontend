@@ -18,6 +18,9 @@ import "./Register.css";
 import { useDispatch } from "react-redux";
 import { registerStudent } from "../../Redux/Actions/student";
 import { registerTeacher } from "../../Redux/Actions/teacher";
+import { registerHod } from "../../Redux/Actions/hod";
+import { registerAdmin } from "../../Redux/Actions/admin";
+import { registerPrincipal } from "../../Redux/Actions/principal";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -48,16 +51,13 @@ const Register = () => {
 
     if (document.getElementById("register_name").value.length == 0) {
       setNameError(true);
-      alert("Enter username");
+      alert("Enter name");
     } else if (document.getElementById("register_email").value.length == 0) {
       setEmailError(true);
       alert("Enter email");
     } else if (document.getElementById("register_contact").value.length == 0) {
       setContactError(true);
       alert("Enter contact");
-    } else if (document.getElementById("register_branch").value.length == 0) {
-      setBranchError(true);
-      alert("Enter branch");
     } else if (document.getElementById("register_username").value.length == 0) {
       setUsernameError(true);
       alert("Enter username");
@@ -75,7 +75,7 @@ const Register = () => {
         return;
       }
 
-      if (role === "admin") {
+      if (role === "teacher") {
         const teacher = {
           name,
           email,
@@ -86,6 +86,67 @@ const Register = () => {
         };
 
         dispatch(registerTeacher(teacher));
+
+        setName("");
+        setEmail("");
+        setBranch("");
+        setRoll_no(0);
+        setDob(new Date());
+        setContact("");
+        setUsername("");
+        setPassword("");
+        setCpassword("");
+      } else if (role === "hod") {
+        const hod = {
+          name,
+          email,
+          branch,
+          contact,
+          username,
+          password,
+        };
+
+        dispatch(registerHod(hod));
+
+        setName("");
+        setEmail("");
+        setBranch("");
+        setRoll_no(0);
+        setDob(new Date());
+        setContact("");
+        setUsername("");
+        setPassword("");
+        setCpassword("");
+      } else if (role === "admin") {
+        const admin = {
+          name,
+          email,
+          contact,
+          username,
+          password,
+        };
+
+        dispatch(registerAdmin(admin));
+
+        setName("");
+        setEmail("");
+        setBranch("");
+        setRoll_no(0);
+        setDob(new Date());
+        setContact("");
+        setUsername("");
+        setPassword("");
+        setCpassword("");
+      } else if (role === "principal") {
+        const principal = {
+          name,
+          email,
+          contact,
+          username,
+          password,
+        };
+
+        dispatch(registerPrincipal(principal));
 
         setName("");
         setEmail("");
@@ -167,15 +228,19 @@ const Register = () => {
             error={contactError}
           />
         </div>
-        <TextField
-          value={branch}
-          id="register_branch"
-          color="info"
-          label="Branch"
-          variant="outlined"
-          onChange={(e) => setBranch(e.target.value)}
-          error={branchError}
-        />
+        {role === "teacher" || role === "hod" ? (
+          <TextField
+            value={branch}
+            id="register_branch"
+            color="info"
+            label="Branch"
+            variant="outlined"
+            onChange={(e) => setBranch(e.target.value)}
+            error={branchError}
+          />
+        ) : (
+          <></>
+        )}
         <TextField
           value={username}
           id="register_username"
@@ -392,16 +457,16 @@ const Register = () => {
               <MenuItem value={"student"} style={{ color: "black" }}>
                 Student
               </MenuItem>
-              <MenuItem value={"admin"} style={{ color: "black" }}>
+              <MenuItem value={"teacher"} style={{ color: "black" }}>
                 Teacher
               </MenuItem>
               <MenuItem value={"admin"} style={{ color: "black" }}>
                 Admin
               </MenuItem>
-              <MenuItem value={"admin"} style={{ color: "black" }}>
+              <MenuItem value={"hod"} style={{ color: "black" }}>
                 HOD
               </MenuItem>
-              <MenuItem value={"admin"} style={{ color: "black" }}>
+              <MenuItem value={"principal"} style={{ color: "black" }}>
                 Principal
               </MenuItem>
             </Select>

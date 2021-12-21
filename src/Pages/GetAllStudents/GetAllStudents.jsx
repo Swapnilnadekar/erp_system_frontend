@@ -44,17 +44,7 @@ const GetAllStudents = () => {
   const [branchError, setBranchError] = useState(false);
   const [roll_noError, setRoll_noError] = useState(false);
 
-  const studentsCompList = useSelector(
-    (state) => state.studentList.students_list
-  );
-
-  const studentsItList = useSelector(
-    (state) => state.studentList.students_list
-  );
-  const studentsEntcList = useSelector(
-    (state) => state.studentList.students_list
-  );
-
+  const studentsList = useSelector((state) => state.studentList.students_list);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -200,107 +190,26 @@ const GetAllStudents = () => {
     );
   };
 
-  return (
-    <>
-      <Header />
-      <div className="all_students_container">
-        <div className="student_table">
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table">
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell align="centre">Student Id</StyledTableCell>
-                  <StyledTableCell align="centre">Name</StyledTableCell>
-                  <StyledTableCell align="centre">Email</StyledTableCell>
-                  <StyledTableCell align="centre">Contact</StyledTableCell>
-                  <StyledTableCell align="centre">Roll&nbsp;no</StyledTableCell>
-                  <StyledTableCell align="centre">Branch</StyledTableCell>
-                  <StyledTableCell align="centre">
-                    Date of birth
-                  </StyledTableCell>
-                  <StyledTableCell align="centre"></StyledTableCell>
-                  &nbsp; &nbsp; &nbsp;
-                  <StyledTableCell align="centre">Student Id</StyledTableCell>
-                  <StyledTableCell align="centre">Name</StyledTableCell>
-                  <StyledTableCell align="centre">Email</StyledTableCell>
-                  <StyledTableCell align="centre">Contact</StyledTableCell>
-                  <StyledTableCell align="centre">Roll&nbsp;no</StyledTableCell>
-                  <StyledTableCell align="centre">Branch</StyledTableCell>
-                  <StyledTableCell align="centre">
-                    Date of birth
-                  </StyledTableCell>
-                  <StyledTableCell align="centre"></StyledTableCell>
-                  &nbsp; &nbsp;&nbsp;
-                  <StyledTableCell align="centre">Student Id</StyledTableCell>
-                  <StyledTableCell align="centre">Name</StyledTableCell>
-                  <StyledTableCell align="centre">Email</StyledTableCell>
-                  <StyledTableCell align="centre">Contact</StyledTableCell>
-                  <StyledTableCell align="centre">Roll&nbsp;no</StyledTableCell>
-                  <StyledTableCell align="centre">Branch</StyledTableCell>
-                  <StyledTableCell align="centre">
-                    Date of birth
-                  </StyledTableCell>
-                  <StyledTableCell align="centre"></StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {studentsCompList.map((std) => {
-                  if (std.branch === "comp") {
-                    (
-                    <StyledTableRow key={std.std_id}>
-                    <StyledTableCell component="th" scope="row" align="centre">
-                      {std.std_id}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">{std.name}</StyledTableCell>
-                    <StyledTableCell align="centre">
-                      {std.email}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">
-                      {std.contact}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">
-                      {std.roll_no}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">
-                      {std.branch}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">
-                      {std.dob.toString().substring(0, 10)}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">
-                      <div className="delete_update_btn_container">
-                        <IconButton
-                          aria-label="delete item"
-                          onClick={() => {
-                            if (
-                              window.confirm(
-                                "Are you sure you want to delete ?"
-                              )
-                            ) {
-                              dispatch(deleteStudents(std.std_id));
-                            }
-                          }}
-                        >
-                          <DeleteIcon className="delete_btn" />
-                        </IconButton>
-                        <IconButton
-                          aria-label="edit item"
-                          onClick={() => {
-                            setStd_id(std.std_id);
-                            setUsername(std.username);
-                            setPassword(std.password);
-                            setOpen(true);
-                          }}
-                        >
-                          <ModeEditIcon className="edit_btn" />
-                        </IconButton>
-                      </div>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                    )
-                  }
-                })}
-                {/* {studentsCompList.map((std) => (
+  const renderCompList = () => {
+    return (
+      <div className="comp_student_details">
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <StyledTableCell align="centre">Student Id</StyledTableCell>
+                <StyledTableCell align="centre">Name</StyledTableCell>
+                <StyledTableCell align="centre">Email</StyledTableCell>
+                <StyledTableCell align="centre">Contact</StyledTableCell>
+                <StyledTableCell align="centre">Roll&nbsp;no</StyledTableCell>
+                <StyledTableCell align="centre">Branch</StyledTableCell>
+                <StyledTableCell align="centre">Date of birth</StyledTableCell>
+                <StyledTableCell align="centre"></StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {studentsList.map((std) =>
+                std.branch === "COMP" ? (
                   <StyledTableRow key={std.std_id}>
                     <StyledTableCell component="th" scope="row" align="centre">
                       {std.std_id}
@@ -318,74 +227,7 @@ const GetAllStudents = () => {
                     <StyledTableCell align="centre">
                       {std.branch}
                     </StyledTableCell>
-                    <StyledTableCell align="centre">
-                      {std.dob.toString().substring(0, 10)}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">
-                      <div className="delete_update_btn_container">
-                        <IconButton
-                          aria-label="delete item"
-                          onClick={() => {
-                            if (
-                              window.confirm(
-                                "Are you sure you want to delete ?"
-                              )
-                            ) {
-                              dispatch(deleteStudents(std.std_id));
-                            }
-                          }}
-                        >
-                          <DeleteIcon className="delete_btn" />
-                        </IconButton>
-                        <IconButton
-                          aria-label="edit item"
-                          onClick={() => {
-                            setStd_id(std.std_id);
-                            setUsername(std.username);
-                            setPassword(std.password);
-                            setOpen(true);
-                          }}
-                        >
-                          <ModeEditIcon className="edit_btn" />
-                        </IconButton>
-                      </div>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))} */}
-
-                {/* {studentsItList.map((std) => (
-                  <StyledTableRow key={std.std_id}>
-                    <StyledTableCell component="th" scope="row" align="centre">
-                      {std.std_id}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">{std.name}</StyledTableCell>
-                    <StyledTableCell align="centre">
-                      {std.email}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">
-                      {std.contact}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">
-                      {std.roll_no}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">
-                      {std.branch}
-                    </StyledTableCell>
-                    {/* {std.dob.length > 10 ? (
-                      <StyledTableCell align="centre">
-                        {std.dob.toString().substring(0, 10)}
-                      </StyledTableCell>
-                    ) : (
-                      <StyledTableCell align="centre">
-                        {std.dob}
-                      </StyledTableCell>
-                    )} */}
-                    <StyledTableCell align="centre">
-                      {/* {std.dob.length > 10
-                        ? std.dob.toString().substring(0, 10)
-                        : std.dob} */}
-                      {std.dob}
-                    </StyledTableCell>
+                    <StyledTableCell align="centre">{std.dob}</StyledTableCell>
                     <StyledTableCell align="centre">
                       <div className="delete_update_btn_container">
                         <IconButton
@@ -423,9 +265,40 @@ const GetAllStudents = () => {
                       </div>
                     </StyledTableCell>
                   </StyledTableRow>
-                ))}
+                ) : (
+                  <></>
+                )
+              )}
+              {
+                // Comment code
+              }
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    );
+  };
 
-                {studentsEntcList.map((std) => (
+  const renderITList = () => {
+    return (
+      <div className="comp_student_details">
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <StyledTableCell align="centre">Student Id</StyledTableCell>
+                <StyledTableCell align="centre">Name</StyledTableCell>
+                <StyledTableCell align="centre">Email</StyledTableCell>
+                <StyledTableCell align="centre">Contact</StyledTableCell>
+                <StyledTableCell align="centre">Roll&nbsp;no</StyledTableCell>
+                <StyledTableCell align="centre">Branch</StyledTableCell>
+                <StyledTableCell align="centre">Date of birth</StyledTableCell>
+                <StyledTableCell align="centre"></StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {studentsList.map((std) =>
+                std.branch === "IT" ? (
                   <StyledTableRow key={std.std_id}>
                     <StyledTableCell component="th" scope="row" align="centre">
                       {std.std_id}
@@ -443,9 +316,7 @@ const GetAllStudents = () => {
                     <StyledTableCell align="centre">
                       {std.branch}
                     </StyledTableCell>
-                    <StyledTableCell align="centre">
-                      {std.dob.toString().substring(0, 10)}
-                    </StyledTableCell>
+                    <StyledTableCell align="centre">{std.dob}</StyledTableCell>
                     <StyledTableCell align="centre">
                       <div className="delete_update_btn_container">
                         <IconButton
@@ -468,6 +339,13 @@ const GetAllStudents = () => {
                             setStd_id(std.std_id);
                             setUsername(std.username);
                             setPassword(std.password);
+                            setName(std.name);
+                            setEmail(std.email);
+                            setContact(std.contact);
+                            setBranch(std.branch);
+                            setDate(std.dob);
+                            setEmail(std.email);
+                            setRoll_no(std.roll_no);
                             setOpen(true);
                           }}
                         >
@@ -476,12 +354,117 @@ const GetAllStudents = () => {
                       </div>
                     </StyledTableCell>
                   </StyledTableRow>
-                ))} */}
+                ) : (
+                  <></>
+                )
+              )}
+              {
+                // Comment code
+              }
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    );
+  };
 
+  const renderENTCList = () => {
+    return (
+      <div className="comp_student_details">
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <StyledTableCell align="centre">Student Id</StyledTableCell>
+                <StyledTableCell align="centre">Name</StyledTableCell>
+                <StyledTableCell align="centre">Email</StyledTableCell>
+                <StyledTableCell align="centre">Contact</StyledTableCell>
+                <StyledTableCell align="centre">Roll&nbsp;no</StyledTableCell>
+                <StyledTableCell align="centre">Branch</StyledTableCell>
+                <StyledTableCell align="centre">Date of birth</StyledTableCell>
+                <StyledTableCell align="centre"></StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {studentsList.map((std) =>
+                std.branch === "ENTC" ? (
+                  <StyledTableRow key={std.std_id}>
+                    <StyledTableCell component="th" scope="row" align="centre">
+                      {std.std_id}
+                    </StyledTableCell>
+                    <StyledTableCell align="centre">{std.name}</StyledTableCell>
+                    <StyledTableCell align="centre">
+                      {std.email}
+                    </StyledTableCell>
+                    <StyledTableCell align="centre">
+                      {std.contact}
+                    </StyledTableCell>
+                    <StyledTableCell align="centre">
+                      {std.roll_no}
+                    </StyledTableCell>
+                    <StyledTableCell align="centre">
+                      {std.branch}
+                    </StyledTableCell>
+                    <StyledTableCell align="centre">{std.dob}</StyledTableCell>
+                    <StyledTableCell align="centre">
+                      <div className="delete_update_btn_container">
+                        <IconButton
+                          aria-label="delete item"
+                          onClick={() => {
+                            if (
+                              window.confirm(
+                                "Are you sure you want to delete ?"
+                              )
+                            ) {
+                              dispatch(deleteStudents(std.std_id));
+                            }
+                          }}
+                        >
+                          <DeleteIcon className="delete_btn" />
+                        </IconButton>
+                        <IconButton
+                          aria-label="edit item"
+                          onClick={() => {
+                            setStd_id(std.std_id);
+                            setUsername(std.username);
+                            setPassword(std.password);
+                            setName(std.name);
+                            setEmail(std.email);
+                            setContact(std.contact);
+                            setBranch(std.branch);
+                            setDate(std.dob);
+                            setEmail(std.email);
+                            setRoll_no(std.roll_no);
+                            setOpen(true);
+                          }}
+                        >
+                          <ModeEditIcon className="edit_btn" />
+                        </IconButton>
+                      </div>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ) : (
+                  <></>
+                )
+              )}
+              {
+                // Comment code
+              }
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    );
+  };
 
-              </TableBody>
-            </Table>
-          </TableContainer>
+  return (
+    <>
+      <Header />
+      <div className="all_students_container">
+        <div className="student_table">
+          {renderCompList()}
+          {renderITList()}
+          {renderENTCList()}
         </div>
       </div>
       {modalFunc()}

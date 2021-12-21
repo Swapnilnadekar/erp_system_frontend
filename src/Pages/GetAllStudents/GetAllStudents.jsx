@@ -371,8 +371,20 @@ const GetAllStudents = () => {
                     <StyledTableCell align="centre">
                       {std.branch}
                     </StyledTableCell>
+                    {/* {std.dob.length > 10 ? (
+                      <StyledTableCell align="centre">
+                        {std.dob.toString().substring(0, 10)}
+                      </StyledTableCell>
+                    ) : (
+                      <StyledTableCell align="centre">
+                        {std.dob}
+                      </StyledTableCell>
+                    )} */}
                     <StyledTableCell align="centre">
-                      {std.dob.toString().substring(0, 10)}
+                      {/* {std.dob.length > 10
+                        ? std.dob.toString().substring(0, 10)
+                        : std.dob} */}
+                      {std.dob}
                     </StyledTableCell>
                     <StyledTableCell align="centre">
                       <div className="delete_update_btn_container">
@@ -396,6 +408,13 @@ const GetAllStudents = () => {
                             setStd_id(std.std_id);
                             setUsername(std.username);
                             setPassword(std.password);
+                            setName(std.name);
+                            setEmail(std.email);
+                            setContact(std.contact);
+                            setBranch(std.branch);
+                            setDate(std.dob);
+                            setEmail(std.email);
+                            setRoll_no(std.roll_no);
                             setOpen(true);
                           }}
                         >

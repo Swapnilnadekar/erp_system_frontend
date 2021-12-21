@@ -30,7 +30,7 @@ export default (state = initState, action) => {
 
     case studentConstants.ADD_NEW_STUDENT_SUCCESS:
       const newStudent = action.payload.student;
-      const updated_students_list = [...state, newStudent];
+      const updated_students_list = [...state.students_list, newStudent];
 
       state = {
         ...state,

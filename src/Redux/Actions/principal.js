@@ -41,7 +41,6 @@ export const principalLogin = (user) => {
 };
 
 export const registerPrincipal = (principal) => {
-  console.log(principal);
   return async (dispatch) => {
     dispatch({ type: principalConstants.ADD_NEW_PRINCIPAL_REQEUST });
     const res = await axios.post(`/admin/principal/register`, principal);

@@ -4,7 +4,7 @@ import Header from "../Components/Header/Header";
 import {
   getAllAdmin,
   deleteAdmin,
-  updateAdmin
+  updateAdmin,
 } from "../../Redux/Actions/admin";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
@@ -59,8 +59,6 @@ const GetAllAdmin = () => {
     dispatch(updateAdmin(updatedAdmin));
     handleClose();
   };
-
-  
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -130,7 +128,7 @@ const GetAllAdmin = () => {
                   onChange={(e) => setContact(e.target.value)}
                 />
               </div>
-              </div>
+            </div>
             <Button
               variant="outlined"
               startIcon={<CheckIcon />}
@@ -159,54 +157,49 @@ const GetAllAdmin = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {adminsList.map((adm) =>(
-                  <StyledTableRow key={adm.adm_id}>
-                    <StyledTableCell component="th" scope="row" align="centre">
-                      {adm.adm_id}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">{adm.name}</StyledTableCell>
-                    <StyledTableCell align="centre">
-                      {adm.email}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">
-                      {adm.contact}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">
-                      <div className="delete_update_btn_container">
-                        <IconButton
-                          aria-label="delete item"
-                          onClick={() => {
-                            if (
-                              window.confirm(
-                                "Are you sure you want to delete ?"
-                              )
-                            ) {
-                              dispatch(deleteAdmin(adm.adm_id));
-                            }
-                          }}
-                        >
-                          <DeleteIcon className="delete_btn" />
-                        </IconButton>
-                        <IconButton
-                          aria-label="edit item"
-                          onClick={() => {
-                            setAdm_id(adm.adm_id);
-                            setUsername(adm.username);
-                            setPassword(adm.password);
-                            setName(adm.name);
-                            setEmail(adm.email);
-                            setContact(adm.contact);
-                            setEmail(adm.email);
-                            setOpen(true);
-                          }}
-                        >
-                          <ModeEditIcon className="edit_btn" />
-                        </IconButton>
-                      </div>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ) 
-              )}
+              {adminsList.map((adm) => (
+                <StyledTableRow key={adm._id}>
+                  <StyledTableCell component="th" scope="row" align="centre">
+                    {adm._id}
+                  </StyledTableCell>
+                  <StyledTableCell align="centre">{adm.name}</StyledTableCell>
+                  <StyledTableCell align="centre">{adm.email}</StyledTableCell>
+                  <StyledTableCell align="centre">
+                    {adm.contact}
+                  </StyledTableCell>
+                  <StyledTableCell align="centre">
+                    <div className="delete_update_btn_container">
+                      <IconButton
+                        aria-label="delete item"
+                        onClick={() => {
+                          if (
+                            window.confirm("Are you sure you want to delete ?")
+                          ) {
+                            dispatch(deleteAdmin(adm.adm_id));
+                          }
+                        }}
+                      >
+                        <DeleteIcon className="delete_btn" />
+                      </IconButton>
+                      <IconButton
+                        aria-label="edit item"
+                        onClick={() => {
+                          setAdm_id(adm._id);
+                          setUsername(adm.username);
+                          setPassword(adm.password);
+                          setName(adm.name);
+                          setEmail(adm.email);
+                          setContact(adm.contact);
+                          setEmail(adm.email);
+                          setOpen(true);
+                        }}
+                      >
+                        <ModeEditIcon className="edit_btn" />
+                      </IconButton>
+                    </div>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
               {
                 // Comment code
               }
@@ -221,9 +214,7 @@ const GetAllAdmin = () => {
     <>
       <Header />
       <div className="all_admin_container">
-        <div className="admin_table">
-          {renderENTCList()}
-        </div>
+        <div className="admin_table">{renderENTCList()}</div>
       </div>
       {modalFunc()}
     </>

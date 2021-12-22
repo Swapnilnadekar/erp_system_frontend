@@ -50,6 +50,8 @@ export const registerPrincipal = (principal) => {
       dispatch({
         type: principalConstants.ADD_NEW_PRINCIPAL_SUCCESS,
       });
+    } else if (res.status == 203) {
+      alert("Principal already exists");
     } else {
       dispatch({
         type: principalConstants.ADD_NEW_PRINCIPAL_FAILURE,

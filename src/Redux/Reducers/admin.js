@@ -7,7 +7,7 @@ const initState = {
     email: "",
     contact: "",
     role: "",
-    branch: "",
+    // branch: "",
     userName: "",
   },
   role: "admin",
@@ -65,6 +65,21 @@ export default (state = initState, action) => {
     case adminConstants.ADD_NEW_ADMIN_FAILURE:
       state = { ...state, loading: false, error: action.payload.error };
       break;
-  }
+
+  case adminConstants.DELETE_ADMIN_REQEUST:
+      state = { ...state, loading: true };
+      break;
+
+    case adminConstants.DELETE_ADMIN_SUCCESS:
+      state = {
+        ...state,
+        loading: false,
+      };
+      break;
+
+    case adminConstants.DELETE_ADMIN_FAILURE:
+      state = { ...state, loading: false, error: action.payload.error };
+      break;
+    }
   return state;
 };

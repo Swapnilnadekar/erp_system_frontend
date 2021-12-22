@@ -34,6 +34,9 @@ const Header = (props) => {
               <NavLink className="nav_link" to="/get-all-students">
                 Students
               </NavLink>
+              <NavLink className="nav_link" to="/get-all-admin">
+                Admin
+              </NavLink>
             </>
           ) : (
             ""

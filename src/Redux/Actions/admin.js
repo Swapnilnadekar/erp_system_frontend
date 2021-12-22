@@ -50,10 +50,91 @@ export const registerAdmin = (admin) => {
       const { result } = res.data;
       dispatch({
         type: adminConstants.ADD_NEW_ADMIN_SUCCESS,
+        payload: {
+          admin: result,
+        }
       });
     } else {
       dispatch({
         type: adminConstants.ADD_NEW_ADMIN_FAILURE,
+        payload: {
+          error: res.data.error,
+        },
+      });
+    }
+  };
+};
+
+export const getAllAdmin = () => {
+  return async (dispatch) => {
+    dispatch({
+      type: adminConstants.GET_ALL_ADMIN_REQEUST,
+    });
+
+    const res = await axios.get(`/admin/get-all-admin-data`);
+
+    if (res.status == 201) {
+      const { result } = res.data;
+      dispatch({
+        type: adminConstants.GET_ALL_ADMIN_SUCCESS,
+        payload: {
+          admins_list: result, 
+        },
+      });
+    } else {
+      dispatch({
+        type: adminConstants.GET_ALL_ADMIN_FAILURE,
+        payload: {
+          error: res.data.error,
+        },
+      });
+    }
+  };
+};
+
+export const deleteAdmin = (adm_id) => {
+  return async (dispatch) => {
+    dispatch({
+      type: adminConstants.DELETE_ADMIN_REQEUST,
+    });
+
+    const res = await axios.delete(`/admin/delete-admin/${adm_id}`);
+
+    if (res.status == 201) {
+      const { result } = res.data;
+      dispatch({
+        type: adminConstants.DELETE_ADMIN_SUCCESS,
+        payload: {
+          admins_list: result,
+        },
+      });
+    } else {
+      dispatch({
+        type: adminConstants.DELETE_ADMIN_FAILURE,
+        payload: {
+          error: res.data.error,
+        },
+      });
+    }
+  };
+};
+
+export const updateAdmin = (updated) => {
+  return async (dispatch) => {
+    dispatch({ type: adminConstants.UPDATE_ADMIN_REQEUST });
+    const res = await axios.put(`/admin/edit-admin-data`, updated);
+
+    if (res.status == 201) {
+      const { result } = res.data;
+      dispatch({
+        type: adminConstants.UPDATE_ADMIN_SUCCESS,
+        payload: {
+          admin: result,
+        },
+      });
+    } else {
+      dispatch({
+        type: adminConstants.UPDATE_ADMIN_FAILURE,
         payload: {
           error: res.data.error,
         },

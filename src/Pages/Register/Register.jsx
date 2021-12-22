@@ -43,6 +43,7 @@ const Register = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [cpasswordError, setCpasswordError] = useState(false);
   const [role, setRole] = useState("student");
+  // const [branch, setBranch] = useState("student");
 
   const dispatch = useDispatch();
 
@@ -229,15 +230,37 @@ const Register = () => {
           />
         </div>
         {role === "teacher" || role === "hod" ? (
-          <TextField
-            value={branch}
-            id="register_branch"
-            color="info"
-            label="Branch"
-            variant="outlined"
-            onChange={(e) => setBranch(e.target.value)}
-            error={branchError}
-          />
+          // <TextField
+          //   value={branch}
+          //   id="register_branch"
+          //   color="info"
+          //   label="Branch"
+          //   variant="outlined"
+          //   onChange={(e) => setBranch(e.target.value)}
+          //   error={branchError}
+          // />
+          <div>
+            <InputLabel id="demo-simple-select-autowidth-label">
+              Branch
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-autowidth-label"
+              id="demo-simple-select-autowidth"
+              value={branch}
+              onChange={(e) => setBranch(e.target.value)}
+              label="Branch"
+            >
+              <MenuItem value={"COMP"} style={{ color: "black" }}>
+                COMP
+              </MenuItem>
+              <MenuItem value={"IT"} style={{ color: "black" }}>
+                IT
+              </MenuItem>
+              <MenuItem value={"ENTC"} style={{ color: "black" }}>
+                ENTC
+              </MenuItem>
+            </Select>
+          </div>
         ) : (
           <></>
         )}
@@ -345,7 +368,7 @@ const Register = () => {
           className="class_details_container"
           style={{ width: "65%", margin: "4px" }}
         >
-          <TextField
+          {/* <TextField
             value={branch}
             id="register_branch"
             color="info"
@@ -353,7 +376,29 @@ const Register = () => {
             variant="outlined"
             error={branchError}
             onChange={(e) => setBranch(e.target.value)}
-          />
+          /> */}
+
+          <InputLabel id="demo-simple-select-autowidth-label">
+            Branch
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-autowidth-label"
+            id="demo-simple-select-autowidth"
+            value={branch}
+            onChange={(e) => setBranch(e.target.value)}
+            label="Branch"
+          >
+            <MenuItem value={"COMP"} style={{ color: "black" }} >
+              COMP
+            </MenuItem>
+            <MenuItem value={"IT"} style={{ color: "black" }}>
+              IT
+            </MenuItem>
+            <MenuItem value={"ENTC"} style={{ color: "black" }}>
+              ENTC
+            </MenuItem>
+          </Select>
+
           <TextField
             value={roll_no}
             id="register_roll"

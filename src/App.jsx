@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { isUserLoggedIn } from "./Redux/Actions/commonUserCode";
 import PrivateRoute from "./PrivateRoute";
 import GetAllStudents from "./Pages/GetAllStudents/GetAllStudents";
+import GetAllAdmin from "./Pages/GetAllAdmin/GetAllAdmin";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 
 const App = () => {
@@ -45,6 +46,15 @@ const App = () => {
           element={
             <PrivateRoute>
               <GetAllStudents />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/get-all-admin"
+          element={
+            <PrivateRoute>
+              <GetAllAdmin />
             </PrivateRoute>
           }
         />

@@ -1,0 +1,72 @@
+.all_admin_container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+  }
+  
+  .admin_table {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    margin-top: 70px;
+    width: 100%;
+  }
+  
+  .delete_update_btn_container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    z-index: 0;
+  }
+  
+  .delete_btn {
+    color: red;
+  }
+  
+  .delete_btn:hover {
+    color: rgb(255, 131, 131);
+  }
+  
+  .edit_btn {
+    color: green;
+  }
+  
+  .edit_btn:hover {
+    color: rgb(131, 255, 131);
+  }
+  
+  .box_style {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+    height: 400px;
+    width: 700px;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(27, 9, 9);
+    border-radius: 30px;
+  }
+  
+  .edit_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .class_details_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  

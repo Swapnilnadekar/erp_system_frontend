@@ -51,6 +51,8 @@ export const registerHod = (hod) => {
       dispatch({
         type: hodConstants.ADD_NEW_HOD_SUCCESS,
       });
+    } else if (res.status == 203) {
+      alert("HOD for the specified branch already exists");
     } else {
       dispatch({
         type: hodConstants.ADD_NEW_HOD_FAILURE,

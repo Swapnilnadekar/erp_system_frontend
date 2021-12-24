@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../Components/Header/Header";
 import {
-  getAllAdmin,
-  deleteAdmin,
-  updateAdmin,
-} from "../../Redux/Actions/admin";
+  getAllTeacher,
+  deleteTeacher,
+  updateTeacher,
+} from "../../Redux/Actions/teacher";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -22,41 +22,46 @@ import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import Button from "@mui/material/Button";
-import "./GetAllAdmin.css";
+import "./GetAllTeacher.css";
 
-const GetAllAdmin = () => {
+const GetAllTeacher = () => {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [branch, setBranch] = useState("");
   const [contact, setContact] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [adm_id, setAdm_id] = useState(0);
+  const [tech_id, setTech_id] = useState(0);
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [contactError, setContactError] = useState(false);
+  const [branchError, setBranchError] = useState(false);
+  const [roll_noError, setRoll_noError] = useState(false);
 
-
-  const adminsList = useSelector((state) => state.adminList.admins_list);
+  const teachersList = useSelector((state) => state.teacherList.teachers_list);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllAdmin());
+    dispatch(getAllTeacher());
   }, []);
 
   const updateData = () => {
-    const updatedAdmin = {
-      adm_id,
+    const updatedTeacher = {
+      tech_id,
       name,
       email,
+      branch,
       contact,
       username,
       password,
     };
 
-    dispatch(updateAdmin(updatedAdmin));
+    dispatch(updateTeacher(updatedTeacher));
     handleClose();
   };
+
+ 
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -92,7 +97,7 @@ const GetAllAdmin = () => {
         >
           <Box className="box_style">
             <div className="edit_form">
-              <h3>Edit Admin Details</h3>
+              <h3>Edit Teacher Details</h3>
               <TextField
                 id="register_name"
                 color="info"
@@ -126,6 +131,21 @@ const GetAllAdmin = () => {
                   onChange={(e) => setContact(e.target.value)}
                 />
               </div>
+              <div
+                className="class_details_container"
+                style={{ width: "65%", margin: "4px" }}
+              >
+                <TextField
+                  value={branch}
+                  id="register_branch"
+                  color="info"
+                  label="Branch"
+                  variant="outlined"
+                  error={branchError}
+                  onChange={(e) => setBranch(e.target.value)}
+                />
+                
+              </div>
             </div>
             <Button
               variant="outlined"
@@ -140,64 +160,75 @@ const GetAllAdmin = () => {
     );
   };
 
+
   const renderENTCList = () => {
     return (
-      <div className="comp_admin_details">
+      <div className="comp_teacher_details">
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="centre">Admin Id</StyledTableCell>
+                <StyledTableCell align="centre">Teacher Id</StyledTableCell>
                 <StyledTableCell align="centre">Name</StyledTableCell>
                 <StyledTableCell align="centre">Email</StyledTableCell>
                 <StyledTableCell align="centre">Contact</StyledTableCell>
+                <StyledTableCell align="centre">Branch</StyledTableCell>
                 <StyledTableCell align="centre"></StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {adminsList.map((adm) => (
-                <StyledTableRow key={adm._id}>
-                  <StyledTableCell component="th" scope="row" align="centre">
-                    {adm._id}
-                  </StyledTableCell>
-                  <StyledTableCell align="centre">{adm.name}</StyledTableCell>
-                  <StyledTableCell align="centre">{adm.email}</StyledTableCell>
-                  <StyledTableCell align="centre">
-                    {adm.contact}
-                  </StyledTableCell>
-                  <StyledTableCell align="centre">
-                    <div className="delete_update_btn_container">
-                      <IconButton
-                        aria-label="delete item"
-                        onClick={() => {
-                          if (
-                            window.confirm("Are you sure you want to delete ?")
-                          ) {
-                            dispatch(deleteAdmin(adm._id));
-                          }
-                        }}
-                      >
-                        <DeleteIcon className="delete_btn" />
-                      </IconButton>
-                      <IconButton
-                        aria-label="edit item"
-                        onClick={() => {
-                          setAdm_id(adm._id);
-                          setUsername(adm.username);
-                          setPassword(adm.password);
-                          setName(adm.name);
-                          setEmail(adm.email);
-                          setContact(adm.contact);
-                          setEmail(adm.email);
-                          setOpen(true);
-                        }}
-                      >
-                        <ModeEditIcon className="edit_btn" />
-                      </IconButton>
-                    </div>
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
+              {teachersList.map((tech) =>
+                
+                  <StyledTableRow key={tech._id}>
+                    <StyledTableCell component="th" scope="row" align="centre">
+                      {tech._id}
+                    </StyledTableCell>
+                    <StyledTableCell align="centre">{tech.name}</StyledTableCell>
+                    <StyledTableCell align="centre">
+                      {tech.email}
+                    </StyledTableCell>
+                    <StyledTableCell align="centre">
+                      {tech.contact}
+                    </StyledTableCell>
+                    <StyledTableCell align="centre">
+                      {tech.branch}
+                    </StyledTableCell>
+                    <StyledTableCell align="centre">
+                      <div className="delete_update_btn_container">
+                        <IconButton
+                          aria-label="delete item"
+                          onClick={() => {
+                            if (
+                              window.confirm(
+                                "Are you sure you want to delete ?"
+                              )
+                            ) {
+                              dispatch(deleteTeacher(tech._id));
+                            }
+                          }}
+                        >
+                          <DeleteIcon className="delete_btn" />
+                        </IconButton>
+                        <IconButton
+                          aria-label="edit item"
+                          onClick={() => {
+                            setTech_id(tech._id);
+                            setUsername(tech.username);
+                            setPassword(tech.password);
+                            setName(tech.name);
+                            setEmail(tech.email);
+                            setContact(tech.contact);
+                            setBranch(tech.branch);
+                            setEmail(tech.email);
+                            setOpen(true);
+                          }}
+                        >
+                          <ModeEditIcon className="edit_btn" />
+                        </IconButton>
+                      </div>
+                    </StyledTableCell>
+                  </StyledTableRow>
+              )}
               {
                 // Comment code
               }
@@ -211,12 +242,14 @@ const GetAllAdmin = () => {
   return (
     <>
       <Header />
-      <div className="all_admin_container">
-        <div className="admin_table">{renderENTCList()}</div>
+      <div className="all_teacher_container">
+        <div className="teacher_table">
+          {renderENTCList()}
+        </div>
       </div>
       {modalFunc()}
     </>
   );
 };
 
-export default GetAllAdmin;
+export default GetAllTeacher;

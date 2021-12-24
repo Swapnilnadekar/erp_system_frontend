@@ -9,6 +9,9 @@ import PrivateRoute from "./PrivateRoute";
 import GetAllStudents from "./Pages/GetAllStudents/GetAllStudents";
 import GetAllAdmin from "./Pages/GetAllAdmin/GetAllAdmin";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
+import GetAllHod from "./Pages/GetAllHod/GetAllHod";
+import GetAllPrincipal from "./Pages/GetAllPrincipal/GetAllPrincipal";
+import GetAllTeacher from "./Pages/GetAllTeacher/GetAllTeacher";
 
 const App = () => {
   const teacher = useSelector((state) => state.teacher);
@@ -58,9 +61,35 @@ const App = () => {
             </PrivateRoute>
           }
         />
-         <Route path="*" element={<ErrorPage />}></Route>
+
+        <Route
+          path="/get-all-hod"
+          element={
+            <PrivateRoute>
+              <GetAllHod />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/get-all-principal"
+          element={
+            <PrivateRoute>
+              <GetAllPrincipal />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/get-all-teacher"
+          element={
+            <PrivateRoute>
+              <GetAllTeacher />
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<ErrorPage />}></Route>
       </Routes>
-     
     </div>
   );
 };

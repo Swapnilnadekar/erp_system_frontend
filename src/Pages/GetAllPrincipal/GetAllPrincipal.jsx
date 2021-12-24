@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../Components/Header/Header";
 import {
-  getAllAdmin,
-  deleteAdmin,
-  updateAdmin,
-} from "../../Redux/Actions/admin";
+  getAllPrincipal,
+  deletePrincipal,
+  updatePrincipal,
+} from "../../Redux/Actions/principal";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -22,31 +22,31 @@ import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import Button from "@mui/material/Button";
-import "./GetAllAdmin.css";
+import "./GetAllPrincipal.css"
 
-const GetAllAdmin = () => {
+const GetAllPrincipal = () => {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [adm_id, setAdm_id] = useState(0);
+  const [pri_id, setPri_id] = useState(0);
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [contactError, setContactError] = useState(false);
 
 
-  const adminsList = useSelector((state) => state.adminList.admins_list);
+  const principalsList = useSelector((state) => state.principalList.principals_list);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllAdmin());
+    dispatch(getAllPrincipal());
   }, []);
 
   const updateData = () => {
-    const updatedAdmin = {
-      adm_id,
+    const updatedPrincipal = {
+      pri_id,
       name,
       email,
       contact,
@@ -54,7 +54,7 @@ const GetAllAdmin = () => {
       password,
     };
 
-    dispatch(updateAdmin(updatedAdmin));
+    dispatch(updatePrincipal(updatedPrincipal));
     handleClose();
   };
 
@@ -142,12 +142,12 @@ const GetAllAdmin = () => {
 
   const renderENTCList = () => {
     return (
-      <div className="comp_admin_details">
+      <div className="comp_principal_details">
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="centre">Admin Id</StyledTableCell>
+                <StyledTableCell align="centre">Principal Id</StyledTableCell>
                 <StyledTableCell align="centre">Name</StyledTableCell>
                 <StyledTableCell align="centre">Email</StyledTableCell>
                 <StyledTableCell align="centre">Contact</StyledTableCell>
@@ -155,15 +155,15 @@ const GetAllAdmin = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {adminsList.map((adm) => (
-                <StyledTableRow key={adm._id}>
+              {principalsList.map((pri) => (
+                <StyledTableRow key={pri._id}>
                   <StyledTableCell component="th" scope="row" align="centre">
-                    {adm._id}
+                    {pri._id}
                   </StyledTableCell>
-                  <StyledTableCell align="centre">{adm.name}</StyledTableCell>
-                  <StyledTableCell align="centre">{adm.email}</StyledTableCell>
+                  <StyledTableCell align="centre">{pri.name}</StyledTableCell>
+                  <StyledTableCell align="centre">{pri.email}</StyledTableCell>
                   <StyledTableCell align="centre">
-                    {adm.contact}
+                    {pri.contact}
                   </StyledTableCell>
                   <StyledTableCell align="centre">
                     <div className="delete_update_btn_container">
@@ -173,7 +173,7 @@ const GetAllAdmin = () => {
                           if (
                             window.confirm("Are you sure you want to delete ?")
                           ) {
-                            dispatch(deleteAdmin(adm._id));
+                            dispatch(deletePrincipal(pri._id));
                           }
                         }}
                       >
@@ -182,13 +182,13 @@ const GetAllAdmin = () => {
                       <IconButton
                         aria-label="edit item"
                         onClick={() => {
-                          setAdm_id(adm._id);
-                          setUsername(adm.username);
-                          setPassword(adm.password);
-                          setName(adm.name);
-                          setEmail(adm.email);
-                          setContact(adm.contact);
-                          setEmail(adm.email);
+                          setPri_id(pri._id);
+                          setUsername(pri.username);
+                          setPassword(pri.password);
+                          setName(pri.name);
+                          setEmail(pri.email);
+                          setContact(pri.contact);
+                          setEmail(pri.email);
                           setOpen(true);
                         }}
                       >
@@ -211,12 +211,12 @@ const GetAllAdmin = () => {
   return (
     <>
       <Header />
-      <div className="all_admin_container">
-        <div className="admin_table">{renderENTCList()}</div>
+      <div className="all_principal_container">
+        <div className="principal_table">{renderENTCList()}</div>
       </div>
       {modalFunc()}
     </>
   );
 };
 
-export default GetAllAdmin;
+export default GetAllPrincipal;

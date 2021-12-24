@@ -25,6 +25,10 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import CheckIcon from "@mui/icons-material/Check";
 import Button from "@mui/material/Button";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 import "./GetAllStudents.css";
 
 const GetAllStudents = () => {
@@ -43,6 +47,7 @@ const GetAllStudents = () => {
   const [contactError, setContactError] = useState(false);
   const [branchError, setBranchError] = useState(false);
   const [roll_noError, setRoll_noError] = useState(false);
+  const [selectBranch, setSelectBranch] = useState("");
 
   const studentsList = useSelector((state) => state.studentList.students_list);
   const dispatch = useDispatch();
@@ -192,7 +197,7 @@ const GetAllStudents = () => {
 
   const renderCompList = () => {
     return (
-      <div className="comp_student_details">
+      <div className="list">
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
@@ -269,9 +274,6 @@ const GetAllStudents = () => {
                   <></>
                 )
               )}
-              {
-                // Comment code
-              }
             </TableBody>
           </Table>
         </TableContainer>
@@ -281,7 +283,7 @@ const GetAllStudents = () => {
 
   const renderITList = () => {
     return (
-      <div className="comp_student_details">
+      <div className="list">
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
@@ -358,9 +360,6 @@ const GetAllStudents = () => {
                   <></>
                 )
               )}
-              {
-                // Comment code
-              }
             </TableBody>
           </Table>
         </TableContainer>
@@ -370,7 +369,7 @@ const GetAllStudents = () => {
 
   const renderENTCList = () => {
     return (
-      <div className="comp_student_details">
+      <div className="list">
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
@@ -447,9 +446,6 @@ const GetAllStudents = () => {
                   <></>
                 )
               )}
-              {
-                // Comment code
-              }
             </TableBody>
           </Table>
         </TableContainer>
@@ -461,10 +457,30 @@ const GetAllStudents = () => {
     <>
       <Header />
       <div className="all_students_container">
+        <div className="branch_select">
+          <InputLabel id="demo-simple-select-label">Branch</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={selectBranch}
+            label="Branch"
+            onChange={(e) => setSelectBranch(e.target.value)}
+          >
+            <MenuItem value="COMP" style={{ color: "black" }}>
+              COMP
+            </MenuItem>
+            <MenuItem value="IT" style={{ color: "black" }}>
+              IT
+            </MenuItem>
+            <MenuItem value="ENTC" style={{ color: "black" }}>
+              ENTC
+            </MenuItem>
+          </Select>
+        </div>
         <div className="student_table">
-          {renderCompList()}
-          {renderITList()}
-          {renderENTCList()}
+          {selectBranch === "COMP" ? renderCompList() : <></>}
+          {selectBranch === "IT" ? renderITList() : <></>}
+          {selectBranch === "ENTC" ? renderENTCList() : <></>}
         </div>
       </div>
       {modalFunc()}

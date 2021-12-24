@@ -62,3 +62,82 @@ export const registerPrincipal = (principal) => {
     }
   };
 };
+
+export const getAllPrincipal = () => {
+  return async (dispatch) => {
+    dispatch({
+      type: principalConstants.GET_ALL_PRINCIPAL_REQEUST,
+    });
+
+    const res = await axios.get(`/admin/principal/get-all-principal-data`);
+
+    if (res.status == 201) {
+      const { result } = res.data;
+      dispatch({
+        type: principalConstants.GET_ALL_PRINCIPAL_SUCCESS,
+        payload: {
+          principals_list: result, 
+        },
+      });
+    } else {
+      dispatch({
+        type: principalConstants.GET_ALL_PRINCIPAL_FAILURE,
+        payload: {
+          error: res.data.error,
+        },
+      });
+    }
+  };
+};
+
+export const deletePrincipal = (pri_id) => {
+  return async (dispatch) => {
+    dispatch({
+      type: principalConstants.DELETE_PRINCIPAL_REQEUST,
+    });
+
+    const res = await axios.delete(`/admin/principal/delete-principal/${pri_id}`);
+
+    if (res.status == 201) {
+      const { result } = res.data;
+      dispatch({
+        type: principalConstants.DELETE_PRINCIPAL_SUCCESS,
+        payload: {
+          principals_list: result,
+        },
+      });
+    } else {
+      dispatch({
+        type: principalConstants.DELETE_PRINCIPAL_FAILURE,
+        payload: {
+          error: res.data.error,
+        },
+      });
+    }
+  };
+};
+
+export const updatePrincipal = (updated) => {
+  return async (dispatch) => {
+    dispatch({ type: principalConstants.UPDATE_PRINCIPAL_REQEUST });
+    const res = await axios.put(`/admin/principal/edit-principal-data`, updated);
+
+    if (res.status == 201) {
+      const { result } = res.data;
+      dispatch({
+        type: principalConstants.UPDATE_PRINCIPAL_SUCCESS,
+        payload: {
+          principal: result,
+        },
+      });
+    } else {
+      dispatch({
+        type: principalConstants.UPDATE_PRINCIPAL_FAILURE,
+        payload: {
+          error: res.data.error,
+        },
+      });
+    }
+  };
+};
+

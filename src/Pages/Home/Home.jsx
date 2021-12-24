@@ -27,7 +27,9 @@ const Home = () => {
             src="https://www.clipartmax.com/png/full/319-3191274_male-avatar-admin-profile.png"
             style={{ height: "200px", width: "230px" }}
           />
-                <h6>{teacher.user.role}</h6>
+                <div className="role_container">
+                <h6>{teacher.role} : {teacher.user.role}</h6>
+                </div>
               </div>
               <div className="name_branch_container">
                 <h6>Name: {teacher.user.name}</h6>

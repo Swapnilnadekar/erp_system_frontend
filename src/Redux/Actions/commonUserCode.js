@@ -2,6 +2,7 @@ import {
   userRoleConstants,
   teacherConstants,
   studentConstants,
+  adminConstants,
 } from "../constants";
 import axios from "../axios";
 
@@ -23,7 +24,14 @@ export const isUserLoggedIn = () => {
           type: teacherConstants.TEACHER_LOGIN_SUCCESS,
           payload: { token, user },
         });
-      }
+      } 
+      // else if (user.role === "admin"){
+      //   console.log("Admin Success");
+      //   dispatch({
+      //     type: adminConstants.ADMIN_LOGIN_SUCCESS,
+      //     payload: { token, user },
+      //   });
+      // }
     } else {
       console.log("No logged in user");
       // dispatch({

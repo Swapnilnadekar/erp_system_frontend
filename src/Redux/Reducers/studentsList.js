@@ -50,7 +50,7 @@ export default (state = initState, action) => {
     case studentConstants.UPDATE_STUDENT_SUCCESS:
       var updatedStudent = action.payload.student;
       var updatedList = state.students_list.filter((current) => {
-        return current.std_id !== updatedStudent.std_id;
+        return current._id !== updatedStudent._id;
       });
       updatedList = [...updatedList, updatedStudent];
 

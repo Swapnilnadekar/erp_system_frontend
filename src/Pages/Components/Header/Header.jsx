@@ -23,7 +23,7 @@ const Header = (props) => {
     <>
       <div className="header_container">
         <div className="logo">
-          <h1>ERP System</h1>
+          <h3>ERP System</h3>
         </div>
         <div className="header_links">
           <NavLink className="nav_link" to="/home">
@@ -42,6 +42,15 @@ const Header = (props) => {
               </NavLink>
               <NavLink className="nav_link" to="/get-all-admin">
                 Admin
+              </NavLink>
+              <NavLink className="nav_link" to="/get-all-hod">
+                Hod
+              </NavLink>
+              <NavLink className="nav_link" to="/get-all-principal">
+                Principal
+              </NavLink>
+              <NavLink className="nav_link" to="/get-all-teacher">
+                Teacher
               </NavLink>
             </>
           ) : (

@@ -7,7 +7,6 @@ const initState = {
     email: "",
     contact: "",
     role: "",
-    branch: "",
     userName: "",
   },
   role: "admin",
@@ -63,6 +62,21 @@ export default (state = initState, action) => {
       break;
 
     case principalConstants.ADD_NEW_PRINCIPAL_FAILURE:
+      state = { ...state, loading: false, error: action.payload.error };
+      break;
+
+    case principalConstants.DELETE_PRINCIPAL_REQEUST:
+      state = { ...state, loading: true };
+      break;
+
+    case principalConstants.DELETE_PRINCIPAL_SUCCESS:
+      state = {
+        ...state,
+        loading: false,
+      };
+      break;
+
+    case principalConstants.DELETE_PRINCIPAL_FAILURE:
       state = { ...state, loading: false, error: action.payload.error };
       break;
   }

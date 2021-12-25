@@ -40,6 +40,7 @@ export const isUserLoggedIn = () => {
           payload: { token, user },
         });
       }
+      } 
     } else {
       console.log("No logged in user");
     }

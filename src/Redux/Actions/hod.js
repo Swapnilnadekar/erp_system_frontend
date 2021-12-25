@@ -63,3 +63,82 @@ export const registerHod = (hod) => {
     }
   };
 };
+
+export const getAllHod = () => {
+  return async (dispatch) => {
+    dispatch({
+      type: hodConstants.GET_ALL_HOD_REQEUST,
+    });
+
+    const res = await axios.get(`/admin/hod/get-all-hod-data`);
+
+    if (res.status == 201) {
+      const { result } = res.data;
+      dispatch({
+        type: hodConstants.GET_ALL_HOD_SUCCESS,
+        payload: {
+          hods_list: result, 
+        },
+      });
+    } else {
+      dispatch({
+        type: hodConstants.GET_ALL_HOD_FAILURE,
+        payload: {
+          error: res.data.error,
+        },
+      });
+    }
+  };
+};
+
+export const deleteHod = (_id) => {
+  return async (dispatch) => {
+    dispatch({
+      type: hodConstants.DELETE_HOD_REQEUST,
+    });
+
+    const res = await axios.delete(`/admin/hod/delete-hod/${_id}`);
+
+    if (res.status == 201) {
+      const { result } = res.data;
+      dispatch({
+        type: hodConstants.DELETE_HOD_SUCCESS,
+        payload: {
+          hods_list: result,
+        },
+      });
+    } else {
+      dispatch({
+        type: hodConstants.DELETE_HOD_FAILURE,
+        payload: {
+          error: res.data.error,
+        },
+      });
+    }
+  };
+};
+
+export const updateHod = (updated) => {
+  return async (dispatch) => {
+    dispatch({ type: hodConstants.UPDATE_HOD_REQEUST });
+    const res = await axios.put(`/admin/hod/edit-hod-data`, updated);
+
+    if (res.status == 201) {
+      const { result } = res.data;
+      dispatch({
+        type: hodConstants.UPDATE_HOD_SUCCESS,
+        payload: {
+          hod: result,
+        },
+      });
+    } else {
+      dispatch({
+        type: hodConstants.UPDATE_HOD_FAILURE,
+        payload: {
+          error: res.data.error,
+        },
+      });
+    }
+  };
+};
+

@@ -4,6 +4,9 @@ import userRoleCheckReducer from "./userRole";
 import studentReducer from "./student";
 import studentListReducer from "./studentsList";
 import adminListReducer from "./adminsList";
+import hodListReducer from "./hodList";
+import principalListReducer from "./principalList";
+import teacherListReducer from "./teacherList";
 import hodReducer from "./hod";
 import adminReducer from "./admin";
 import principalReducer from "./principal";
@@ -17,6 +20,9 @@ const reducer = combineReducers({
   admin: adminReducer,
   principal: principalReducer,
   adminList: adminListReducer,
+  hodList: hodListReducer,
+  principalList: principalListReducer,
+  teacherList: teacherListReducer,
 });
 
 export default reducer;

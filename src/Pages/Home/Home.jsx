@@ -148,52 +148,6 @@ const Home = () => {
           {hod.authenticate ? hodRender() : <></>}
           {admin.authenticate ? adminRender() : <></>}
           {principal.authenticate ? principalRender() : <></>}
-          {/* {teacher.authenticate ||
-          hod.authenticate ||
-          admin.authenticate ||
-          principal.authenticate ? (
-            <div className="user_details">
-              <div className="user_role_container">
-                <Avatar
-                  alt="Remy Sharp"
-                  src="https://www.clipartmax.com/png/full/319-3191274_male-avatar-admin-profile.png"
-                  style={{ height: "200px", width: "230px" }}
-                />
-                <h6>{teacher.user.role}</h6>
-              </div>
-              <div className="name_branch_container">
-                <h6>Name: {teacher.user.name}</h6>
-                <h6>Branch: {teacher.user.branch}</h6>
-              </div>
-              <div className="contact_email_container">
-                <h6>Contact: {teacher.user.contact}</h6>
-                <h6>Email: {teacher.user.email}</h6>
-              </div>
-            </div>
-          ) : (
-            <div className="user_details">
-              <div className="user_role_container">
-                <Avatar
-                  alt="Remy Sharp"
-                  src="https://www.zica.org/images/icon-student.jpg"
-                  style={{ height: "200px", width: "230px" }}
-                />
-                <h6>{student.user.role}</h6>
-              </div>
-              <div className="name_branch_container">
-                <h6>Name: {student.user.name}</h6>
-                <h6>Branch: {student.user.branch}</h6>
-              </div>
-              <div className="contact_email_container">
-                <h6>Contact: {student.user.contact}</h6>
-                <h6>Email: {student.user.email}</h6>
-              </div>
-              <div className="roll_dob_container">
-                <h6>Roll No.: {student.user.roll_no}</h6>
-                <h6>Date of birth: {student.user.dob}</h6>
-              </div>
-            </div>
-          )} */}
         </div>
       </div>
     </>

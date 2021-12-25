@@ -65,6 +65,21 @@ export default (state = initState, action) => {
     case teacherConstants.ADD_NEW_TEACHER_FAILURE:
       state = { ...state, loading: false, error: action.payload.error };
       break;
+
+    case teacherConstants.DELETE_TEACHER_REQEUST:
+      state = { ...state, loading: true };
+      break;
+
+    case teacherConstants.DELETE_TEACHER_SUCCESS:
+      state = {
+        ...state,
+        loading: false,
+      };
+      break;
+
+    case teacherConstants.DELETE_TEACHER_FAILURE:
+      state = { ...state, loading: false, error: action.payload.error };
+      break;
   }
   return state;
 };

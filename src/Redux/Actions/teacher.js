@@ -61,3 +61,84 @@ export const registerTeacher = (teacher) => {
     }
   };
 };
+
+
+
+export const getAllTeacher = () => {
+  return async (dispatch) => {
+    dispatch({
+      type: teacherConstants.GET_ALL_TEACHER_REQEUST,
+    });
+
+    const res = await axios.get(`/admin/teacher/get-all-teacher-data`);
+
+    if (res.status == 201) {
+      const { result } = res.data;
+      dispatch({
+        type: teacherConstants.GET_ALL_TEACHER_SUCCESS,
+        payload: {
+          teachers_list: result, 
+        },
+      });
+    } else {
+      dispatch({
+        type: teacherConstants.GET_ALL_TEACHER_FAILURE,
+        payload: {
+          error: res.data.error,
+        },
+      });
+    }
+  };
+};
+
+export const deleteTeacher = (_id) => {
+  return async (dispatch) => {
+    dispatch({
+      type: teacherConstants.DELETE_TEACHER_REQEUST,
+    });
+
+    const res = await axios.delete(`/admin/teacher/delete-teacher/${_id}`);
+
+    if (res.status == 201) {
+      const { result } = res.data;
+      dispatch({
+        type: teacherConstants.DELETE_TEACHER_SUCCESS,
+        payload: {
+          teachers_list: result,
+        },
+      });
+    } else {
+      dispatch({
+        type: teacherConstants.DELETE_TEACHER_FAILURE,
+        payload: {
+          error: res.data.error,
+        },
+      });
+    }
+  };
+};
+
+export const updateTeacher = (updated) => {
+  return async (dispatch) => {
+    dispatch({ type: teacherConstants.UPDATE_TEACHER_REQEUST });
+    const res = await axios.put(`/admin/teacher/edit-teacher-data`, updated);
+
+    if (res.status == 201) {
+      const { result } = res.data;
+      dispatch({
+        type: teacherConstants.UPDATE_TEACHER_SUCCESS,
+        payload: {
+          teacher: result,
+        },
+      });
+    } else {
+      dispatch({
+        type: teacherConstants.UPDATE_TEACHER_FAILURE,
+        payload: {
+          error: res.data.error,
+        },
+      });
+    }
+  };
+};
+

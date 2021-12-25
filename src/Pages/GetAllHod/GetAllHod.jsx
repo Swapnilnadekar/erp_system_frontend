@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../Components/Header/Header";
 import {
-  getAllAdmin,
-  deleteAdmin,
-  updateAdmin,
-} from "../../Redux/Actions/admin";
+  getAllHod,
+  deleteHod,
+  updateHod,
+} from "../../Redux/Actions/hod";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -22,41 +22,46 @@ import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import Button from "@mui/material/Button";
-import "./GetAllAdmin.css";
+import "./GetAllHod.css";
 
-const GetAllAdmin = () => {
+const GetAllHod = () => {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [branch, setBranch] = useState("");
   const [contact, setContact] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [adm_id, setAdm_id] = useState(0);
+  const [hod_id, setHod_id] = useState(0);
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [contactError, setContactError] = useState(false);
+  const [branchError, setBranchError] = useState(false);
+  const [roll_noError, setRoll_noError] = useState(false);
 
-
-  const adminsList = useSelector((state) => state.adminList.admins_list);
+  const hodsList = useSelector((state) => state.hodList.hods_list);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllAdmin());
+    dispatch(getAllHod());
   }, []);
 
   const updateData = () => {
-    const updatedAdmin = {
-      adm_id,
+    const updatedHod = {
+      hod_id,
       name,
       email,
+      branch,
       contact,
       username,
       password,
     };
 
-    dispatch(updateAdmin(updatedAdmin));
+    dispatch(updateHod(updatedHod));
     handleClose();
   };
+
+ 
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -92,7 +97,7 @@ const GetAllAdmin = () => {
         >
           <Box className="box_style">
             <div className="edit_form">
-              <h3>Edit Admin Details</h3>
+              <h3>Edit Hod Details</h3>
               <TextField
                 id="register_name"
                 color="info"
@@ -126,6 +131,21 @@ const GetAllAdmin = () => {
                   onChange={(e) => setContact(e.target.value)}
                 />
               </div>
+              <div
+                className="class_details_container"
+                style={{ width: "65%", margin: "4px" }}
+              >
+                <TextField
+                  value={branch}
+                  id="register_branch"
+                  color="info"
+                  label="Branch"
+                  variant="outlined"
+                  error={branchError}
+                  onChange={(e) => setBranch(e.target.value)}
+                />
+                
+              </div>
             </div>
             <Button
               variant="outlined"
@@ -140,64 +160,75 @@ const GetAllAdmin = () => {
     );
   };
 
+
   const renderENTCList = () => {
     return (
-      <div className="comp_admin_details">
+      <div className="comp_hod_details">
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="centre">Admin Id</StyledTableCell>
+                <StyledTableCell align="centre">HOD Id</StyledTableCell>
                 <StyledTableCell align="centre">Name</StyledTableCell>
                 <StyledTableCell align="centre">Email</StyledTableCell>
                 <StyledTableCell align="centre">Contact</StyledTableCell>
+                <StyledTableCell align="centre">Branch</StyledTableCell>
                 <StyledTableCell align="centre"></StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {adminsList.map((adm) => (
-                <StyledTableRow key={adm._id}>
-                  <StyledTableCell component="th" scope="row" align="centre">
-                    {adm._id}
-                  </StyledTableCell>
-                  <StyledTableCell align="centre">{adm.name}</StyledTableCell>
-                  <StyledTableCell align="centre">{adm.email}</StyledTableCell>
-                  <StyledTableCell align="centre">
-                    {adm.contact}
-                  </StyledTableCell>
-                  <StyledTableCell align="centre">
-                    <div className="delete_update_btn_container">
-                      <IconButton
-                        aria-label="delete item"
-                        onClick={() => {
-                          if (
-                            window.confirm("Are you sure you want to delete ?")
-                          ) {
-                            dispatch(deleteAdmin(adm._id));
-                          }
-                        }}
-                      >
-                        <DeleteIcon className="delete_btn" />
-                      </IconButton>
-                      <IconButton
-                        aria-label="edit item"
-                        onClick={() => {
-                          setAdm_id(adm._id);
-                          setUsername(adm.username);
-                          setPassword(adm.password);
-                          setName(adm.name);
-                          setEmail(adm.email);
-                          setContact(adm.contact);
-                          setEmail(adm.email);
-                          setOpen(true);
-                        }}
-                      >
-                        <ModeEditIcon className="edit_btn" />
-                      </IconButton>
-                    </div>
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
+              {hodsList.map((hod) =>
+                
+                  <StyledTableRow key={hod._id}>
+                    <StyledTableCell component="th" scope="row" align="centre">
+                      {hod._id}
+                    </StyledTableCell>
+                    <StyledTableCell align="centre">{hod.name}</StyledTableCell>
+                    <StyledTableCell align="centre">
+                      {hod.email}
+                    </StyledTableCell>
+                    <StyledTableCell align="centre">
+                      {hod.contact}
+                    </StyledTableCell>
+                    <StyledTableCell align="centre">
+                      {hod.branch}
+                    </StyledTableCell>
+                    <StyledTableCell align="centre">
+                      <div className="delete_update_btn_container">
+                        <IconButton
+                          aria-label="delete item"
+                          onClick={() => {
+                            if (
+                              window.confirm(
+                                "Are you sure you want to delete ?"
+                              )
+                            ) {
+                              dispatch(deleteHod(hod._id));
+                            }
+                          }}
+                        >
+                          <DeleteIcon className="delete_btn" />
+                        </IconButton>
+                        <IconButton
+                          aria-label="edit item"
+                          onClick={() => {
+                            setHod_id(hod._id);
+                            setUsername(hod.username);
+                            setPassword(hod.password);
+                            setName(hod.name);
+                            setEmail(hod.email);
+                            setContact(hod.contact);
+                            setBranch(hod.branch);
+                            setEmail(hod.email);
+                            setOpen(true);
+                          }}
+                        >
+                          <ModeEditIcon className="edit_btn" />
+                        </IconButton>
+                      </div>
+                    </StyledTableCell>
+                  </StyledTableRow>
+              )}
               {
                 // Comment code
               }
@@ -211,12 +242,14 @@ const GetAllAdmin = () => {
   return (
     <>
       <Header />
-      <div className="all_admin_container">
-        <div className="admin_table">{renderENTCList()}</div>
+      <div className="all_hod_container">
+        <div className="hod_table">
+          {renderENTCList()}
+        </div>
       </div>
       {modalFunc()}
     </>
   );
 };
 
-export default GetAllAdmin;
+export default GetAllHod;

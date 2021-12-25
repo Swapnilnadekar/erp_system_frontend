@@ -50,7 +50,7 @@ export default (state = initState, action) => {
     case hodConstants.UPDATE_HOD_SUCCESS:
       var updatedHod = action.payload.hod;
       var updatedList = state.hods_list.filter((current) => {
-        return current.hod_id !== updatedHod.hod_id;
+        return current._id !== updatedHod._id;
       });
       updatedList = [...updatedList, updatedHod];
 

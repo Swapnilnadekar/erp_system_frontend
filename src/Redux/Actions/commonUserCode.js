@@ -68,7 +68,56 @@ export const userLogout = () => {
             payload: { error: "error" },
           });
         }
-      } else {
+      } else if (user.role === "admin") {
+        dispatch({ type: adminConstants.ADMIN_LOGOUT_REQUEST });
+        const res = await axios.post(`/admin/admin/signout`);
+
+        if (res.status == 201) {
+          localStorage.clear();
+          dispatch({
+            type: adminConstants.ADMIN_LOGOUT_SUCCESS,
+          });
+          dispatch({ type: userRoleConstants.USER });
+        } else {
+          dispatch({
+            type: adminConstants.ADMIN_LOGOUT_FAILURE,
+            payload: { error: "error" },
+          });
+        }
+      } else if (user.role === "hod") {
+        dispatch({ type: hodConstants.HOD_LOGOUT_REQUEST });
+        const res = await axios.post(`/admin/hod/signout`);
+
+        if (res.status == 201) {
+          localStorage.clear();
+          dispatch({
+            type: hodConstants.HOD_LOGOUT_SUCCESS,
+          });
+          dispatch({ type: userRoleConstants.USER });
+        } else {
+          dispatch({
+            type: hodConstants.HOD_LOGOUT_FAILURE,
+            payload: { error: "error" },
+          });
+
+        }
+      } else if (user.role === "principal") {
+        dispatch({ type: principalConstants.PRINCIPAL_LOGOUT_REQUEST });
+        const res = await axios.post(`/admin/principal/signout`);
+
+        if (res.status == 201) {
+          localStorage.clear();
+          dispatch({
+            type: principalConstants.PRINCIPAL_LOGOUT_SUCCESS,
+          });
+          dispatch({ type: userRoleConstants.USER });
+        } else {
+          dispatch({
+            type: principalConstants.PRINCIPAL_LOGOUT_FAILURE,
+            payload: { error: "error" },
+          });
+        }
+      } else if (user.role === "teacher") {
         dispatch({ type: teacherConstants.TEACHER_LOGOUT_REQUEST });
 
         const res = await axios.post(`/admin/teacher/signout`);
@@ -87,5 +136,5 @@ export const userLogout = () => {
         }
       }
     }
-  };
+  }
 };

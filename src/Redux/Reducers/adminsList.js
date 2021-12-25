@@ -50,7 +50,7 @@ export default (state = initState, action) => {
     case adminConstants.UPDATE_ADMIN_SUCCESS:
       var updatedAdmin = action.payload.admin;
       var updatedList = state.admins_list.filter((current) => {
-        return current.adm_id !== updatedAdmin.adm_id;
+        return current._id !== updatedAdmin._id;
       });
       updatedList = [...updatedList, updatedAdmin];
 

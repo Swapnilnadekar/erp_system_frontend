@@ -2,6 +2,9 @@ import {
   userRoleConstants,
   teacherConstants,
   studentConstants,
+  adminConstants,
+  hodConstants,
+  principalConstants,
 } from "../constants";
 import axios from "../axios";
 
@@ -12,24 +15,33 @@ export const isUserLoggedIn = () => {
     if (token) {
       const user = JSON.parse(localStorage.getItem("user"));
       if (user.role === "student") {
-        console.log("Student Success");
         dispatch({
           type: studentConstants.STUDENT_LOGIN_SUCCESS,
           payload: { token, user },
         });
-      } else {
-        console.log("Teacher Success");
+      } else if (user.role === "admin") {
+        dispatch({
+          type: adminConstants.ADMIN_LOGIN_SUCCESS,
+          payload: { token, user },
+        });
+      } else if (user.role === "teacher") {
         dispatch({
           type: teacherConstants.TEACHER_LOGIN_SUCCESS,
+          payload: { token, user },
+        });
+      } else if (user.role === "hod") {
+        dispatch({
+          type: hodConstants.HOD_LOGIN_SUCCESS,
+          payload: { token, user },
+        });
+      } else if (user.role === "principal") {
+        dispatch({
+          type: principalConstants.PRINCIPAL_LOGIN_SUCCESS,
           payload: { token, user },
         });
       }
     } else {
       console.log("No logged in user");
-      // dispatch({
-      //   type: studentConstants.STUDENT_LOGIN_FAILURE,
-      //   payload: { error: "Failed to Login" },
-      // });
     }
   };
 };

@@ -5,7 +5,7 @@ export const adminLogin = (user) => {
   return async (dispatch) => {
     dispatch({ type: adminConstants.ADMIN_LOGIN_REQUEST });
     try {
-      const res = await axios.post(`/admin/admin/signin`, { ...user });
+      const res = await axios.post(`/admin/signin`, { ...user });
       if (res.status == 201) {
         const { token, user } = res.data;
 

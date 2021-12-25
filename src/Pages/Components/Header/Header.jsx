@@ -8,6 +8,9 @@ import { userLogout } from "../../../Redux/Actions/commonUserCode";
 
 const Header = (props) => {
   const teacher = useSelector((state) => state.teacher);
+  const admin = useSelector((state) => state.admin);
+  const hod = useSelector((state) => state.hod);
+  const principal = useSelector((state) => state.principal);
   const dispatch = useDispatch();
 
   useEffect(() => {}, [teacher.authenticate]);
@@ -26,7 +29,10 @@ const Header = (props) => {
           <NavLink className="nav_link" to="/home">
             Home
           </NavLink>
-          {teacher.authenticate ? (
+          {teacher.authenticate ||
+          hod.authenticate ||
+          admin.authenticate ||
+          principal.authenticate ? (
             <>
               <NavLink className="nav_link" to="/register">
                 Register

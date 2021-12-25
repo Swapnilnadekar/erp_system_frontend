@@ -14,15 +14,30 @@ import GetAllPrincipal from "./Pages/GetAllPrincipal/GetAllPrincipal";
 import GetAllTeacher from "./Pages/GetAllTeacher/GetAllTeacher";
 
 const App = () => {
-  const teacher = useSelector((state) => state.teacher);
   const student = useSelector((state) => state.student);
+  const teacher = useSelector((state) => state.teacher);
+  const hod = useSelector((state) => state.hod);
+  const admin = useSelector((state) => state.admin);
+  const principal = useSelector((state) => state.principal);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!teacher.authenticate || !student.authenticate) {
+    if (
+      !teacher.authenticate ||
+      !student.authenticate ||
+      !hod.authenticate ||
+      !admin.authenticate ||
+      !principal.authenticate
+    ) {
       dispatch(isUserLoggedIn());
     }
-  }, [teacher.authenticate, student.authenticate]);
+  }, [
+    teacher.authenticate,
+    student.authenticate,
+    hod.authenticate,
+    admin.authenticate,
+    principal.authenticate,
+  ]);
 
   return (
     <div className="app_container">
@@ -61,7 +76,7 @@ const App = () => {
             </PrivateRoute>
           }
         />
-
+            
         <Route
           path="/get-all-hod"
           element={
@@ -88,6 +103,7 @@ const App = () => {
             </PrivateRoute>
           }
         />
+            
         <Route path="*" element={<ErrorPage />}></Route>
       </Routes>
     </div>

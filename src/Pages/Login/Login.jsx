@@ -15,7 +15,13 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormLabel from "@mui/material/FormLabel";
 import "./Login.css";
+import { adminLogin } from "../../Redux/Actions/admin";
+import { hodLogin } from "../../Redux/Actions/hod";
+import { principalLogin } from "../../Redux/Actions/principal";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -25,17 +31,27 @@ const Login = () => {
   const [checkbox, setCheckbox] = useState(false);
   const [nameError, setNameError] = useState(false);
   const [passwordError, setPassswordError] = useState(false);
+  const [role, setRole] = useState("teacher");
 
-  const teacher = useSelector((state) => state.teacher);
   const student = useSelector((state) => state.student);
+  const teacher = useSelector((state) => state.teacher);
+  const admin = useSelector((state) => state.admin);
+  const hod = useSelector((state) => state.hod);
+  const principal = useSelector((state) => state.principal);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (student.authenticate || teacher.authenticate) {
+    if (
+      student.authenticate ||
+      teacher.authenticate ||
+      admin.authenticate ||
+      hod.authenticate ||
+      principal.authenticate
+    ) {
       navigate("/home");
     }
-  }, [student, teacher]);
+  }, [student, teacher, admin, hod, principal]);
 
   const userLogin = (e) => {
     e.preventDefault();
@@ -46,22 +62,22 @@ const Login = () => {
       setPassswordError(true);
       alert("Enter password");
     } else {
+      const user = {
+        username,
+        password,
+      };
       if (checkbox == true) {
-        const user = {
-          username,
-          password,
-        };
-
-        dispatch(teacherLogin(user));
-        // dispatch(checkBoxState(checkbox), teacher, student);
+        if (role === "teacher") {
+          dispatch(teacherLogin(user));
+        } else if (role === "admin") {
+          dispatch(adminLogin(user));
+        } else if (role === "hod") {
+          dispatch(hodLogin(user));
+        } else if (role === "principal") {
+          dispatch(principalLogin(user));
+        }
       } else {
-        const user = {
-          username,
-          password,
-        };
-
         dispatch(studentLogin(user));
-        // dispatch(checkBoxState(checkbox));
       }
     }
 
@@ -129,10 +145,37 @@ const Login = () => {
         >
           Signin
         </Button>
+        {checkbox === true ? (
+          <RadioGroup
+            aria-label="role"
+            defaultValue="teacher"
+            name="radio-buttons-group"
+            onChange={(e) => setRole(e.target.value)}
+          >
+            <div className="radio_btns">
+              <FormControlLabel
+                value="teacher"
+                control={<Radio />}
+                label="Teacher"
+              />
+              <FormControlLabel
+                value="admin"
+                control={<Radio />}
+                label="Admin"
+              />
+              <FormControlLabel value="hod" control={<Radio />} label="hod" />
+              <FormControlLabel
+                value="principal"
+                control={<Radio />}
+                label="Principal"
+              />
+            </div>
+          </RadioGroup>
+        ) : (
+          <></>
+        )}
         <div className="a_links">
           <a href="">Forgot Password</a>
-          {/* <div class="vl"></div>
-          <a href="/register">New user register</a> */}
           <div class="vl"></div>
           <FormControlLabel
             control={

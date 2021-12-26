@@ -61,10 +61,11 @@ const GetAllTeacher = () => {
     handleClose();
   };
 
- 
-
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    window.location.reload(false);
+  };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -144,7 +145,6 @@ const GetAllTeacher = () => {
                   error={branchError}
                   onChange={(e) => setBranch(e.target.value)}
                 />
-                
               </div>
             </div>
             <Button
@@ -159,7 +159,6 @@ const GetAllTeacher = () => {
       </div>
     );
   };
-
 
   const renderENTCList = () => {
     return (
@@ -177,58 +176,53 @@ const GetAllTeacher = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {teachersList.map((tech) =>
-                
-                  <StyledTableRow key={tech._id}>
-                    <StyledTableCell component="th" scope="row" align="centre">
-                      {tech._id}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">{tech.name}</StyledTableCell>
-                    <StyledTableCell align="centre">
-                      {tech.email}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">
-                      {tech.contact}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">
-                      {tech.branch}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">
-                      <div className="delete_update_btn_container">
-                        <IconButton
-                          aria-label="delete item"
-                          onClick={() => {
-                            if (
-                              window.confirm(
-                                "Are you sure you want to delete ?"
-                              )
-                            ) {
-                              dispatch(deleteTeacher(tech._id));
-                            }
-                          }}
-                        >
-                          <DeleteIcon className="delete_btn" />
-                        </IconButton>
-                        <IconButton
-                          aria-label="edit item"
-                          onClick={() => {
-                            setTech_id(tech._id);
-                            setUsername(tech.username);
-                            setPassword(tech.password);
-                            setName(tech.name);
-                            setEmail(tech.email);
-                            setContact(tech.contact);
-                            setBranch(tech.branch);
-                            setEmail(tech.email);
-                            setOpen(true);
-                          }}
-                        >
-                          <ModeEditIcon className="edit_btn" />
-                        </IconButton>
-                      </div>
-                    </StyledTableCell>
-                  </StyledTableRow>
-              )}
+              {teachersList.map((tech) => (
+                <StyledTableRow key={tech._id}>
+                  <StyledTableCell component="th" scope="row" align="centre">
+                    {tech._id}
+                  </StyledTableCell>
+                  <StyledTableCell align="centre">{tech.name}</StyledTableCell>
+                  <StyledTableCell align="centre">{tech.email}</StyledTableCell>
+                  <StyledTableCell align="centre">
+                    {tech.contact}
+                  </StyledTableCell>
+                  <StyledTableCell align="centre">
+                    {tech.branch}
+                  </StyledTableCell>
+                  <StyledTableCell align="centre">
+                    <div className="delete_update_btn_container">
+                      <IconButton
+                        aria-label="delete item"
+                        onClick={() => {
+                          if (
+                            window.confirm("Are you sure you want to delete ?")
+                          ) {
+                            dispatch(deleteTeacher(tech._id));
+                          }
+                        }}
+                      >
+                        <DeleteIcon className="delete_btn" />
+                      </IconButton>
+                      <IconButton
+                        aria-label="edit item"
+                        onClick={() => {
+                          setTech_id(tech._id);
+                          setUsername(tech.username);
+                          setPassword(tech.password);
+                          setName(tech.name);
+                          setEmail(tech.email);
+                          setContact(tech.contact);
+                          setBranch(tech.branch);
+                          setEmail(tech.email);
+                          setOpen(true);
+                        }}
+                      >
+                        <ModeEditIcon className="edit_btn" />
+                      </IconButton>
+                    </div>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
               {
                 // Comment code
               }
@@ -243,9 +237,7 @@ const GetAllTeacher = () => {
     <>
       <Header />
       <div className="all_teacher_container">
-        <div className="teacher_table">
-          {renderENTCList()}
-        </div>
+        <div className="teacher_table">{renderENTCList()}</div>
       </div>
       {modalFunc()}
     </>

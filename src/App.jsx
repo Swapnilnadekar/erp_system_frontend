@@ -12,6 +12,7 @@ import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 import GetAllHod from "./Pages/GetAllHod/GetAllHod";
 import GetAllPrincipal from "./Pages/GetAllPrincipal/GetAllPrincipal";
 import GetAllTeacher from "./Pages/GetAllTeacher/GetAllTeacher";
+import { getAllAdmin } from "./Redux/Actions/admin";
 
 const App = () => {
   const student = useSelector((state) => state.student);
@@ -76,7 +77,7 @@ const App = () => {
             </PrivateRoute>
           }
         />
-            
+
         <Route
           path="/get-all-hod"
           element={
@@ -103,7 +104,7 @@ const App = () => {
             </PrivateRoute>
           }
         />
-            
+
         <Route path="*" element={<ErrorPage />}></Route>
       </Routes>
     </div>

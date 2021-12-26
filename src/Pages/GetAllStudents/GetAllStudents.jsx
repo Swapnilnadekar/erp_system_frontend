@@ -29,6 +29,9 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import Input from "@mui/material/Input";
+import InputAdornment from "@mui/material/InputAdornment";
+import SearchIcon from "@mui/icons-material/Search";
 import "./GetAllStudents.css";
 
 const GetAllStudents = () => {
@@ -41,13 +44,15 @@ const GetAllStudents = () => {
   const [contact, setContact] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [std_id, setStd_id] = useState(0);
+  const [_id, setStd_id] = useState(0);
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [contactError, setContactError] = useState(false);
   const [branchError, setBranchError] = useState(false);
   const [roll_noError, setRoll_noError] = useState(false);
-  const [selectBranch, setSelectBranch] = useState("");
+  const [selectBranch, setSelectBranch] = useState("COMP");
+  const [search, setSearch] = useState("");
+  const [searchList, setSearchList] = useState([]);
 
   const studentsList = useSelector((state) => state.studentList.students_list);
   const dispatch = useDispatch();
@@ -56,9 +61,28 @@ const GetAllStudents = () => {
     dispatch(getAllStudents());
   }, []);
 
+  const searchStudent = (e) => {
+    console.log(search);
+    setSearch(e.target.value);
+
+    if (search !== "") {
+      const new_list = studentsList.filter((current) => {
+        const tbc =
+          current.name.toLowerCase() +
+          " " +
+          current.email.toLowerCase() +
+          " " +
+          current.contact.toLowerCase();
+        const tbcw = search.toLowerCase();
+        return tbc.includes(tbcw);
+      });
+      setSearchList(new_list);
+    }
+  };
+
   const updateData = () => {
     const updatedStudent = {
-      std_id,
+      _id,
       name,
       email,
       branch,
@@ -82,7 +106,10 @@ const GetAllStudents = () => {
   };
 
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    window.location.reload(false);
+  };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -215,9 +242,9 @@ const GetAllStudents = () => {
             <TableBody>
               {studentsList.map((std) =>
                 std.branch === "COMP" ? (
-                  <StyledTableRow key={std.std_id}>
+                  <StyledTableRow key={std._id}>
                     <StyledTableCell component="th" scope="row" align="centre">
-                      {std.std_id}
+                      {std._id}
                     </StyledTableCell>
                     <StyledTableCell align="centre">{std.name}</StyledTableCell>
                     <StyledTableCell align="centre">
@@ -232,7 +259,9 @@ const GetAllStudents = () => {
                     <StyledTableCell align="centre">
                       {std.branch}
                     </StyledTableCell>
-                    <StyledTableCell align="centre">{std.dob}</StyledTableCell>
+                    <StyledTableCell align="centre">
+                      {std.dob.toString().substring(0, 10)}
+                    </StyledTableCell>
                     <StyledTableCell align="centre">
                       <div className="delete_update_btn_container">
                         <IconButton
@@ -243,7 +272,7 @@ const GetAllStudents = () => {
                                 "Are you sure you want to delete ?"
                               )
                             ) {
-                              dispatch(deleteStudents(std.std_id));
+                              dispatch(deleteStudents(std._id));
                             }
                           }}
                         >
@@ -252,7 +281,7 @@ const GetAllStudents = () => {
                         <IconButton
                           aria-label="edit item"
                           onClick={() => {
-                            setStd_id(std.std_id);
+                            setStd_id(std._id);
                             setUsername(std.username);
                             setPassword(std.password);
                             setName(std.name);
@@ -301,9 +330,9 @@ const GetAllStudents = () => {
             <TableBody>
               {studentsList.map((std) =>
                 std.branch === "IT" ? (
-                  <StyledTableRow key={std.std_id}>
+                  <StyledTableRow key={std._id}>
                     <StyledTableCell component="th" scope="row" align="centre">
-                      {std.std_id}
+                      {std._id}
                     </StyledTableCell>
                     <StyledTableCell align="centre">{std.name}</StyledTableCell>
                     <StyledTableCell align="centre">
@@ -329,7 +358,7 @@ const GetAllStudents = () => {
                                 "Are you sure you want to delete ?"
                               )
                             ) {
-                              dispatch(deleteStudents(std.std_id));
+                              dispatch(deleteStudents(std._id));
                             }
                           }}
                         >
@@ -338,7 +367,7 @@ const GetAllStudents = () => {
                         <IconButton
                           aria-label="edit item"
                           onClick={() => {
-                            setStd_id(std.std_id);
+                            setStd_id(std._id);
                             setUsername(std.username);
                             setPassword(std.password);
                             setName(std.name);
@@ -387,9 +416,9 @@ const GetAllStudents = () => {
             <TableBody>
               {studentsList.map((std) =>
                 std.branch === "ENTC" ? (
-                  <StyledTableRow key={std.std_id}>
+                  <StyledTableRow key={std._id}>
                     <StyledTableCell component="th" scope="row" align="centre">
-                      {std.std_id}
+                      {std._id}
                     </StyledTableCell>
                     <StyledTableCell align="centre">{std.name}</StyledTableCell>
                     <StyledTableCell align="centre">
@@ -415,7 +444,7 @@ const GetAllStudents = () => {
                                 "Are you sure you want to delete ?"
                               )
                             ) {
-                              dispatch(deleteStudents(std.std_id));
+                              dispatch(deleteStudents(std._id));
                             }
                           }}
                         >
@@ -424,7 +453,7 @@ const GetAllStudents = () => {
                         <IconButton
                           aria-label="edit item"
                           onClick={() => {
-                            setStd_id(std.std_id);
+                            setStd_id(std._id);
                             setUsername(std.username);
                             setPassword(std.password);
                             setName(std.name);
@@ -453,34 +482,130 @@ const GetAllStudents = () => {
     );
   };
 
+  const renderSearchList = () => {
+    return (
+      <div className="list">
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <StyledTableCell align="centre">Student Id</StyledTableCell>
+                <StyledTableCell align="centre">Name</StyledTableCell>
+                <StyledTableCell align="centre">Email</StyledTableCell>
+                <StyledTableCell align="centre">Contact</StyledTableCell>
+                <StyledTableCell align="centre">Roll&nbsp;no</StyledTableCell>
+                <StyledTableCell align="centre">Branch</StyledTableCell>
+                <StyledTableCell align="centre">Date of birth</StyledTableCell>
+                <StyledTableCell align="centre"></StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {searchList.map((std) => (
+                <StyledTableRow key={std._id}>
+                  <StyledTableCell component="th" scope="row" align="centre">
+                    {std._id}
+                  </StyledTableCell>
+                  <StyledTableCell align="centre">{std.name}</StyledTableCell>
+                  <StyledTableCell align="centre">{std.email}</StyledTableCell>
+                  <StyledTableCell align="centre">
+                    {std.contact}
+                  </StyledTableCell>
+                  <StyledTableCell align="centre">
+                    {std.roll_no}
+                  </StyledTableCell>
+                  <StyledTableCell align="centre">{std.branch}</StyledTableCell>
+                  <StyledTableCell align="centre">{std.dob}</StyledTableCell>
+                  <StyledTableCell align="centre">
+                    <div className="delete_update_btn_container">
+                      <IconButton
+                        aria-label="delete item"
+                        onClick={() => {
+                          if (
+                            window.confirm("Are you sure you want to delete ?")
+                          ) {
+                            dispatch(deleteStudents(std._id));
+                          }
+                        }}
+                      >
+                        <DeleteIcon className="delete_btn" />
+                      </IconButton>
+                      <IconButton
+                        aria-label="edit item"
+                        onClick={() => {
+                          setStd_id(std._id);
+                          setUsername(std.username);
+                          setPassword(std.password);
+                          setName(std.name);
+                          setEmail(std.email);
+                          setContact(std.contact);
+                          setBranch(std.branch);
+                          setDate(std.dob);
+                          setEmail(std.email);
+                          setRoll_no(std.roll_no);
+                          setOpen(true);
+                        }}
+                      >
+                        <ModeEditIcon className="edit_btn" />
+                      </IconButton>
+                    </div>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    );
+  };
+
   return (
     <>
       <Header />
       <div className="all_students_container">
-        <div className="branch_select">
-          <InputLabel id="demo-simple-select-label">Branch</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={selectBranch}
-            label="Branch"
-            onChange={(e) => setSelectBranch(e.target.value)}
-          >
-            <MenuItem value="COMP" style={{ color: "black" }}>
-              COMP
-            </MenuItem>
-            <MenuItem value="IT" style={{ color: "black" }}>
-              IT
-            </MenuItem>
-            <MenuItem value="ENTC" style={{ color: "black" }}>
-              ENTC
-            </MenuItem>
-          </Select>
+        <div className="branch_search_container">
+          {search < 1 ? (
+            <div className="branch_select">
+              <InputLabel id="demo-simple-select-label">Branch</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={selectBranch}
+                label="Branch"
+                onChange={(e) => setSelectBranch(e.target.value)}
+              >
+                <MenuItem value="COMP" style={{ color: "black" }}>
+                  COMP
+                </MenuItem>
+                <MenuItem value="IT" style={{ color: "black" }}>
+                  IT
+                </MenuItem>
+                <MenuItem value="ENTC" style={{ color: "black" }}>
+                  ENTC
+                </MenuItem>
+              </Select>
+            </div>
+          ) : (
+            <div className="branch_select"></div>
+          )}
+        </div>
+        <div className="search_container">
+          <Input
+            id="input-with-icon-adornment"
+            value={search}
+            startAdornment={
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            }
+            placeholder="Search ..."
+            onChange={searchStudent}
+          />
         </div>
         <div className="student_table">
-          {selectBranch === "COMP" ? renderCompList() : <></>}
-          {selectBranch === "IT" ? renderITList() : <></>}
-          {selectBranch === "ENTC" ? renderENTCList() : <></>}
+          {search < 1 ? <></> : renderSearchList()}
+          {selectBranch === "COMP" && search < 1 ? renderCompList() : <></>}
+          {selectBranch === "IT" && search < 1 ? renderITList() : <></>}
+          {selectBranch === "ENTC" && search < 1 ? renderENTCList() : <></>}
         </div>
       </div>
       {modalFunc()}

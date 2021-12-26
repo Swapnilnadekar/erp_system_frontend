@@ -22,6 +22,9 @@ import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import Button from "@mui/material/Button";
+import Input from "@mui/material/Input";
+import InputAdornment from "@mui/material/InputAdornment";
+import SearchIcon from "@mui/icons-material/Search";
 import "./GetAllAdmin.css";
 
 const GetAllAdmin = () => {
@@ -35,6 +38,8 @@ const GetAllAdmin = () => {
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [contactError, setContactError] = useState(false);
+  const [search, setSearch] = useState("");
+  const [searchList, setSearchList] = useState([]);
 
   var adminsList = useSelector((state) => state.adminList.admins_list);
   const dispatch = useDispatch();
@@ -42,6 +47,25 @@ const GetAllAdmin = () => {
   useEffect(() => {
     dispatch(getAllAdmin());
   }, []);
+
+  const searchAdmin = (e) => {
+    console.log(search);
+    setSearch(e.target.value);
+
+    if (search !== "") {
+      const new_list = adminsList.filter((current) => {
+        const tbc =
+          current.name.toLowerCase() +
+          " " +
+          current.email.toLowerCase() +
+          " " +
+          current.contact.toLowerCase();
+        const tbcw = search.toLowerCase();
+        return tbc.includes(tbcw);
+      });
+      setSearchList(new_list);
+    }
+  };
 
   const updateData = () => {
     const updatedAdmin = {
@@ -210,11 +234,93 @@ const GetAllAdmin = () => {
     );
   };
 
+  const renderSearchList = () => {
+    return (
+      <div className="comp_search_details">
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <StyledTableCell align="centre">Admin Id</StyledTableCell>
+                <StyledTableCell align="centre">Name</StyledTableCell>
+                <StyledTableCell align="centre">Email</StyledTableCell>
+                <StyledTableCell align="centre">Contact</StyledTableCell>
+                <StyledTableCell align="centre"></StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {searchList.map((adm) => (
+                <StyledTableRow key={adm._id}>
+                  <StyledTableCell component="th" scope="row" align="centre">
+                    {adm._id}
+                  </StyledTableCell>
+                  <StyledTableCell align="centre">{adm.name}</StyledTableCell>
+                  <StyledTableCell align="centre">{adm.email}</StyledTableCell>
+                  <StyledTableCell align="centre">
+                    {adm.contact}
+                  </StyledTableCell>
+                  <StyledTableCell align="centre">
+                    <div className="delete_update_btn_container">
+                      <IconButton
+                        aria-label="delete item"
+                        onClick={() => {
+                          if (
+                            window.confirm("Are you sure you want to delete ?")
+                          ) {
+                            dispatch(deleteAdmin(adm._id));
+                          }
+                        }}
+                      >
+                        <DeleteIcon className="delete_btn" />
+                      </IconButton>
+                      <IconButton
+                        aria-label="edit item"
+                        onClick={() => {
+                          setAdm_id(adm._id);
+                          setUsername(adm.username);
+                          setPassword(adm.password);
+                          setName(adm.name);
+                          setEmail(adm.email);
+                          setContact(adm.contact);
+                          setEmail(adm.email);
+                          setOpen(true);
+                        }}
+                      >
+                        <ModeEditIcon className="edit_btn" />
+                      </IconButton>
+                    </div>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+              {
+                // Comment code
+              }
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    );
+  };
+
   return (
     <>
       <Header />
+      <div className="search_container">
+          <Input
+            id="input-with-icon-adornment"
+            value={search}
+            startAdornment={
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            }
+            placeholder="Search ..."
+            onChange={searchAdmin}
+          />
+        </div>
       <div className="all_admin_container">
-        <div className="admin_table">{renderENTCList()}</div>
+      {search < 1 ? <></> : renderSearchList()}
+        <div className="admin_table">{search < 1 ? renderENTCList(): <></>}</div>
       </div>
       {modalFunc()}
     </>

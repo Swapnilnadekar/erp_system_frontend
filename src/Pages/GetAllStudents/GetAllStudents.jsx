@@ -484,7 +484,7 @@ const GetAllStudents = () => {
 
   const renderSearchList = () => {
     return (
-      <div className="list">
+      <div className="searchlist">
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>

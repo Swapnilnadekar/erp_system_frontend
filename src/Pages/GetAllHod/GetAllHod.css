@@ -69,4 +69,8 @@
     align-items: center;
     justify-content: space-between;
   }
+
+  .comp_hod_details{
+    margin-top: 60px;
+  }
   

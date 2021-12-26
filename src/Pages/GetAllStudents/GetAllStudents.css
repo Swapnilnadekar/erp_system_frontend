@@ -80,3 +80,11 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.list{
+  margin-top: 0px;
+}
+
+.searchlist{
+  margin-top: 79px;
+}

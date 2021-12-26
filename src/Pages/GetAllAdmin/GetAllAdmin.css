@@ -69,4 +69,11 @@
     align-items: center;
     justify-content: space-between;
   }
+
+  .comp_admin_details{
+    margin-top: 60px;
+  }
   
+  .comp_search_details{
+    margin-top: 130px;
+  }

@@ -22,6 +22,9 @@ import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import Button from "@mui/material/Button";
+import Input from "@mui/material/Input";
+import InputAdornment from "@mui/material/InputAdornment";
+import SearchIcon from "@mui/icons-material/Search";
 import "./GetAllTeacher.css";
 
 const GetAllTeacher = () => {
@@ -38,6 +41,8 @@ const GetAllTeacher = () => {
   const [contactError, setContactError] = useState(false);
   const [branchError, setBranchError] = useState(false);
   const [roll_noError, setRoll_noError] = useState(false);
+  const [search, setSearch] = useState("");
+  const [searchList, setSearchList] = useState([]);
 
   const teachersList = useSelector((state) => state.teacherList.teachers_list);
   const dispatch = useDispatch();
@@ -45,6 +50,26 @@ const GetAllTeacher = () => {
   useEffect(() => {
     dispatch(getAllTeacher());
   }, []);
+
+  const searchTeacher = (e) => {
+    console.log(search);
+    setSearch(e.target.value);
+
+    if (search !== "") {
+      const new_list = teachersList.filter((current) => {
+        const tbc =
+          current.name.toLowerCase() +
+          " " +
+          current.email.toLowerCase() +
+          " " +
+          current.contact.toLowerCase();
+        const tbcw = search.toLowerCase();
+        return tbc.includes(tbcw);
+      });
+      setSearchList(new_list);
+    }
+  };
+
 
   const updateData = () => {
     const updatedTeacher = {
@@ -233,11 +258,98 @@ const GetAllTeacher = () => {
     );
   };
 
+  const renderSearchList = () => {
+    return (
+      <div className="comp_search_details">
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <StyledTableCell align="centre">Teacher Id</StyledTableCell>
+                <StyledTableCell align="centre">Name</StyledTableCell>
+                <StyledTableCell align="centre">Email</StyledTableCell>
+                <StyledTableCell align="centre">Contact</StyledTableCell>
+                <StyledTableCell align="centre">Branch</StyledTableCell>
+                <StyledTableCell align="centre"></StyledTableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {searchList.map((tech) => (
+                <StyledTableRow key={tech._id}>
+                  <StyledTableCell component="th" scope="row" align="centre">
+                    {tech._id}
+                  </StyledTableCell>
+                  <StyledTableCell align="centre">{tech.name}</StyledTableCell>
+                  <StyledTableCell align="centre">{tech.email}</StyledTableCell>
+                  <StyledTableCell align="centre">
+                    {tech.contact}
+                  </StyledTableCell>
+                  <StyledTableCell align="centre">
+                    {tech.branch}
+                  </StyledTableCell>
+                  <StyledTableCell align="centre">
+                    <div className="delete_update_btn_container">
+                      <IconButton
+                        aria-label="delete item"
+                        onClick={() => {
+                          if (
+                            window.confirm("Are you sure you want to delete ?")
+                          ) {
+                            dispatch(deleteTeacher(tech._id));
+                          }
+                        }}
+                      >
+                        <DeleteIcon className="delete_btn" />
+                      </IconButton>
+                      <IconButton
+                        aria-label="edit item"
+                        onClick={() => {
+                          setTech_id(tech._id);
+                          setUsername(tech.username);
+                          setPassword(tech.password);
+                          setName(tech.name);
+                          setEmail(tech.email);
+                          setContact(tech.contact);
+                          setBranch(tech.branch);
+                          setEmail(tech.email);
+                          setOpen(true);
+                        }}
+                      >
+                        <ModeEditIcon className="edit_btn" />
+                      </IconButton>
+                    </div>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+              {
+                // Comment code
+              }
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    );
+  };
+
   return (
     <>
       <Header />
+      <div className="search_container">
+          <Input
+            id="input-with-icon-adornment"
+            value={search}
+            startAdornment={
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            }
+            placeholder="Search ..."
+            onChange={searchTeacher}
+          />
+        </div>
       <div className="all_teacher_container">
-        <div className="teacher_table">{renderENTCList()}</div>
+        {search < 1 ? <></> : renderSearchList()}
+        <div className="teacher_table">{search < 1 ? renderENTCList() : <></>}</div>
       </div>
       {modalFunc()}
     </>

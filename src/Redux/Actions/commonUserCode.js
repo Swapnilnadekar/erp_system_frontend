@@ -6,11 +6,21 @@ import {
   hodConstants,
   principalConstants,
 } from "../constants";
+import jwt from "jsonwebtoken";
 import axios from "../axios";
 
 export const isUserLoggedIn = () => {
   return async (dispatch) => {
     const token = localStorage.getItem("token");
+    jwt.verify(
+      token,
+      "this-is-secrete-key-store-it-in-.env",
+      (error, result) => {
+        if (error) {
+          dispatch(userLogout());
+        }
+      }
+    );
 
     if (token) {
       const user = JSON.parse(localStorage.getItem("user"));

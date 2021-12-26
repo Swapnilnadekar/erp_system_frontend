@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import Header from "../Components/Header/Header";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Avatar from "@mui/material/Avatar";
 import "./Home.css";
+import { getAllAdmin } from "../../Redux/Actions/admin";
 
 const Home = () => {
   const student = useSelector((state) => state.student);
@@ -11,13 +12,9 @@ const Home = () => {
   const admin = useSelector((state) => state.admin);
   const principal = useSelector((state) => state.principal);
 
-  useEffect(() => {
-    console.log(student);
-    console.log(teacher);
-    console.log(hod);
-    console.log(principal);
-    console.log(admin);
-  }, [student, teacher, admin, hod, principal]);
+  const dispatch = useDispatch();
+
+  // useEffect(() => {}, [student, teacher, admin, hod, principal]);
 
   const adminRender = () => {
     return (

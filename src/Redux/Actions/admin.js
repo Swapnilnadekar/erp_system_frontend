@@ -52,7 +52,7 @@ export const registerAdmin = (admin) => {
         type: adminConstants.ADD_NEW_ADMIN_SUCCESS,
         payload: {
           admin: result,
-        }
+        },
       });
     } else {
       dispatch({
@@ -78,7 +78,7 @@ export const getAllAdmin = () => {
       dispatch({
         type: adminConstants.GET_ALL_ADMIN_SUCCESS,
         payload: {
-          admins_list: result, 
+          admins_list: result,
         },
       });
     } else {

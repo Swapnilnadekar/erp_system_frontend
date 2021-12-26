@@ -22,7 +22,7 @@ import Modal from "@mui/material/Modal";
 import { TextField } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import Button from "@mui/material/Button";
-import "./GetAllPrincipal.css"
+import "./GetAllPrincipal.css";
 
 const GetAllPrincipal = () => {
   const [open, setOpen] = useState(false);
@@ -36,8 +36,9 @@ const GetAllPrincipal = () => {
   const [emailError, setEmailError] = useState(false);
   const [contactError, setContactError] = useState(false);
 
-
-  const principalsList = useSelector((state) => state.principalList.principals_list);
+  const principalsList = useSelector(
+    (state) => state.principalList.principals_list
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -59,7 +60,10 @@ const GetAllPrincipal = () => {
   };
 
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    window.location.reload(false);
+  };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {

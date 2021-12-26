@@ -31,13 +31,12 @@ const GetAllAdmin = () => {
   const [contact, setContact] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [adm_id, setAdm_id] = useState(0);
+  const [_id, setAdm_id] = useState(0);
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [contactError, setContactError] = useState(false);
 
-
-  const adminsList = useSelector((state) => state.adminList.admins_list);
+  var adminsList = useSelector((state) => state.adminList.admins_list);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -46,7 +45,7 @@ const GetAllAdmin = () => {
 
   const updateData = () => {
     const updatedAdmin = {
-      adm_id,
+      _id,
       name,
       email,
       contact,
@@ -59,7 +58,10 @@ const GetAllAdmin = () => {
   };
 
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    window.location.reload(false);
+  };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {

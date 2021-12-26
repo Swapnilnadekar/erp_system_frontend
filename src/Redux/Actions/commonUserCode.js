@@ -70,7 +70,7 @@ export const userLogout = () => {
         }
       } else if (user.role === "admin") {
         dispatch({ type: adminConstants.ADMIN_LOGOUT_REQUEST });
-        const res = await axios.post(`/admin/admin/signout`);
+        const res = await axios.post(`/admin/signout`);
 
         if (res.status == 201) {
           localStorage.clear();
@@ -99,7 +99,6 @@ export const userLogout = () => {
             type: hodConstants.HOD_LOGOUT_FAILURE,
             payload: { error: "error" },
           });
-
         }
       } else if (user.role === "principal") {
         dispatch({ type: principalConstants.PRINCIPAL_LOGOUT_REQUEST });
@@ -136,5 +135,5 @@ export const userLogout = () => {
         }
       }
     }
-  }
+  };
 };

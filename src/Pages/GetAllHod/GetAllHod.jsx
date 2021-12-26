@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../Components/Header/Header";
-import {
-  getAllHod,
-  deleteHod,
-  updateHod,
-} from "../../Redux/Actions/hod";
+import { getAllHod, deleteHod, updateHod } from "../../Redux/Actions/hod";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -61,10 +57,11 @@ const GetAllHod = () => {
     handleClose();
   };
 
- 
-
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    window.location.reload(false);
+  };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -144,7 +141,6 @@ const GetAllHod = () => {
                   error={branchError}
                   onChange={(e) => setBranch(e.target.value)}
                 />
-                
               </div>
             </div>
             <Button
@@ -159,7 +155,6 @@ const GetAllHod = () => {
       </div>
     );
   };
-
 
   const renderENTCList = () => {
     return (
@@ -177,58 +172,51 @@ const GetAllHod = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {hodsList.map((hod) =>
-                
-                  <StyledTableRow key={hod._id}>
-                    <StyledTableCell component="th" scope="row" align="centre">
-                      {hod._id}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">{hod.name}</StyledTableCell>
-                    <StyledTableCell align="centre">
-                      {hod.email}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">
-                      {hod.contact}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">
-                      {hod.branch}
-                    </StyledTableCell>
-                    <StyledTableCell align="centre">
-                      <div className="delete_update_btn_container">
-                        <IconButton
-                          aria-label="delete item"
-                          onClick={() => {
-                            if (
-                              window.confirm(
-                                "Are you sure you want to delete ?"
-                              )
-                            ) {
-                              dispatch(deleteHod(hod._id));
-                            }
-                          }}
-                        >
-                          <DeleteIcon className="delete_btn" />
-                        </IconButton>
-                        <IconButton
-                          aria-label="edit item"
-                          onClick={() => {
-                            setHod_id(hod._id);
-                            setUsername(hod.username);
-                            setPassword(hod.password);
-                            setName(hod.name);
-                            setEmail(hod.email);
-                            setContact(hod.contact);
-                            setBranch(hod.branch);
-                            setEmail(hod.email);
-                            setOpen(true);
-                          }}
-                        >
-                          <ModeEditIcon className="edit_btn" />
-                        </IconButton>
-                      </div>
-                    </StyledTableCell>
-                  </StyledTableRow>
-              )}
+              {hodsList.map((hod) => (
+                <StyledTableRow key={hod._id}>
+                  <StyledTableCell component="th" scope="row" align="centre">
+                    {hod._id}
+                  </StyledTableCell>
+                  <StyledTableCell align="centre">{hod.name}</StyledTableCell>
+                  <StyledTableCell align="centre">{hod.email}</StyledTableCell>
+                  <StyledTableCell align="centre">
+                    {hod.contact}
+                  </StyledTableCell>
+                  <StyledTableCell align="centre">{hod.branch}</StyledTableCell>
+                  <StyledTableCell align="centre">
+                    <div className="delete_update_btn_container">
+                      <IconButton
+                        aria-label="delete item"
+                        onClick={() => {
+                          if (
+                            window.confirm("Are you sure you want to delete ?")
+                          ) {
+                            dispatch(deleteHod(hod._id));
+                          }
+                        }}
+                      >
+                        <DeleteIcon className="delete_btn" />
+                      </IconButton>
+                      <IconButton
+                        aria-label="edit item"
+                        onClick={() => {
+                          setHod_id(hod._id);
+                          setUsername(hod.username);
+                          setPassword(hod.password);
+                          setName(hod.name);
+                          setEmail(hod.email);
+                          setContact(hod.contact);
+                          setBranch(hod.branch);
+                          setEmail(hod.email);
+                          setOpen(true);
+                        }}
+                      >
+                        <ModeEditIcon className="edit_btn" />
+                      </IconButton>
+                    </div>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
               {
                 // Comment code
               }
@@ -243,9 +231,7 @@ const GetAllHod = () => {
     <>
       <Header />
       <div className="all_hod_container">
-        <div className="hod_table">
-          {renderENTCList()}
-        </div>
+        <div className="hod_table">{renderENTCList()}</div>
       </div>
       {modalFunc()}
     </>

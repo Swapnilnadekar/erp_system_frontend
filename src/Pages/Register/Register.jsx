@@ -388,7 +388,7 @@ const Register = () => {
             onChange={(e) => setBranch(e.target.value)}
             label="Branch"
           >
-            <MenuItem value={"COMP"} style={{ color: "black" }} >
+            <MenuItem value={"COMP"} style={{ color: "black" }}>
               COMP
             </MenuItem>
             <MenuItem value={"IT"} style={{ color: "black" }}>

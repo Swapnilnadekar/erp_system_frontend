@@ -41,7 +41,6 @@ export const teacherLogin = (user) => {
 };
 
 export const registerTeacher = (teacher) => {
-  console.log(teacher);
   return async (dispatch) => {
     dispatch({ type: teacherConstants.ADD_NEW_TEACHER_REQEUST });
     const res = await axios.post(`/admin/teacher/register`, teacher);
@@ -62,8 +61,6 @@ export const registerTeacher = (teacher) => {
   };
 };
 
-
-
 export const getAllTeacher = () => {
   return async (dispatch) => {
     dispatch({
@@ -77,7 +74,7 @@ export const getAllTeacher = () => {
       dispatch({
         type: teacherConstants.GET_ALL_TEACHER_SUCCESS,
         payload: {
-          teachers_list: result, 
+          teachers_list: result,
         },
       });
     } else {
@@ -141,4 +138,3 @@ export const updateTeacher = (updated) => {
     }
   };
 };
-

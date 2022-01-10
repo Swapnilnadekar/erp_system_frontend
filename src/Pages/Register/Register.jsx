@@ -42,8 +42,8 @@ const Register = () => {
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [cpasswordError, setCpasswordError] = useState(false);
+  const [profile_pic, setProfile_pic] = useState("");
   const [role, setRole] = useState("student");
-  // const [branch, setBranch] = useState("student");
 
   const dispatch = useDispatch();
 
@@ -159,16 +159,27 @@ const Register = () => {
         setPassword("");
         setCpassword("");
       } else {
-        const newStudent = {
-          name,
-          email,
-          branch,
-          roll_no,
-          dob,
-          contact,
-          username,
-          password,
-        };
+        // const newStudent = {
+        //   name,
+        //   email,
+        //   branch,
+        //   roll_no,
+        //   dob,
+        //   contact,
+        //   username,
+        //   password,
+        // };
+
+        const newStudent = new FormData();
+        newStudent.append("name", name);
+        newStudent.append("email", email);
+        newStudent.append("branch", branch);
+        newStudent.append("roll_no", roll_no);
+        newStudent.append("dob", dob);
+        newStudent.append("contact", contact);
+        newStudent.append("username", username);
+        newStudent.append("password", password);
+        newStudent.append("profile_pic", profile_pic);
 
         dispatch(registerStudent(newStudent));
 
@@ -230,15 +241,6 @@ const Register = () => {
           />
         </div>
         {role === "teacher" || role === "hod" ? (
-          // <TextField
-          //   value={branch}
-          //   id="register_branch"
-          //   color="info"
-          //   label="Branch"
-          //   variant="outlined"
-          //   onChange={(e) => setBranch(e.target.value)}
-          //   error={branchError}
-          // />
           <div>
             <InputLabel id="demo-simple-select-autowidth-label">
               Branch
@@ -368,16 +370,6 @@ const Register = () => {
           className="class_details_container"
           style={{ width: "65%", margin: "4px" }}
         >
-          {/* <TextField
-            value={branch}
-            id="register_branch"
-            color="info"
-            label="Branch"
-            variant="outlined"
-            error={branchError}
-            onChange={(e) => setBranch(e.target.value)}
-          /> */}
-
           <InputLabel id="demo-simple-select-autowidth-label">
             Branch
           </InputLabel>
@@ -418,6 +410,12 @@ const Register = () => {
             renderInput={(params) => <TextField {...params} />}
           />
         </LocalizationProvider>
+
+        <input
+          type="file"
+          name="profile_pic"
+          onChange={(e) => setProfile_pic(e.target.files[0])}
+        />
 
         <TextField
           value={username}

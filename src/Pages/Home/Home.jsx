@@ -89,11 +89,11 @@ const Home = () => {
     return (
       <div className="user_details">
         <div className="user_role_container">
-          <Avatar
+          {/* <Avatar
             alt="Remy Sharp"
             src="https://www.clipartmax.com/png/full/319-3191274_male-avatar-admin-profile.png"
             style={{ height: "200px", width: "230px" }}
-          />
+          /> */}
           <h6>{principal.user.role}</h6>
         </div>
         <div className="name_branch_container">

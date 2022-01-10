@@ -25,6 +25,8 @@
 .user_details_card img {
   height: 200px;
   width: 230px;
+  object-fit: cover;
+  border-radius: 150px;
 }
 
 .user_role_container {
@@ -34,7 +36,7 @@
   font-variant-caps: all-petite-caps;
 }
 
-.role_container{
+.role_container {
   display: flex;
   flex-direction: row;
   align-items: center;

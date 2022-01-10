@@ -10,6 +10,7 @@ const initState = {
     dob: "",
     contact: "",
     username: "",
+    profile_pic: "",
   },
   role: "student",
   authenticate: false,

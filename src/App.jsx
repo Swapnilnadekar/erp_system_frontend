@@ -13,6 +13,8 @@ import GetAllHod from "./Pages/GetAllHod/GetAllHod";
 import GetAllPrincipal from "./Pages/GetAllPrincipal/GetAllPrincipal";
 import GetAllTeacher from "./Pages/GetAllTeacher/GetAllTeacher";
 import { getAllAdmin } from "./Redux/Actions/admin";
+import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
+import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 
 const App = () => {
   const student = useSelector((state) => state.student);
@@ -106,7 +108,10 @@ const App = () => {
         />
 
         <Route path="*" element={<ErrorPage />}></Route>
-      </Routes>
+        <Route path="/password-reset" element={<ForgotPassword />} />
+        <Route path="/reset" element={<ResetPassword />} />
+        
+        </Routes>
     </div>
   );
 };

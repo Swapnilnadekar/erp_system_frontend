@@ -175,7 +175,7 @@ const Login = () => {
           <></>
         )}
         <div className="a_links">
-          <a href="">Forgot Password</a>
+          <a href="/password-reset">Forgot Password</a>
           <div class="vl"></div>
           <FormControlLabel
             control={

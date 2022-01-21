@@ -8,6 +8,7 @@ const initState = {
     contact: "",
     role: "",
     userName: "",
+    profile_pic: "",
   },
   role: "admin",
   authenticate: false,

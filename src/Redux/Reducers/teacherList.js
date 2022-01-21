@@ -1,4 +1,3 @@
-
 import { teacherConstants } from "../constants";
 
 const initState = {

@@ -9,6 +9,7 @@ const initState = {
     role: "",
     // branch: "",
     userName: "",
+    profile_pic: "",
   },
   role: "admin",
   authenticate: false,

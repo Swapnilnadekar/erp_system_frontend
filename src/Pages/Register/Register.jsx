@@ -77,83 +77,75 @@ const Register = () => {
       }
 
       if (role === "teacher") {
-        const teacher = {
-          name,
-          email,
-          branch,
-          contact,
-          username,
-          password,
-        };
+        const newTeacher = new FormData();
+        newTeacher.append("name", name);
+        newTeacher.append("email", email);
+        newTeacher.append("branch", branch);
+        newTeacher.append("contact", contact);
+        newTeacher.append("username", username);
+        newTeacher.append("password", password);
+        newTeacher.append("profile_pic", profile_pic);
 
-        dispatch(registerTeacher(teacher));
+        dispatch(registerTeacher(newTeacher));
 
         setName("");
         setEmail("");
         setBranch("");
-        setRoll_no(0);
-        setDob(new Date());
         setContact("");
         setUsername("");
         setPassword("");
         setCpassword("");
+        
       } else if (role === "hod") {
-        const hod = {
-          name,
-          email,
-          branch,
-          contact,
-          username,
-          password,
-        };
+        const newHod = new FormData();
+        newHod.append("name", name);
+        newHod.append("email", email);
+        newHod.append("branch", branch);
+        newHod.append("contact", contact);
+        newHod.append("username", username);
+        newHod.append("password", password);
+        newHod.append("profile_pic", profile_pic);
 
-        dispatch(registerHod(hod));
+        dispatch(registerHod(newHod));
 
         setName("");
         setEmail("");
         setBranch("");
-        setRoll_no(0);
-        setDob(new Date());
         setContact("");
         setUsername("");
         setPassword("");
         setCpassword("");
       } else if (role === "admin") {
-        const admin = {
-          name,
-          email,
-          contact,
-          username,
-          password,
-        };
+        const newAdmin = new FormData();
+        newAdmin.append("name", name);
+        newAdmin.append("email", email);
+        newAdmin.append("contact", contact);
+        newAdmin.append("username", username);
+        newAdmin.append("password", password);
+        newAdmin.append("profile_pic", profile_pic);
 
-        dispatch(registerAdmin(admin));
+        dispatch(registerAdmin(newAdmin));
 
         setName("");
         setEmail("");
-        setBranch("");
-        setRoll_no(0);
-        setDob(new Date());
         setContact("");
         setUsername("");
         setPassword("");
         setCpassword("");
-      } else if (role === "principal") {
-        const principal = {
-          name,
-          email,
-          contact,
-          username,
-          password,
-        };
 
-        dispatch(registerPrincipal(principal));
+      } else if (role === "principal") {
+        const newPrincipal = new FormData();
+        newPrincipal.append("name", name);
+        newPrincipal.append("email", email);
+        newPrincipal.append("contact", contact);
+        newPrincipal.append("username", username);
+        newPrincipal.append("password", password);
+        newPrincipal.append("profile_pic", profile_pic);
+
+        dispatch(registerPrincipal(newPrincipal));
 
         setName("");
         setEmail("");
-        setBranch("");
-        setRoll_no(0);
-        setDob(new Date());
         setContact("");
         setUsername("");
         setPassword("");
@@ -239,6 +231,11 @@ const Register = () => {
             onChange={(e) => setContact(e.target.value)}
             error={contactError}
           />
+          <input
+          type="file"
+          name="profile_pic"
+          onChange={(e) => setProfile_pic(e.target.files[0])}
+        />
         </div>
         {role === "teacher" || role === "hod" ? (
           <div>

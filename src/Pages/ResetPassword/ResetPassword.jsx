@@ -1,37 +1,44 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import "./ResetPassword.css";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const ResetPassword = () => {
-    const navigate = useNavigate();
-    const [otp, setOtp] = useState("");
-    const [otpError, setOtpError] = useState(false);
+const ResetPassword = (props) => {
+  const navigate = useNavigate();
+  const [otp, setOtp] = useState("");
+  const [otpError, setOtpError] = useState(false);
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
 
-    useEffect(()=>{
-        if(otp.authenticate){
-            navigate("/otp");
-        }
-    })
-
-    const pReset = (e) =>{
-        e.preventDefault();
-        if (document.getElementById("reset").value.length == 0) {
-            setOtpError(true);
-            alert("Enter OTP");
+  const pReset = async (e) => {
+    e.preventDefault();
+    if (
+      document.getElementById("OTP").value.length == 0 ||
+      document.getElementById("password").value.length == 0
+    ) {
+      // setOtpError(true);
+      alert("Enter valid details");
+    } else {
+      const resetPasswordResult = await axios.put(
+        "http://localhost:2000/admin/reset-password",
+        { otp, new_password: password, email: props.email }
+      );
     }
-}
+  };
 
   return (
     <div className="container">
       <h3>Enter OTP </h3>
-         <p>Please check your emails for a message with your otp. Your otp is 4 numbers long.</p>
+      <p>
+        Please check your emails for a message with your otp. Your otp is 4
+        numbers long.
+      </p>
 
-
-        <form className="reset" onSubmit={pReset}>
+      <form className="reset" onSubmit={pReset}>
         <TextField
-          id="reset"
+          id="OTP"
           label="Enter OTP"
           variant="outlined"
           value={otp}
@@ -41,7 +48,18 @@ const ResetPassword = () => {
           style={{ margin: "5px", color: "white" }}
           error={otpError}
         />
-         <Button
+        <TextField
+          id="password"
+          label="Enter password"
+          variant="outlined"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          color="info"
+          fullWidth="true"
+          style={{ margin: "5px", color: "white" }}
+          error={passwordError}
+        />
+        <Button
           type="submit"
           variant="contained"
           autoCapitalize="0"
@@ -55,10 +73,9 @@ const ResetPassword = () => {
         >
           Send OTP
         </Button>
-        </form>
-     
+      </form>
     </div>
   );
-}
+};
 
-export default ResetPassword
+export default ResetPassword;

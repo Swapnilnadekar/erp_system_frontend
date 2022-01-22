@@ -109,9 +109,8 @@ const App = () => {
 
         <Route path="*" element={<ErrorPage />}></Route>
         <Route path="/password-reset" element={<ForgotPassword />} />
-        <Route path="/reset" element={<ResetPassword />} />
-        
-        </Routes>
+        {/* <Route path="/otp-validation" element={<ResetPassword />} /> */}
+      </Routes>
     </div>
   );
 };

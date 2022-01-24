@@ -5,7 +5,7 @@ export const hodLogin = (user) => {
   return async (dispatch) => {
     dispatch({ type: hodConstants.HOD_LOGIN_REQUEST });
     try {
-      const res = await axios.post(`/admin/hod/signin`, { ...user });
+      const res = await axios.post(`/erp/hod/signin`, { ...user });
       if (res.status == 201) {
         const { token, user } = res.data;
 
@@ -44,7 +44,7 @@ export const registerHod = (hod) => {
   console.log(hod);
   return async (dispatch) => {
     dispatch({ type: hodConstants.ADD_NEW_HOD_REQEUST });
-    const res = await axios.post(`/admin/hod/register`, hod);
+    const res = await axios.post(`/erp/hod/register`, hod);
 
     if (res.status == 201) {
       const { result } = res.data;
@@ -70,14 +70,14 @@ export const getAllHod = () => {
       type: hodConstants.GET_ALL_HOD_REQEUST,
     });
 
-    const res = await axios.get(`/admin/hod/get-all-hod-data`);
+    const res = await axios.get(`/erp/hod/get-all-data`);
 
     if (res.status == 201) {
       const { result } = res.data;
       dispatch({
         type: hodConstants.GET_ALL_HOD_SUCCESS,
         payload: {
-          hods_list: result, 
+          hods_list: result,
         },
       });
     } else {
@@ -97,7 +97,7 @@ export const deleteHod = (_id) => {
       type: hodConstants.DELETE_HOD_REQEUST,
     });
 
-    const res = await axios.delete(`/admin/hod/delete-hod/${_id}`);
+    const res = await axios.delete(`/erp/hod/delete-data/${_id}`);
 
     if (res.status == 201) {
       const { result } = res.data;
@@ -121,7 +121,7 @@ export const deleteHod = (_id) => {
 export const updateHod = (updated) => {
   return async (dispatch) => {
     dispatch({ type: hodConstants.UPDATE_HOD_REQEUST });
-    const res = await axios.put(`/admin/hod/edit-hod-data`, updated);
+    const res = await axios.put(`/erp/hod/edit-data`, updated);
 
     if (res.status == 201) {
       const { result } = res.data;
@@ -141,4 +141,3 @@ export const updateHod = (updated) => {
     }
   };
 };
-

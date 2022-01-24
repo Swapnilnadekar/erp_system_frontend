@@ -64,7 +64,7 @@ export const userLogout = () => {
       const user = JSON.parse(localStorage.getItem("user"));
       if (user.role === "student") {
         dispatch({ type: studentConstants.STUDENT_LOGOUT_REQUEST });
-        const res = await axios.post(`/student/signout`);
+        const res = await axios.post(`/erp/signout`);
 
         if (res.status == 201) {
           localStorage.clear();
@@ -80,7 +80,7 @@ export const userLogout = () => {
         }
       } else if (user.role === "admin") {
         dispatch({ type: adminConstants.ADMIN_LOGOUT_REQUEST });
-        const res = await axios.post(`/admin/signout`);
+        const res = await axios.post(`/erp/signout`);
 
         if (res.status == 201) {
           localStorage.clear();
@@ -96,7 +96,7 @@ export const userLogout = () => {
         }
       } else if (user.role === "hod") {
         dispatch({ type: hodConstants.HOD_LOGOUT_REQUEST });
-        const res = await axios.post(`/admin/hod/signout`);
+        const res = await axios.post(`/erp/signout`);
 
         if (res.status == 201) {
           localStorage.clear();
@@ -112,7 +112,7 @@ export const userLogout = () => {
         }
       } else if (user.role === "principal") {
         dispatch({ type: principalConstants.PRINCIPAL_LOGOUT_REQUEST });
-        const res = await axios.post(`/admin/principal/signout`);
+        const res = await axios.post(`/erp/signout`);
 
         if (res.status == 201) {
           localStorage.clear();
@@ -129,7 +129,7 @@ export const userLogout = () => {
       } else if (user.role === "teacher") {
         dispatch({ type: teacherConstants.TEACHER_LOGOUT_REQUEST });
 
-        const res = await axios.post(`/admin/teacher/signout`);
+        const res = await axios.post(`/erp/signout`);
 
         if (res.status == 201) {
           localStorage.clear();

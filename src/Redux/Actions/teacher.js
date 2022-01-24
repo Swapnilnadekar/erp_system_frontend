@@ -5,7 +5,7 @@ export const teacherLogin = (user) => {
   return async (dispatch) => {
     dispatch({ type: teacherConstants.TEACHER_LOGIN_REQUEST });
     try {
-      const res = await axios.post(`/admin/teacher/signin`, { ...user });
+      const res = await axios.post(`/erp/teacher/signin`, { ...user });
       if (res.status == 201) {
         const { token, user } = res.data;
 
@@ -43,7 +43,7 @@ export const teacherLogin = (user) => {
 export const registerTeacher = (teacher) => {
   return async (dispatch) => {
     dispatch({ type: teacherConstants.ADD_NEW_TEACHER_REQEUST });
-    const res = await axios.post(`/admin/teacher/register`, teacher);
+    const res = await axios.post(`/erp/teacher/register`, teacher);
 
     if (res.status == 201) {
       const { result } = res.data;
@@ -67,7 +67,7 @@ export const getAllTeacher = () => {
       type: teacherConstants.GET_ALL_TEACHER_REQEUST,
     });
 
-    const res = await axios.get(`/admin/teacher/get-all-teacher-data`);
+    const res = await axios.get(`/erp/teacher/get-all-data`);
 
     if (res.status == 201) {
       const { result } = res.data;
@@ -94,7 +94,7 @@ export const deleteTeacher = (_id) => {
       type: teacherConstants.DELETE_TEACHER_REQEUST,
     });
 
-    const res = await axios.delete(`/admin/teacher/delete-teacher/${_id}`);
+    const res = await axios.delete(`/erp/teacher/delete-data/${_id}`);
 
     if (res.status == 201) {
       const { result } = res.data;
@@ -118,7 +118,7 @@ export const deleteTeacher = (_id) => {
 export const updateTeacher = (updated) => {
   return async (dispatch) => {
     dispatch({ type: teacherConstants.UPDATE_TEACHER_REQEUST });
-    const res = await axios.put(`/admin/teacher/edit-teacher-data`, updated);
+    const res = await axios.put(`/erp/teacher/edit-data`, updated);
 
     if (res.status == 201) {
       const { result } = res.data;

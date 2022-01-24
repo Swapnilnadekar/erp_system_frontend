@@ -5,7 +5,7 @@ export const principalLogin = (user) => {
   return async (dispatch) => {
     dispatch({ type: principalConstants.PRINCIPAL_LOGIN_REQUEST });
     try {
-      const res = await axios.post(`/admin/principal/signin`, { ...user });
+      const res = await axios.post(`/erp/principal/signin`, { ...user });
       if (res.status == 201) {
         const { token, user } = res.data;
 
@@ -43,7 +43,7 @@ export const principalLogin = (user) => {
 export const registerPrincipal = (principal) => {
   return async (dispatch) => {
     dispatch({ type: principalConstants.ADD_NEW_PRINCIPAL_REQEUST });
-    const res = await axios.post(`/admin/principal/register`, principal);
+    const res = await axios.post(`/erp/principal/register`, principal);
 
     if (res.status == 201) {
       const { result } = res.data;
@@ -69,14 +69,14 @@ export const getAllPrincipal = () => {
       type: principalConstants.GET_ALL_PRINCIPAL_REQEUST,
     });
 
-    const res = await axios.get(`/admin/principal/get-all-principal-data`);
+    const res = await axios.get(`/erp/principal/get-all-data`);
 
     if (res.status == 201) {
       const { result } = res.data;
       dispatch({
         type: principalConstants.GET_ALL_PRINCIPAL_SUCCESS,
         payload: {
-          principals_list: result, 
+          principals_list: result,
         },
       });
     } else {
@@ -96,7 +96,7 @@ export const deletePrincipal = (pri_id) => {
       type: principalConstants.DELETE_PRINCIPAL_REQEUST,
     });
 
-    const res = await axios.delete(`/admin/principal/delete-principal/${pri_id}`);
+    const res = await axios.delete(`/erp/principal/delete-data/${pri_id}`);
 
     if (res.status == 201) {
       const { result } = res.data;
@@ -120,7 +120,7 @@ export const deletePrincipal = (pri_id) => {
 export const updatePrincipal = (updated) => {
   return async (dispatch) => {
     dispatch({ type: principalConstants.UPDATE_PRINCIPAL_REQEUST });
-    const res = await axios.put(`/admin/principal/edit-principal-data`, updated);
+    const res = await axios.put(`/erp/principal/edit-data`, updated);
 
     if (res.status == 201) {
       const { result } = res.data;
@@ -140,4 +140,3 @@ export const updatePrincipal = (updated) => {
     }
   };
 };
-

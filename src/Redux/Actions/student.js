@@ -5,7 +5,7 @@ export const studentLogin = (user) => {
   return async (dispatch) => {
     dispatch({ type: studentConstants.STUDENT_LOGIN_REQUEST });
     try {
-      const res = await axios.post(`/student/signin`, { ...user });
+      const res = await axios.post(`/erp/student/signin`, { ...user });
       if (res.status == 201) {
         const { token, user } = res.data;
         localStorage.setItem("token", token);
@@ -45,7 +45,7 @@ export const getAllStudents = () => {
       type: studentConstants.GET_ALL_STUDENTS_REQEUST,
     });
 
-    const res = await axios.get(`/student/get-all-student-data`);
+    const res = await axios.get(`/erp/student/get-all-data`);
 
     if (res.status == 201) {
       const { result } = res.data;
@@ -72,7 +72,7 @@ export const deleteStudents = (std_id) => {
       type: studentConstants.DELETE_STUDENT_REQEUST,
     });
 
-    const res = await axios.delete(`/student/delete-student/${std_id}`);
+    const res = await axios.delete(`/erp/student/delete-data/${std_id}`);
 
     if (res.status == 201) {
       const { result } = res.data;
@@ -96,7 +96,7 @@ export const deleteStudents = (std_id) => {
 export const registerStudent = (student) => {
   return async (dispatch) => {
     dispatch({ type: studentConstants.ADD_NEW_STUDENT_REQEUST });
-    const res = await axios.post(`/student/register`, student);
+    const res = await axios.post(`/erp/student/register`, student);
 
     if (res.status == 201) {
       const { result } = res.data;
@@ -120,7 +120,7 @@ export const registerStudent = (student) => {
 export const updateStudent = (updated) => {
   return async (dispatch) => {
     dispatch({ type: studentConstants.UPDATE_STUDENT_REQEUST });
-    const res = await axios.put(`/student/edit-student-data`, updated);
+    const res = await axios.put(`/erp/student/edit-data`, updated);
 
     if (res.status == 201) {
       const { result } = res.data;

@@ -5,7 +5,7 @@ export const adminLogin = (user) => {
   return async (dispatch) => {
     dispatch({ type: adminConstants.ADMIN_LOGIN_REQUEST });
     try {
-      const res = await axios.post(`/admin/signin`, { ...user });
+      const res = await axios.post(`erp/admin/signin`, { ...user });
       if (res.status == 201) {
         const { token, user } = res.data;
 
@@ -44,7 +44,7 @@ export const registerAdmin = (admin) => {
   console.log(admin);
   return async (dispatch) => {
     dispatch({ type: adminConstants.ADD_NEW_ADMIN_REQEUST });
-    const res = await axios.post(`/admin/register`, admin);
+    const res = await axios.post(`/erp/admin/register`, admin);
 
     if (res.status == 201) {
       const { result } = res.data;
@@ -71,7 +71,7 @@ export const getAllAdmin = () => {
       type: adminConstants.GET_ALL_ADMIN_REQEUST,
     });
 
-    const res = await axios.get(`/admin/get-all-admin-data`);
+    const res = await axios.get(`/erp/admin/get-all-data`);
 
     if (res.status == 201) {
       const { result } = res.data;
@@ -98,7 +98,7 @@ export const deleteAdmin = (adm_id) => {
       type: adminConstants.DELETE_ADMIN_REQEUST,
     });
 
-    const res = await axios.delete(`/admin/delete-admin/${adm_id}`);
+    const res = await axios.delete(`/erp/admin/delete-data/${adm_id}`);
 
     if (res.status == 201) {
       const { result } = res.data;
@@ -122,7 +122,7 @@ export const deleteAdmin = (adm_id) => {
 export const updateAdmin = (updated) => {
   return async (dispatch) => {
     dispatch({ type: adminConstants.UPDATE_ADMIN_REQEUST });
-    const res = await axios.put(`/admin/edit-admin-data`, updated);
+    const res = await axios.put(`/erp/admin/edit-data`, updated);
 
     if (res.status == 201) {
       const { result } = res.data;

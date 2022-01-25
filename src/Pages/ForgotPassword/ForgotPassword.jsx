@@ -33,7 +33,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="container">
+    <div className="forcontainer">
       {enterOTP === false ? (
         <>
           <h3>Trouble Logging In? </h3>

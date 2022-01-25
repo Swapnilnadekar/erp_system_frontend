@@ -5,6 +5,7 @@ import "./Header.css";
 import LogoutIcon from "@mui/icons-material/Logout";
 import IconButton from "@mui/material/IconButton";
 import { userLogout } from "../../../Redux/Actions/commonUserCode";
+import {NavDropdown} from 'react-bootstrap';
 
 const Header = (props) => {
   const teacher = useSelector((state) => state.teacher);
@@ -12,6 +13,7 @@ const Header = (props) => {
   const hod = useSelector((state) => state.hod);
   const principal = useSelector((state) => state.principal);
   const dispatch = useDispatch();
+
 
   useEffect(() => {}, [teacher.authenticate]);
 
@@ -34,13 +36,19 @@ const Header = (props) => {
           admin.authenticate ||
           principal.authenticate ? (
             <>
-              <NavLink className="nav_link" to="/register">
+            <NavLink className="nav_link" to="/register">
                 Register
               </NavLink>
-              <NavLink className="nav_link" to="/get-all-students">
+              <NavDropdown
+                id="nav-dropdown"
+                title="Show All Data"
+                menuVariant="dark"
+              >
+                <div className="dropdownlist">
+                <NavLink className="nav_link" to="/get-all-students">
                 Students
               </NavLink>
-              <NavLink className="nav_link" to="/get-all-admin">
+                <NavLink className="nav_link" to="/get-all-admin">
                 Admin
               </NavLink>
               <NavLink className="nav_link" to="/get-all-hod">
@@ -51,7 +59,11 @@ const Header = (props) => {
               </NavLink>
               <NavLink className="nav_link" to="/get-all-teacher">
                 Teacher
-              </NavLink>
+               </NavLink>
+                <NavDropdown.Divider />
+                
+              </div>
+              </NavDropdown>
             </>
           ) : (
             ""

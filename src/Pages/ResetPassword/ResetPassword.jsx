@@ -71,7 +71,7 @@ const ResetPassword = (props) => {
           }}
           color="inherit"
         >
-          Send OTP
+          Authenticate
         </Button>
       </form>
     </div>

@@ -27,7 +27,7 @@ h3 {
 
 .nav_link.active {
   font-weight: bold;
-  color: #001fff;
+  color: #5b6cee;
   outline: none;
 }
 
@@ -52,4 +52,11 @@ ul {
 
 .logout_btn svg {
   color: white;
+}
+
+.dropdownlist{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
 }

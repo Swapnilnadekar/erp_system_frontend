@@ -28,7 +28,7 @@ const GetAllHod = () => {
   const [contact, setContact] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [hod_id, setHod_id] = useState(0);
+  const [_id, set_id] = useState(0);
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [contactError, setContactError] = useState(false);
@@ -44,7 +44,7 @@ const GetAllHod = () => {
 
   const updateData = () => {
     const updatedHod = {
-      hod_id,
+      _id,
       name,
       email,
       branch,
@@ -200,7 +200,7 @@ const GetAllHod = () => {
                       <IconButton
                         aria-label="edit item"
                         onClick={() => {
-                          setHod_id(hod._id);
+                          set_id(hod._id);
                           setUsername(hod.username);
                           setPassword(hod.password);
                           setName(hod.name);

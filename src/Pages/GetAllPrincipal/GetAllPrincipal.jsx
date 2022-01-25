@@ -31,7 +31,7 @@ const GetAllPrincipal = () => {
   const [contact, setContact] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [pri_id, setPri_id] = useState(0);
+  const [_id, set_id] = useState(0);
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [contactError, setContactError] = useState(false);
@@ -47,7 +47,7 @@ const GetAllPrincipal = () => {
 
   const updateData = () => {
     const updatedPrincipal = {
-      pri_id,
+      _id,
       name,
       email,
       contact,
@@ -186,7 +186,7 @@ const GetAllPrincipal = () => {
                       <IconButton
                         aria-label="edit item"
                         onClick={() => {
-                          setPri_id(pri._id);
+                          set_id(pri._id);
                           setUsername(pri.username);
                           setPassword(pri.password);
                           setName(pri.name);

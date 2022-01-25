@@ -35,7 +35,7 @@ const GetAllTeacher = () => {
   const [contact, setContact] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [tech_id, setTech_id] = useState(0);
+  const [_id, set_id] = useState(0);
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [contactError, setContactError] = useState(false);
@@ -70,10 +70,9 @@ const GetAllTeacher = () => {
     }
   };
 
-
   const updateData = () => {
     const updatedTeacher = {
-      tech_id,
+      _id,
       name,
       email,
       branch,
@@ -231,7 +230,7 @@ const GetAllTeacher = () => {
                       <IconButton
                         aria-label="edit item"
                         onClick={() => {
-                          setTech_id(tech._id);
+                          set_id(tech._id);
                           setUsername(tech.username);
                           setPassword(tech.password);
                           setName(tech.name);
@@ -304,7 +303,7 @@ const GetAllTeacher = () => {
                       <IconButton
                         aria-label="edit item"
                         onClick={() => {
-                          setTech_id(tech._id);
+                          set_id(tech._id);
                           setUsername(tech.username);
                           setPassword(tech.password);
                           setName(tech.name);
@@ -335,21 +334,23 @@ const GetAllTeacher = () => {
     <>
       <Header />
       <div className="search_container">
-          <Input
-            id="input-with-icon-adornment"
-            value={search}
-            startAdornment={
-              <InputAdornment position="start">
-                <SearchIcon />
-              </InputAdornment>
-            }
-            placeholder="Search ..."
-            onChange={searchTeacher}
-          />
-        </div>
+        <Input
+          id="input-with-icon-adornment"
+          value={search}
+          startAdornment={
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          }
+          placeholder="Search ..."
+          onChange={searchTeacher}
+        />
+      </div>
       <div className="all_teacher_container">
         {search < 1 ? <></> : renderSearchList()}
-        <div className="teacher_table">{search < 1 ? renderENTCList() : <></>}</div>
+        <div className="teacher_table">
+          {search < 1 ? renderENTCList() : <></>}
+        </div>
       </div>
       {modalFunc()}
     </>

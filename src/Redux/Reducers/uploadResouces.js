@@ -1,12 +1,14 @@
 import { uploadResourcesConstants } from "../constants";
 
 const initState = {
-  file_name: "",
-  uploaded_by: "",
-  subject: "",
-  time: "",
-  file_path: "",
-
+  file: {
+    file_name: "",
+    uploaded_by: "",
+    subject: "",
+    time: "",
+    file_path: "",
+  },
+  loading: false,
   error: "",
   message: "",
 };
@@ -18,7 +20,7 @@ export default (state = initState, action) => {
       break;
 
     case uploadResourcesConstants.ADD_NEW_RESOURCES_SUCCESS:
-      state = { ...state, loading: false };
+      state = { ...state, file: action.payload.result, loading: false };
       break;
 
     case uploadResourcesConstants.ADD_NEW_RESOURCES_FAILURE:

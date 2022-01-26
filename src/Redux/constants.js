@@ -146,7 +146,14 @@ export const principalConstants = {
   UPDATE_PRINCIPAL_FAILURE: "UPDATE_PRINCIPAL_FAILURE",
 };
 
+export const uploadResourcesConstants = {
+  ADD_NEW_RESOURCES_REQEUST: "ADD_NEW_RESOURCES_REQEUST",
+  ADD_NEW_RESOURCES_SUCCESS: "ADD_NEW_RESOURCES_SUCCESS",
+  ADD_NEW_RESOURCES_FAILURE: "ADD_NEW_RESOURCES_FAILURE",
+};
+
 export const userRoleConstants = {
   ADMIN: "ADMIN",
   USER: "USER",
 };
+

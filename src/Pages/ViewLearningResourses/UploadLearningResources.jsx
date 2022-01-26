@@ -11,10 +11,7 @@ import { uploadResources } from "../../Redux/Actions/uploadResouces";
 const UploadLearningResources = () => {
   const [file_name, setFile_name] = useState("");
   const [subject, setSubject] = useState("");
-  const [uploaded_by, setUploaded_by] = useState("");
-
   const [file_path, setFile_path] = useState("");
-
   const [file_nameError, setFile_nameError] = useState(false);
   const [subjectError, setSubjectError] = useState(false);
 
@@ -24,7 +21,11 @@ const UploadLearningResources = () => {
 
   const uploadResource = async (e) => {
     e.preventDefault();
-    teacher.user.name || hod.user.name;
+
+    let name = "";
+
+    if (teacher.authenticate) name = teacher.user.name;
+    else name = hod.user.name;
 
     if (document.getElementById("file_name").value.length == 0) {
       setFile_nameError(true);
@@ -35,11 +36,11 @@ const UploadLearningResources = () => {
     }
     const currentdate = new Date();
     const time =
-      currentdate.getDate() +
-      "/" +
-      (currentdate.getMonth() + 1) +
-      "/" +
       currentdate.getFullYear() +
+      "-" +
+      (currentdate.getMonth() + 1) +
+      "-" +
+      currentdate.getDate() +
       " " +
       currentdate.getHours() +
       ":" +
@@ -49,7 +50,7 @@ const UploadLearningResources = () => {
 
     const newResources = new FormData();
     newResources.append("file_name", file_name);
-    newResources.append("uploaded_by", uploaded_by);
+    newResources.append("uploaded_by", name);
     newResources.append("subject", subject);
     newResources.append("time", time);
     newResources.append("file_path", file_path);
@@ -79,16 +80,6 @@ const UploadLearningResources = () => {
               className="upload_container"
               style={{ width: "65%", margin: "4px" }}
             >
-              <TextField
-                value={uploaded_by}
-                id="uploaded_by"
-                color="info"
-                label="Uploaded_by"
-                variant="outlined"
-                // error={subError}
-                onChange={(e) => setUploaded_by(e.target.value)}
-              />
-
               <TextField
                 value={subject}
                 id="subject"

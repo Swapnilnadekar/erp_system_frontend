@@ -61,7 +61,7 @@ const UploadLearningResources = () => {
   return (
     <>
       <div>
-        {/* <Header /> */}
+        <Header />
 
         <div className="upload_container">
           <h3>Upload Learning Resources</h3>

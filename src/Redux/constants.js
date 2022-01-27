@@ -152,6 +152,12 @@ export const uploadResourcesConstants = {
   ADD_NEW_RESOURCES_FAILURE: "ADD_NEW_RESOURCES_FAILURE",
 };
 
+export const viewResourcesConstants = {
+  GET_ALL_RESOURCES_REQEUST: "GET_ALL_RESOURCES_REQEUST",
+  GET_ALL_RESOURCES_SUCCESS: "GET_ALL_RESOURCES_SUCCESS",
+  GET_ALL_RESOURCES_FAILURE: "GET_ALL_RESOURCES_FAILURE",
+};
+
 export const userRoleConstants = {
   ADMIN: "ADMIN",
   USER: "USER",

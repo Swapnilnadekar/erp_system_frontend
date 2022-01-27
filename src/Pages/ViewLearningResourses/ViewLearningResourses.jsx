@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../Components/Header/Header";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
@@ -10,8 +11,19 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import "./ViewLearningResourses.css";
+import { getAllResources } from "../../Redux/Actions/viewResources";
+import DownloadIcon from '@mui/icons-material/Download';
+import PreviewIcon from '@mui/icons-material/Preview';
 
 const ViewLearningResourses = () => {
+
+  const resourcesList = useSelector((state) => state.resourceList.resources_list);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllResources());
+  }, []);
+
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.black,
@@ -21,12 +33,24 @@ const ViewLearningResourses = () => {
       fontSize: 14,
     },
   }));
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
+    },
+  }));
+
   return (
     <>
+    <Header />
       <div>
-        {/* <Header /> */}
+        
 
-        <div className="resource_container">
+        <div className="resources_container">
           <h3>View Learning Resources</h3>
 
           <div className="view_resources">
@@ -46,7 +70,25 @@ const ViewLearningResourses = () => {
                     </StyledTableCell>
                   </TableRow>
                 </TableHead>
-              </Table>
+                <TableBody>
+                  {resourcesList.map((adm) => (
+                    <StyledTableRow key={adm.file_name}>
+                      <StyledTableCell component="th" scope="row" align="centre">
+                        {adm.file_name}
+                      </StyledTableCell>
+                      <StyledTableCell align="centre">{adm.uploded_by}</StyledTableCell>
+                      <StyledTableCell align="centre">{adm.subject}</StyledTableCell>
+                      <StyledTableCell align="centre">
+                        {adm.time}
+                      </StyledTableCell>
+                      <StyledTableCell align="centre">
+                        <DownloadIcon />
+                        <PreviewIcon />
+                      </StyledTableCell>
+                     </StyledTableRow>
+                       ))}
+                    </TableBody>
+               </Table>
             </TableContainer>
           </div>
         </div>

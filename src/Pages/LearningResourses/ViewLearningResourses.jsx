@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../Components/Header/Header";
 import { styled } from "@mui/material/styles";
@@ -12,12 +11,14 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import "./ViewLearningResourses.css";
 import { getAllResources } from "../../Redux/Actions/viewResources";
-import DownloadIcon from '@mui/icons-material/Download';
-import PreviewIcon from '@mui/icons-material/Preview';
+import DownloadIcon from "@mui/icons-material/Download";
+import PreviewIcon from "@mui/icons-material/Preview";
+import { Link } from "react-router-dom";
 
 const ViewLearningResourses = () => {
-
-  const resourcesList = useSelector((state) => state.resourceList.resources_list);
+  const resourcesList = useSelector(
+    (state) => state.resourceList.resources_list
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -46,10 +47,8 @@ const ViewLearningResourses = () => {
 
   return (
     <>
-    <Header />
+      <Header />
       <div>
-        
-
         <div className="resources_container">
           <h3>View Learning Resources</h3>
 
@@ -68,27 +67,43 @@ const ViewLearningResourses = () => {
                     <StyledTableCell align="centre">
                       Uploaded File
                     </StyledTableCell>
+                    <StyledTableCell align="centre"></StyledTableCell>
+                    <StyledTableCell align="centre"></StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {resourcesList.map((adm) => (
-                    <StyledTableRow key={adm.file_name}>
-                      <StyledTableCell component="th" scope="row" align="centre">
-                        {adm.file_name}
+                  {resourcesList.map((resource) => (
+                    <StyledTableRow key={resource.file_name}>
+                      <StyledTableCell
+                        component="th"
+                        scope="row"
+                        align="centre"
+                      >
+                        {resource.file_name}
                       </StyledTableCell>
-                      <StyledTableCell align="centre">{adm.uploded_by}</StyledTableCell>
-                      <StyledTableCell align="centre">{adm.subject}</StyledTableCell>
                       <StyledTableCell align="centre">
-                        {adm.time}
+                        {resource.uploded_by}
                       </StyledTableCell>
                       <StyledTableCell align="centre">
-                        <DownloadIcon />
-                        <PreviewIcon />
+                        {resource.subject}
                       </StyledTableCell>
-                     </StyledTableRow>
-                       ))}
-                    </TableBody>
-               </Table>
+                      <StyledTableCell align="centre">
+                        {resource.time}
+                      </StyledTableCell>
+                      <StyledTableCell align="centre">
+                        <a href={resource.file_path} target="_blank" download>
+                          <DownloadIcon />
+                        </a>
+                      </StyledTableCell>
+                      <StyledTableCell align="centre">
+                        <a href={resource.file_path} target="_blank">
+                          <PreviewIcon />
+                        </a>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </TableContainer>
           </div>
         </div>

@@ -72,14 +72,14 @@ const ViewLearningResourses = () => {
                 </TableHead>
                 <TableBody>
                   {resourcesList.map((adm) => (
-                    <StyledTableRow key={adm.file_name}>
+                    <StyledTableRow key={adm.uploaded_by}>
                       <StyledTableCell component="th" scope="row" align="centre">
-                        {adm.file_name}
+                        {adm.uploaded_by}
                       </StyledTableCell>
-                      <StyledTableCell align="centre">{adm.uploded_by}</StyledTableCell>
                       <StyledTableCell align="centre">{adm.subject}</StyledTableCell>
+                      <StyledTableCell align="centre">{adm.time}</StyledTableCell>
                       <StyledTableCell align="centre">
-                        {adm.time}
+                        {adm.file_name}
                       </StyledTableCell>
                       <StyledTableCell align="centre">
                         <DownloadIcon />

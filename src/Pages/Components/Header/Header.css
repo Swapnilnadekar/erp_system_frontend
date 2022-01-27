@@ -27,7 +27,7 @@ h3 {
 
 .nav_link.active {
   font-weight: bold;
-  color: #5b6cee;
+  color: #000000;
   outline: none;
 }
 
@@ -54,9 +54,8 @@ ul {
   color: white;
 }
 
-.dropdownlist{
+.dropdownlist {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
 }

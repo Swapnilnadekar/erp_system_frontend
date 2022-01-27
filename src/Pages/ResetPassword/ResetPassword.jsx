@@ -18,13 +18,18 @@ const ResetPassword = (props) => {
       document.getElementById("OTP").value.length == 0 ||
       document.getElementById("password").value.length == 0
     ) {
-      // setOtpError(true);
       alert("Enter valid details");
     } else {
       const resetPasswordResult = await axios.put(
-        "http://localhost:2000/admin/reset-password",
+        "http://localhost:2000/erp/reset-password",
         { otp, new_password: password, email: props.email }
       );
+
+      if (resetPasswordResult.status == 401) {
+        alert(resetPasswordResult.data);
+      } else {
+        navigate("/");
+      }
     }
   };
 

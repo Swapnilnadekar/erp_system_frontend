@@ -12,12 +12,13 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import "./ViewLearningResourses.css";
 import { getAllResources } from "../../Redux/Actions/viewResources";
-import DownloadIcon from '@mui/icons-material/Download';
-import PreviewIcon from '@mui/icons-material/Preview';
+import DownloadIcon from "@mui/icons-material/Download";
+import PreviewIcon from "@mui/icons-material/Preview";
 
 const ViewLearningResourses = () => {
-
-  const resourcesList = useSelector((state) => state.resourceList.resources_list);
+  const resourcesList = useSelector(
+    (state) => state.resourceList.resources_list
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -38,24 +39,52 @@ const ViewLearningResourses = () => {
     "&:nth-of-type(odd)": {
       backgroundColor: theme.palette.action.hover,
     },
-    // hide last border
     "&:last-child td, &:last-child th": {
       border: 0,
     },
   }));
 
+  const renderRow = (resource) => {
+    let date = new Date(resource.time);
+    date =
+      date.getDate() +
+      "-" +
+      (date.getMonth() + 1) +
+      "-" +
+      date.getFullYear() +
+      " " +
+      date.getHours() +
+      ":" +
+      date.getMinutes();
+
+    return (
+      <StyledTableRow key={resource.uploaded_by}>
+        <StyledTableCell component="th" scope="row" align="centre">
+          {resource.uploaded_by}
+        </StyledTableCell>
+        <StyledTableCell align="centre">{resource.subject}</StyledTableCell>
+        <StyledTableCell align="centre">{date}</StyledTableCell>
+        <StyledTableCell align="centre">{resource.file_name}</StyledTableCell>
+        <StyledTableCell align="centre">
+          <a href={resource.file_path} target="_blank" download>
+            <DownloadIcon />
+          </a>
+          <a href={resource.file_path} target="_blank">
+            <PreviewIcon />
+          </a>
+        </StyledTableCell>{" "}
+      </StyledTableRow>
+    );
+  };
+
   return (
     <>
-    <Header />
+      <Header />
       <div>
-        
-
         <div className="resources_container">
-          <h3>View Learning Resources</h3>
-
           <div className="view_resources">
             <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 700 }} aria-label="customized table">
+              <Table aria-label="customized table">
                 <TableHead>
                   <TableRow>
                     <StyledTableCell align="centre">
@@ -65,37 +94,14 @@ const ViewLearningResourses = () => {
                     <StyledTableCell align="centre">
                       Uploaded Date and Time
                     </StyledTableCell>
-                    <StyledTableCell align="centre">
-                      Uploaded File
-                    </StyledTableCell>
-                    <StyledTableCell align="centre"></StyledTableCell>
+                    <StyledTableCell align="centre">File Name</StyledTableCell>
                     <StyledTableCell align="centre"></StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {resourcesList.map((adm) => (
-                    <StyledTableRow key={adm.uploaded_by}>
-                      <StyledTableCell component="th" scope="row" align="centre">
-                        {adm.uploaded_by}
-                      </StyledTableCell>
-                      <StyledTableCell align="centre">{adm.subject}</StyledTableCell>
-                      <StyledTableCell align="centre">{adm.time}</StyledTableCell>
-                      <StyledTableCell align="centre">
-                        {adm.file_name}
-                      </StyledTableCell>
-                      <StyledTableCell align="centre">
-                        <a href={resource.file_path} target="_blank" download>
-                          <DownloadIcon />
-                        </a>
-                      </StyledTableCell>
-                      <StyledTableCell align="centre">
-                        <a href={resource.file_path} target="_blank">
-                          <PreviewIcon />
-                        </a>
-                      </StyledTableCell>                     </StyledTableRow>
-                       ))}
-                    </TableBody>
-               </Table>
+                  {resourcesList.map((resource) => renderRow(resource))}
+                </TableBody>
+              </Table>
             </TableContainer>
           </div>
         </div>

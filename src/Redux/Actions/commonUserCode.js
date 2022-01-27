@@ -62,7 +62,7 @@ export const userLogout = () => {
 
     if (token) {
       const user = JSON.parse(localStorage.getItem("user"));
-      if (user.role === "student") {
+      if (user.role === "students") {
         dispatch({ type: studentConstants.STUDENT_LOGOUT_REQUEST });
         const res = await axios.post(`/erp/signout`);
 

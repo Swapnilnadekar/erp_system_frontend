@@ -4,14 +4,12 @@
   align-items: center;
 }
 
-.view_resources{
+.view_resources {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   border-radius: 20px;
   margin-top: 70px;
-  width: 100%;
-  margin-left: 50px;
-  margin-right: 50px;
+  width: 80%;
 }

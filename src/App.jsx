@@ -15,8 +15,8 @@ import GetAllTeacher from "./Pages/GetAllTeacher/GetAllTeacher";
 import { getAllAdmin } from "./Redux/Actions/admin";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
-import ViewLearningResourses from "./Pages/LearningResourses/ViewLearningResourses";
-import UploadLearningResources from "./Pages/LearningResourses/UploadLearningResources";
+import ViewLearningResourses from "./Pages/ViewLearningResourses/ViewLearningResourses";
+import UploadLearningResources from "./Pages/ViewLearningResourses/UploadLearningResources";
 
 const App = () => {
   const student = useSelector((state) => state.student);
@@ -120,7 +120,7 @@ const App = () => {
           path="upload-learning-resources"
           element={
             <PrivateRoute>
-              <UploadLearningResources/>
+              <UploadLearningResources />
             </PrivateRoute>
           }
         />

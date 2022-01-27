@@ -35,15 +35,14 @@ const Header = (props) => {
           {student.authenticate ? (
             <>
               <NavLink className="nav_link" to="/view-learning-resources">
-                VLS
+                View Learning Resources
               </NavLink>
             </>
           ) : (
             ""
           )}
 
-          {teacher.authenticate  ||
-          hod.authenticate ?(
+          {teacher.authenticate || hod.authenticate ? (
             <>
               <NavLink className="nav_link" to="/upload-learning-resources">
                 ULS

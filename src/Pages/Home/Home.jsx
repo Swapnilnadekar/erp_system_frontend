@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import Header from "../Components/Header/Header";
-import { useDispatch, useSelector } from "react-redux";
-import Avatar from "@mui/material/Avatar";
+import { useSelector } from "react-redux";
 import "./Home.css";
-import { getAllAdmin } from "../../Redux/Actions/admin";
 
 const Home = () => {
   const student = useSelector((state) => state.student);
@@ -12,15 +10,11 @@ const Home = () => {
   const admin = useSelector((state) => state.admin);
   const principal = useSelector((state) => state.principal);
 
-  const dispatch = useDispatch();
-
-  // useEffect(() => {}, [student, teacher, admin, hod, principal]);
-
   const adminRender = () => {
     return (
       <div className="user_details">
         <div className="user_role_container">
-        <img src={admin.user.profile_pic} alt="img" />
+          <img src={admin.user.profile_pic} alt="img" />
           <h6>{admin.user.role}</h6>
         </div>
         <div className="name_branch_container">
@@ -39,7 +33,7 @@ const Home = () => {
     return (
       <div className="user_details">
         <div className="user_role_container">
-        <img src={teacher.user.profile_pic} alt="img" />
+          <img src={teacher.user.profile_pic} alt="img" />
           <h6>{teacher.user.role}</h6>
         </div>
         <div className="name_branch_container">
@@ -58,7 +52,7 @@ const Home = () => {
     return (
       <div className="user_details">
         <div className="user_role_container">
-        <img src={hod.user.profile_pic} alt="img" />
+          <img src={hod.user.profile_pic} alt="img" />
           <h6>{hod.user.role}</h6>
         </div>
         <div className="name_branch_container">
@@ -77,7 +71,7 @@ const Home = () => {
     return (
       <div className="user_details">
         <div className="user_role_container">
-        <img src={principal.user.profile_pic} alt="img" />
+          <img src={principal.user.profile_pic} alt="img" />
           <h6>{principal.user.role}</h6>
         </div>
         <div className="name_branch_container">
@@ -93,11 +87,15 @@ const Home = () => {
   };
 
   const studentRender = () => {
+    let date = new Date(student.user.dob);
+    date =
+      date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+
     return (
       <div className="user_details">
         <div className="user_role_container">
           <img src={student.user.profile_pic} alt="img" />
-          <h6>{student.user.role}</h6>
+          <h6>Student</h6>
         </div>
         <div className="name_branch_container">
           <h6>Name: {student.user.name}</h6>
@@ -109,7 +107,7 @@ const Home = () => {
         </div>
         <div className="roll_dob_container">
           <h6>Roll No.: {student.user.roll_no}</h6>
-          <h6>Date of birth: {student.user.dob}</h6>
+          <h6>Date of birth: {date}</h6>
         </div>
       </div>
     );

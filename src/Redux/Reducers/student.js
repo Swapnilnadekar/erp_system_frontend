@@ -45,6 +45,7 @@ export default (state = initState, action) => {
         loading: false,
         error: action.payload.error,
       };
+      break;
 
     case studentConstants.STUDENT_LOGOUT_REQUEST:
       state = { ...state, loading: true };
@@ -53,8 +54,10 @@ export default (state = initState, action) => {
     case studentConstants.STUDENT_LOGOUT_SUCCESS:
       state = { ...initState, loading: true };
       break;
+
     case studentConstants.STUDENT_LOGOUT_FAILURE:
       state = { ...initState, error: action.payload.error, loading: false };
+      break;
 
     case studentConstants.DELETE_STUDENT_REQEUST:
       state = { ...state, loading: true };

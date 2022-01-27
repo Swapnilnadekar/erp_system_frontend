@@ -19,7 +19,7 @@ const ForgotPassword = () => {
       alert("Enter email");
     } else {
       const sendOTPReq = await axios.post(
-        "http://localhost:2000/admin/forgot-password",
+        "http://localhost:2000/erp/forgot-password",
         { email }
       );
       if (sendOTPReq.status == 400) {

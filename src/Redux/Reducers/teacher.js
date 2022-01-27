@@ -51,9 +51,11 @@ export default (state = initState, action) => {
 
     case teacherConstants.TEACHER_LOGOUT_SUCCESS:
       state = { ...initState, loading: false };
+      break;
 
     case teacherConstants.TEACHER_LOGOUT_FAILURE:
       state = { ...initState, error: "error", loading: false };
+      break;
 
     case teacherConstants.ADD_NEW_TEACHER_REQEUST:
       state = { ...state, loading: true };

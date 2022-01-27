@@ -10,6 +10,7 @@ import teacherListReducer from "./teacherList";
 import hodReducer from "./hod";
 import adminReducer from "./admin";
 import principalReducer from "./principal";
+import resourcesListReducer from "./viewResources";
 
 const reducer = combineReducers({
   teacher: teacherReducer,
@@ -23,6 +24,8 @@ const reducer = combineReducers({
   hodList: hodListReducer,
   principalList: principalListReducer,
   teacherList: teacherListReducer,
+  resourceList: resourcesListReducer,
+
 });
 
 export default reducer;

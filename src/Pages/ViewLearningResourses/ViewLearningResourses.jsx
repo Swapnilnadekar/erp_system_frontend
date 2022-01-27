@@ -68,6 +68,8 @@ const ViewLearningResourses = () => {
                     <StyledTableCell align="centre">
                       Uploaded File
                     </StyledTableCell>
+                    <StyledTableCell align="centre"></StyledTableCell>
+                    <StyledTableCell align="centre"></StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -82,10 +84,15 @@ const ViewLearningResourses = () => {
                         {adm.file_name}
                       </StyledTableCell>
                       <StyledTableCell align="centre">
-                        <DownloadIcon />
-                        <PreviewIcon />
+                        <a href={resource.file_path} target="_blank" download>
+                          <DownloadIcon />
+                        </a>
                       </StyledTableCell>
-                     </StyledTableRow>
+                      <StyledTableCell align="centre">
+                        <a href={resource.file_path} target="_blank">
+                          <PreviewIcon />
+                        </a>
+                      </StyledTableCell>                     </StyledTableRow>
                        ))}
                     </TableBody>
                </Table>

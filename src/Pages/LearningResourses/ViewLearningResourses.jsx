@@ -13,7 +13,6 @@ import "./ViewLearningResourses.css";
 import { getAllResources } from "../../Redux/Actions/viewResources";
 import DownloadIcon from "@mui/icons-material/Download";
 import PreviewIcon from "@mui/icons-material/Preview";
-import { Link } from "react-router-dom";
 
 const ViewLearningResourses = () => {
   const resourcesList = useSelector(

@@ -24,7 +24,7 @@ export const isUserLoggedIn = () => {
 
     if (token) {
       const user = JSON.parse(localStorage.getItem("user"));
-      if (user.role === "student") {
+      if (user.role === "students") {
         dispatch({
           type: studentConstants.STUDENT_LOGIN_SUCCESS,
           payload: { token, user },

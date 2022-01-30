@@ -6,6 +6,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import IconButton from "@mui/material/IconButton";
 import { userLogout } from "../../../Redux/Actions/commonUserCode";
 import { NavDropdown } from "react-bootstrap";
+import logo from "../../../ERP.png";
 
 const Header = (props) => {
   const teacher = useSelector((state) => state.teacher);
@@ -25,7 +26,7 @@ const Header = (props) => {
     <>
       <div className="header_container">
         <div className="logo">
-          <h3>ERP System</h3>
+          <img src={logo} alt="logo" />
         </div>
         <div className="header_links">
           <NavLink className="nav_link" to="/home">

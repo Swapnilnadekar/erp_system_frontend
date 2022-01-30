@@ -22,6 +22,7 @@ import "./Login.css";
 import { adminLogin } from "../../Redux/Actions/admin";
 import { hodLogin } from "../../Redux/Actions/hod";
 import { principalLogin } from "../../Redux/Actions/principal";
+import logo from "../../ERP.png";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -91,7 +92,7 @@ const Login = () => {
 
   return (
     <div className="login_container">
-      <h1>ERP System</h1>
+      <img src={logo} alt="img" />
 
       <form className="login_form" onSubmit={userLogin}>
         <TextField

@@ -17,6 +17,7 @@ import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import ViewLearningResourses from "./Pages/ViewLearningResourses/ViewLearningResourses";
 import UploadLearningResources from "./Pages/ViewLearningResourses/UploadLearningResources";
+import Fee from "./Pages/Fee/Fee";
 
 const App = () => {
   const student = useSelector((state) => state.student);
@@ -121,6 +122,14 @@ const App = () => {
           element={
             <PrivateRoute>
               <UploadLearningResources />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="account-fee"
+          element={
+            <PrivateRoute>
+              <Fee />
             </PrivateRoute>
           }
         />

@@ -38,6 +38,9 @@ const Header = (props) => {
               <NavLink className="nav_link" to="/view-learning-resources">
                 View Learning Resources
               </NavLink>
+              <NavLink className="nav_link" to="/account-fee">
+                Fee
+              </NavLink>
             </>
           ) : (
             ""

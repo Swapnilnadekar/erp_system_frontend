@@ -33,14 +33,16 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="forcontainer">
+    <>
+    <div className="main_container">
       {enterOTP === false ? (
         <>
+        <div className="forcontainer">
           <h3>Trouble Logging In? </h3>
-          <p>
+          <h5>
             Enter your email and we'll send you a OTP to get back into your
             account.
-          </p>
+          </h5>
 
           <form className="password_reset" onSubmit={passReset}>
             <TextField
@@ -69,11 +71,13 @@ const ForgotPassword = () => {
               Send OTP
             </Button>
           </form>
+          </div>
         </>
       ) : (
         <ResetPassword email={email} />
       )}
-    </div>
+      </div>
+      </>
   );
 };
 

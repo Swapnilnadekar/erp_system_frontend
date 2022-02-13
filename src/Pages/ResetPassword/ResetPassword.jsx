@@ -4,6 +4,13 @@ import Button from "@mui/material/Button";
 import "./ResetPassword.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import IconButton from "@mui/material/IconButton";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputAdornment from "@mui/material/InputAdornment";
 
 const ResetPassword = (props) => {
   const navigate = useNavigate();
@@ -11,6 +18,7 @@ const ResetPassword = (props) => {
   const [otpError, setOtpError] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const pReset = async (e) => {
     e.preventDefault();
@@ -53,17 +61,31 @@ const ResetPassword = (props) => {
           style={{ margin: "5px", color: "white" }}
           error={otpError}
         />
-        <TextField
-          id="password"
-          label="Enter password"
-          variant="outlined"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          color="info"
-          fullWidth="true"
-          style={{ margin: "5px", color: "white" }}
-          error={passwordError}
-        />
+         <FormControl sx={{ m: 1, width: "100%" }} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">
+            Enter Password
+          </InputLabel>
+          <OutlinedInput
+            id="password"
+            type={showPassword ? "text" : "password"}
+            value={password}
+            error={passwordError}
+            onChange={(e) => setPassword(e.target.value)}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={() => setShowPassword(!showPassword)}
+                  onMouseDown={(e) => e.preventDefault()}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Enter password"
+          />
+        </FormControl>
         <Button
           type="submit"
           variant="contained"
@@ -76,7 +98,7 @@ const ResetPassword = (props) => {
           }}
           color="inherit"
         >
-          Authenticate
+          SUBMIT
         </Button>
       </form>
     </div>

@@ -6,7 +6,7 @@ export const uploadResources = (resources) => {
     dispatch({ type: uploadResourcesConstants.ADD_NEW_RESOURCES_REQEUST });
     const res = await axios.post(`/erp/upload-learing-resource`, resources);
 
-    if (res.status == 201) {
+    if (res.status === 201) {
       const { result } = res.data;
       dispatch({
         type: uploadResourcesConstants.ADD_NEW_RESOURCES_SUCCESS,

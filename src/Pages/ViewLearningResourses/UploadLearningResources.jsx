@@ -27,10 +27,10 @@ const UploadLearningResources = () => {
     if (teacher.authenticate) name = teacher.user.name;
     else name = hod.user.name;
 
-    if (document.getElementById("file_name").value.length == 0) {
+    if (document.getElementById("file_name").value.length === 0) {
       setFile_nameError(true);
       alert("Enter file name");
-    } else if (document.getElementById("subject").value.length == 0) {
+    } else if (document.getElementById("subject").value.length === 0) {
       setSubjectError(true);
       alert("Enter Subject");
     }
@@ -64,20 +64,21 @@ const UploadLearningResources = () => {
         <Header />
 
         <div className="upload_container">
-          <h3>Upload Learning Resources</h3>
+          {/* <h3>Upload Learning Resources</h3> */}
           <form className="upload_resources" onSubmit={uploadResource}>
             <TextField
               id="file_name"
               color="info"
               label="File Name"
               variant="outlined"
+              className="file_name"
               onChange={(e) => setFile_name(e.target.value)}
               value={file_name}
               style={{ width: "65%", margin: "4px" }}
               error={file_nameError}
             />
             <div
-              className="upload_container"
+              className="upload_data"
               style={{ width: "65%", margin: "4px" }}
             >
               <TextField
@@ -86,6 +87,7 @@ const UploadLearningResources = () => {
                 color="info"
                 label="Subject"
                 variant="outlined"
+                className="subject_name"
                 error={subjectError}
                 onChange={(e) => setSubject(e.target.value)}
               />
@@ -93,6 +95,7 @@ const UploadLearningResources = () => {
               <input
                 type="file"
                 name="file_path"
+                className="file_path"
                 onChange={(e) => setFile_path(e.target.files[0])}
               />
 

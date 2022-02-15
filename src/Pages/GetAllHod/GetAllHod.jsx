@@ -33,7 +33,6 @@ const GetAllHod = () => {
   const [emailError, setEmailError] = useState(false);
   const [contactError, setContactError] = useState(false);
   const [branchError, setBranchError] = useState(false);
-  const [roll_noError, setRoll_noError] = useState(false);
 
   const hodsList = useSelector((state) => state.hodList.hods_list);
   const dispatch = useDispatch();
@@ -57,7 +56,7 @@ const GetAllHod = () => {
     handleClose();
   };
 
-  const handleOpen = () => setOpen(true);
+  // const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
     window.location.reload(false);

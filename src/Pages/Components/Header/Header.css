@@ -27,7 +27,7 @@ h3 {
   display: flex;
   /* justify-content: start; */
   flex: start;
-  padding: 10px;
+  padding-top: 20px;
   padding-left: 120px;
   flex: 2;
 }
@@ -61,8 +61,15 @@ ul {
   color: white;
 }
 
+.dropdown{
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 12px;
+}
+
 .dropdownlist {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content:space-around;
+  padding-left: 50px;
 }

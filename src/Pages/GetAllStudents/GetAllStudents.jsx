@@ -105,7 +105,7 @@ const GetAllStudents = () => {
     setDob(date);
   };
 
-  const handleOpen = () => setOpen(true);
+  // const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
     window.location.reload(false);

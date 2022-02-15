@@ -50,7 +50,7 @@ const ForgotPassword = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               color="info"
-              fullWidth="true"
+              fullWidth={true}
               style={{ margin: "5px", color: "white" }}
               error={emailError}
             />

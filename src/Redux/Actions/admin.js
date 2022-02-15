@@ -6,7 +6,7 @@ export const adminLogin = (user) => {
     dispatch({ type: adminConstants.ADMIN_LOGIN_REQUEST });
     try {
       const res = await axios.post(`erp/admin/signin`, { ...user });
-      if (res.status == 201) {
+      if (res.status === 201) {
         const { token, user } = res.data;
 
         localStorage.setItem("token", token);
@@ -46,7 +46,7 @@ export const registerAdmin = (admin) => {
     dispatch({ type: adminConstants.ADD_NEW_ADMIN_REQEUST });
     const res = await axios.post(`/erp/admin/register`, admin);
 
-    if (res.status == 201) {
+    if (res.status === 201) {
       const { result } = res.data;
       dispatch({
         type: adminConstants.ADD_NEW_ADMIN_SUCCESS,
@@ -73,7 +73,7 @@ export const getAllAdmin = () => {
 
     const res = await axios.get(`/erp/admin/get-all-data`);
 
-    if (res.status == 201) {
+    if (res.status === 201) {
       const { result } = res.data;
       dispatch({
         type: adminConstants.GET_ALL_ADMIN_SUCCESS,
@@ -100,7 +100,7 @@ export const deleteAdmin = (adm_id) => {
 
     const res = await axios.delete(`/erp/admin/delete-data/${adm_id}`);
 
-    if (res.status == 201) {
+    if (res.status === 201) {
       const { result } = res.data;
       dispatch({
         type: adminConstants.DELETE_ADMIN_SUCCESS,
@@ -124,7 +124,7 @@ export const updateAdmin = (updated) => {
     dispatch({ type: adminConstants.UPDATE_ADMIN_REQEUST });
     const res = await axios.put(`/erp/admin/edit-data`, updated);
 
-    if (res.status == 201) {
+    if (res.status === 201) {
       const { result } = res.data;
       dispatch({
         type: adminConstants.UPDATE_ADMIN_SUCCESS,

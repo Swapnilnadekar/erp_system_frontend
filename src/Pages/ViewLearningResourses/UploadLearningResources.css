@@ -2,14 +2,39 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 100px;
 }
 
 .upload_resources{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 20px;
   margin-top: 70px;
-  width: 100%;
+  width: 800px;
+}
+
+.file_name{
+  display: flex;
+  flex-direction: row;
+  padding: 10px 100px 10px 100px;
+}
+
+.subject_name{
+  display: flex;
+  flex-direction: row;
+  padding: 100px 100px 100px 100px;
+}
+.upload_data{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 100px 100px 100px;
+}
+
+.file_path{
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
 }

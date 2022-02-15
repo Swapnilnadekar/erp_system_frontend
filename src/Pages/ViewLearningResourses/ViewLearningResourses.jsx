@@ -58,14 +58,14 @@ const ViewLearningResourses = () => {
       date.getMinutes();
 
     return (
-      <StyledTableRow key={resource.uploaded_by}>
-        <StyledTableCell component="th" scope="row" align="centre">
+      <StyledTableRow key={resource._id}>
+        <StyledTableCell component="th" scope="row" align="center">
           {resource.uploaded_by}
         </StyledTableCell>
-        <StyledTableCell align="centre">{resource.subject}</StyledTableCell>
-        <StyledTableCell align="centre">{date}</StyledTableCell>
-        <StyledTableCell align="centre">{resource.file_name}</StyledTableCell>
-        <StyledTableCell align="centre">
+        <StyledTableCell align="center">{resource.subject}</StyledTableCell>
+        <StyledTableCell align="center">{date}</StyledTableCell>
+        <StyledTableCell align="center">{resource.file_name}</StyledTableCell>
+        <StyledTableCell align="center">
           <a href={resource.file_path} target="_blank" download>
             <DownloadIcon />
           </a>
@@ -87,15 +87,15 @@ const ViewLearningResourses = () => {
               <Table aria-label="customized table">
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell align="centre">
+                    <StyledTableCell align="center">
                       Uploaded By
                     </StyledTableCell>
-                    <StyledTableCell align="centre">Subject</StyledTableCell>
-                    <StyledTableCell align="centre">
+                    <StyledTableCell align="center">Subject</StyledTableCell>
+                    <StyledTableCell align="center">
                       Uploaded Date and Time
                     </StyledTableCell>
-                    <StyledTableCell align="centre">File Name</StyledTableCell>
-                    <StyledTableCell align="centre"></StyledTableCell>
+                    <StyledTableCell align="center">File Name</StyledTableCell>
+                    <StyledTableCell align="center"></StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

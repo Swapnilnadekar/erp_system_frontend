@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import "./ForgotPassword.css";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ResetPassword from "../ResetPassword/ResetPassword";
 
 const ForgotPassword = () => {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [enterOTP, setEnterOTP] = useState(false);
   const [emailError, setEmailError] = useState(false);
 
   const passReset = async (e) => {
     e.preventDefault();
-    if (document.getElementById("password_reset").value.length == 0) {
+    if (document.getElementById("password_reset").value.length === 0) {
       setEmailError(true);
       alert("Enter email");
     } else {
@@ -22,7 +20,7 @@ const ForgotPassword = () => {
         "http://localhost:2000/erp/forgot-password",
         { email }
       );
-      if (sendOTPReq.status == 400) {
+      if (sendOTPReq.status === 400) {
         console.log(sendOTPReq);
       } else {
         console.log("OTP sent successfully. Check your email");

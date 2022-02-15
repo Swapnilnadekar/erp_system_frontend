@@ -11,27 +11,13 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use((req) => {
-  const { teacher } = store.getState();
+  const { teacher, student } = store.getState();
   if (teacher.token) {
     req.headers.Authorization = `Bearer ${teacher.token}`;
+  } else if (student.token) {
+    req.headers.Authorization = `Bearer ${student.token}`;
   }
   return req;
 });
-
-// axiosInstance.interceptors.response.use(
-//   (res) => {
-//     return res;
-//   },
-//   (error) => {
-//     const { status } = error;
-
-//     if (status === 500) {
-//       localStorage.clear();
-//       store.dispatch({ type: authConstants.USER_LOGOUT_SUCCESS });
-//     }
-
-//     return Promise.reject(error);
-//   }
-// );
 
 export default axiosInstance;

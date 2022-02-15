@@ -102,7 +102,7 @@ const Login = () => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           color="info"
-          fullWidth="true"
+          fullWidth={true}
           style={{ margin: "5px", color: "white" }}
           error={nameError}
         />
@@ -177,7 +177,7 @@ const Login = () => {
         )}
         <div className="a_links">
           <a href="/password-reset">Forgot Password</a>
-          <div class="vl"></div>
+          <div className="vl"></div>
           <FormControlLabel
             control={
               <Checkbox

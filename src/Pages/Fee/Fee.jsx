@@ -1,14 +1,10 @@
 import React from "react";
 import { useEffect } from "react";
-import { useState } from "react";
 import axios from "axios";
 import logo from "../../ERP.png";
 import Header from "../Components/Header/Header";
 
 const Fee = () => {
-  const [amount, setAmount] = useState(0);
-  const [order_id, setOrder_id] = useState("");
-
   useEffect(() => {
     displayRazorpay();
   }, []);

@@ -49,7 +49,7 @@ const Header = (props) => {
           {teacher.authenticate || hod.authenticate ? (
             <>
               <NavLink className="nav_link" to="/upload-learning-resources">
-                ULS
+                Upload Learning Resources
               </NavLink>
             </>
           ) : (
@@ -65,6 +65,7 @@ const Header = (props) => {
               </NavLink>
               <NavDropdown
                 id="nav-dropdown"
+                className="dropdown"
                 title="Show All Data"
                 menuVariant="dark"
               >
@@ -84,7 +85,6 @@ const Header = (props) => {
                   <NavLink className="nav_link" to="/get-all-teacher">
                     Teacher
                   </NavLink>
-                  <NavDropdown.Divider />
                 </div>
               </NavDropdown>
             </>

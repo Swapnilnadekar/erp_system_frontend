@@ -6,7 +6,6 @@ import { teacherLogin } from "../../Redux/Actions/teacher";
 import { studentLogin } from "../../Redux/Actions/student";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { checkBoxState } from "../../Redux/Actions/commonUserCode";
 import { useNavigate } from "react-router-dom";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
@@ -17,7 +16,6 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
-import FormLabel from "@mui/material/FormLabel";
 import "./Login.css";
 import { adminLogin } from "../../Redux/Actions/admin";
 import { hodLogin } from "../../Redux/Actions/hod";
@@ -56,10 +54,10 @@ const Login = () => {
 
   const userLogin = (e) => {
     e.preventDefault();
-    if (document.getElementById("login_username").value.length == 0) {
+    if (document.getElementById("login_username").value.length === 0) {
       setNameError(true);
       alert("Enter username");
-    } else if (document.getElementById("login_password").value.length == 0) {
+    } else if (document.getElementById("login_password").value.length === 0) {
       setPassswordError(true);
       alert("Enter password");
     } else {
@@ -67,7 +65,7 @@ const Login = () => {
         username,
         password,
       };
-      if (checkbox == true) {
+      if (checkbox === true) {
         if (role === "teacher") {
           dispatch(teacherLogin(user));
         } else if (role === "admin") {
@@ -129,7 +127,6 @@ const Login = () => {
                 </IconButton>
               </InputAdornment>
             }
-            label="Password"
           />
         </FormControl>
         <Button

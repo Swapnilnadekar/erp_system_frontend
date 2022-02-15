@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../Components/Header/Header";
@@ -66,10 +66,10 @@ const ViewLearningResourses = () => {
         <StyledTableCell align="center">{date}</StyledTableCell>
         <StyledTableCell align="center">{resource.file_name}</StyledTableCell>
         <StyledTableCell align="center">
-          <a href={resource.file_path} target="_blank" download>
+          <a href={resource.file_path} target="_blank" rel="noreferrer" download>
             <DownloadIcon />
           </a>
-          <a href={resource.file_path} target="_blank">
+          <a href={resource.file_path} target="_blank" rel="noreferrer">
             <PreviewIcon />
           </a>
         </StyledTableCell>{" "}

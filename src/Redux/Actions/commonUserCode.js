@@ -64,7 +64,7 @@ export const userLogout = () => {
         dispatch({ type: studentConstants.STUDENT_LOGOUT_REQUEST });
         const res = await axios.post(`/erp/signout`);
 
-        if (res.status == 201) {
+        if (res.status === 201) {
           localStorage.clear();
           dispatch({
             type: studentConstants.STUDENT_LOGOUT_SUCCESS,
@@ -80,7 +80,7 @@ export const userLogout = () => {
         dispatch({ type: adminConstants.ADMIN_LOGOUT_REQUEST });
         const res = await axios.post(`/erp/signout`);
 
-        if (res.status == 201) {
+        if (res.status === 201) {
           localStorage.clear();
           dispatch({
             type: adminConstants.ADMIN_LOGOUT_SUCCESS,
@@ -96,7 +96,7 @@ export const userLogout = () => {
         dispatch({ type: hodConstants.HOD_LOGOUT_REQUEST });
         const res = await axios.post(`/erp/signout`);
 
-        if (res.status == 201) {
+        if (res.status === 201) {
           localStorage.clear();
           dispatch({
             type: hodConstants.HOD_LOGOUT_SUCCESS,
@@ -112,7 +112,7 @@ export const userLogout = () => {
         dispatch({ type: principalConstants.PRINCIPAL_LOGOUT_REQUEST });
         const res = await axios.post(`/erp/signout`);
 
-        if (res.status == 201) {
+        if (res.status === 201) {
           localStorage.clear();
           dispatch({
             type: principalConstants.PRINCIPAL_LOGOUT_SUCCESS,
@@ -129,7 +129,7 @@ export const userLogout = () => {
 
         const res = await axios.post(`/erp/signout`);
 
-        if (res.status == 201) {
+        if (res.status === 201) {
           localStorage.clear();
           dispatch({
             type: teacherConstants.TEACHER_LOGOUT_SUCCESS,

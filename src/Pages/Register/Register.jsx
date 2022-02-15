@@ -37,7 +37,6 @@ const Register = () => {
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
   const [contactError, setContactError] = useState(false);
-  const [branchError, setBranchError] = useState(false);
   const [roll_noError, setRoll_noError] = useState(false);
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
@@ -50,23 +49,30 @@ const Register = () => {
   const submitForm = async (e) => {
     e.preventDefault();
 
-    if (document.getElementById("register_name").value.length == 0) {
+    if (document.getElementById("register_name").value.length === 0) {
       setNameError(true);
       alert("Enter name");
-    } else if (document.getElementById("register_email").value.length == 0) {
+    } else if (document.getElementById("register_email").value.length === 0) {
       setEmailError(true);
       alert("Enter email");
-    } else if (document.getElementById("register_contact").value.length == 0) {
+    } else if (document.getElementById("register_contact").value.length === 0) {
       setContactError(true);
       alert("Enter contact");
-    } else if (document.getElementById("register_username").value.length == 0) {
+    } else if (
+      document.getElementById("register_username").value.length === 0
+    ) {
       setUsernameError(true);
       alert("Enter username");
-    } else if (document.getElementById("register_password").value.length == 0) {
+    } else if (document.getElementById("register_roll").value.length === 0) {
+      setRoll_noError(true);
+      alert("Enter Roll No.");
+    } else if (
+      document.getElementById("register_password").value.length === 0
+    ) {
       setPasswordError(true);
       alert("Enter password");
     } else if (
-      document.getElementById("register_cpassword").value.length == 0
+      document.getElementById("register_cpassword").value.length === 0
     ) {
       setCpasswordError(true);
       alert("Enter confirm password");
@@ -95,7 +101,6 @@ const Register = () => {
         setUsername("");
         setPassword("");
         setCpassword("");
-        
       } else if (role === "hod") {
         const newHod = new FormData();
         newHod.append("name", name);
@@ -132,7 +137,6 @@ const Register = () => {
         setUsername("");
         setPassword("");
         setCpassword("");
-
       } else if (role === "principal") {
         const newPrincipal = new FormData();
         newPrincipal.append("name", name);
@@ -151,17 +155,6 @@ const Register = () => {
         setPassword("");
         setCpassword("");
       } else {
-        // const newStudent = {
-        //   name,
-        //   email,
-        //   branch,
-        //   roll_no,
-        //   dob,
-        //   contact,
-        //   username,
-        //   password,
-        // };
-
         const newStudent = new FormData();
         newStudent.append("name", name);
         newStudent.append("email", email);
@@ -232,10 +225,10 @@ const Register = () => {
             error={contactError}
           />
           <input
-          type="file"
-          name="profile_pic"
-          onChange={(e) => setProfile_pic(e.target.files[0])}
-        />
+            type="file"
+            name="profile_pic"
+            onChange={(e) => setProfile_pic(e.target.files[0])}
+          />
         </div>
         {role === "teacher" || role === "hod" ? (
           <div>
@@ -512,7 +505,7 @@ const Register = () => {
             </Select>
           </div>
 
-          {role == "student" ? studentFormData(role) : adminFormData(role)}
+          {role === "student" ? studentFormData(role) : adminFormData(role)}
 
           <Button
             type="submit"

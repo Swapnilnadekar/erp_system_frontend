@@ -6,7 +6,7 @@ export const principalLogin = (user) => {
     dispatch({ type: principalConstants.PRINCIPAL_LOGIN_REQUEST });
     try {
       const res = await axios.post(`/erp/principal/signin`, { ...user });
-      if (res.status == 201) {
+      if (res.status === 201) {
         const { token, user } = res.data;
 
         localStorage.setItem("token", token);
@@ -45,12 +45,12 @@ export const registerPrincipal = (principal) => {
     dispatch({ type: principalConstants.ADD_NEW_PRINCIPAL_REQEUST });
     const res = await axios.post(`/erp/principal/register`, principal);
 
-    if (res.status == 201) {
-      const { result } = res.data;
+    if (res.status === 201) {
+      // const { result } = res.data;
       dispatch({
         type: principalConstants.ADD_NEW_PRINCIPAL_SUCCESS,
       });
-    } else if (res.status == 203) {
+    } else if (res.status === 203) {
       alert("Principal already exists");
     } else {
       dispatch({
@@ -71,7 +71,7 @@ export const getAllPrincipal = () => {
 
     const res = await axios.get(`/erp/principal/get-all-data`);
 
-    if (res.status == 201) {
+    if (res.status === 201) {
       const { result } = res.data;
       dispatch({
         type: principalConstants.GET_ALL_PRINCIPAL_SUCCESS,
@@ -98,7 +98,7 @@ export const deletePrincipal = (pri_id) => {
 
     const res = await axios.delete(`/erp/principal/delete-data/${pri_id}`);
 
-    if (res.status == 201) {
+    if (res.status === 201) {
       const { result } = res.data;
       dispatch({
         type: principalConstants.DELETE_PRINCIPAL_SUCCESS,
@@ -122,7 +122,7 @@ export const updatePrincipal = (updated) => {
     dispatch({ type: principalConstants.UPDATE_PRINCIPAL_REQEUST });
     const res = await axios.put(`/erp/principal/edit-data`, updated);
 
-    if (res.status == 201) {
+    if (res.status === 201) {
       const { result } = res.data;
       dispatch({
         type: principalConstants.UPDATE_PRINCIPAL_SUCCESS,

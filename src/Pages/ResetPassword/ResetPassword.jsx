@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import "./ResetPassword.css";
@@ -15,16 +15,14 @@ import InputAdornment from "@mui/material/InputAdornment";
 const ResetPassword = (props) => {
   const navigate = useNavigate();
   const [otp, setOtp] = useState("");
-  const [otpError, setOtpError] = useState(false);
   const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const pReset = async (e) => {
     e.preventDefault();
     if (
-      document.getElementById("OTP").value.length == 0 ||
-      document.getElementById("password").value.length == 0
+      document.getElementById("OTP").value.length === 0 ||
+      document.getElementById("password").value.length === 0
     ) {
       alert("Enter valid details");
     } else {
@@ -33,7 +31,7 @@ const ResetPassword = (props) => {
         { otp, new_password: password, email: props.email }
       );
 
-      if (resetPasswordResult.status == 401) {
+      if (resetPasswordResult.status === 401) {
         alert(resetPasswordResult.data);
       } else {
         navigate("/");
@@ -42,6 +40,7 @@ const ResetPassword = (props) => {
   };
 
   return (
+    <div className="reset_container">
     <div className="container">
       <h3>Enter OTP </h3>
       <p>
@@ -59,9 +58,8 @@ const ResetPassword = (props) => {
           color="info"
           fullWidth="true"
           style={{ margin: "5px", color: "white" }}
-          error={otpError}
         />
-         <FormControl sx={{ m: 1, width: "100%" }} variant="outlined">
+        <FormControl sx={{ m: 1, width: "100%" }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">
             Enter Password
           </InputLabel>
@@ -69,7 +67,6 @@ const ResetPassword = (props) => {
             id="password"
             type={showPassword ? "text" : "password"}
             value={password}
-            error={passwordError}
             onChange={(e) => setPassword(e.target.value)}
             endAdornment={
               <InputAdornment position="end">
@@ -101,6 +98,7 @@ const ResetPassword = (props) => {
           SUBMIT
         </Button>
       </form>
+    </div>
     </div>
   );
 };

@@ -8,7 +8,7 @@ export const getAllResources = () => {
     });
 
     const res = await axios.get(`/erp/learning-resources`);
-    if (res.status == 201) {
+    if (res.status === 201) {
       const { result } = res.data;
       dispatch({
         type: viewResourcesConstants.GET_ALL_RESOURCES_SUCCESS,

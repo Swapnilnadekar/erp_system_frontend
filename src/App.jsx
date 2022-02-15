@@ -12,9 +12,7 @@ import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 import GetAllHod from "./Pages/GetAllHod/GetAllHod";
 import GetAllPrincipal from "./Pages/GetAllPrincipal/GetAllPrincipal";
 import GetAllTeacher from "./Pages/GetAllTeacher/GetAllTeacher";
-import { getAllAdmin } from "./Redux/Actions/admin";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
-import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import ViewLearningResourses from "./Pages/ViewLearningResourses/ViewLearningResourses";
 import UploadLearningResources from "./Pages/ViewLearningResourses/UploadLearningResources";
 import Fee from "./Pages/Fee/Fee";
@@ -136,7 +134,6 @@ const App = () => {
 
         <Route path="*" element={<ErrorPage />}></Route>
         <Route path="/password-reset" element={<ForgotPassword />} />
-        {/* <Route path="/otp-validation" element={<ResetPassword />} /> */}
       </Routes>
     </div>
   );

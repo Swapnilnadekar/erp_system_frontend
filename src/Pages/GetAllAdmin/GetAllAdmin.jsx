@@ -35,9 +35,9 @@ const GetAllAdmin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [_id, setAdm_id] = useState(0);
-  const [nameError, setNameError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
-  const [contactError, setContactError] = useState(false);
+  const [nameError] = useState(false);
+  const [emailError] = useState(false);
+  const [contactError] = useState(false);
   const [search, setSearch] = useState("");
   const [searchList, setSearchList] = useState([]);
 
@@ -81,7 +81,6 @@ const GetAllAdmin = () => {
     handleClose();
   };
 
-  const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
     window.location.reload(false);
@@ -306,21 +305,23 @@ const GetAllAdmin = () => {
     <>
       <Header />
       <div className="search_container">
-          <Input
-            id="input-with-icon-adornment"
-            value={search}
-            startAdornment={
-              <InputAdornment position="start">
-                <SearchIcon />
-              </InputAdornment>
-            }
-            placeholder="Search ..."
-            onChange={searchAdmin}
-          />
-        </div>
+        <Input
+          id="input-with-icon-adornment"
+          value={search}
+          startAdornment={
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          }
+          placeholder="Search ..."
+          onChange={searchAdmin}
+        />
+      </div>
       <div className="all_admin_container">
-      {search < 1 ? <></> : renderSearchList()}
-        <div className="admin_table">{search < 1 ? renderENTCList(): <></>}</div>
+        {search < 1 ? <></> : renderSearchList()}
+        <div className="admin_table">
+          {search < 1 ? renderENTCList() : <></>}
+        </div>
       </div>
       {modalFunc()}
     </>

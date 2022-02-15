@@ -25,7 +25,8 @@ h3 {
 
 .header_links {
   display: flex;
-  justify-content: start;
+  /* justify-content: start; */
+  flex: start;
   padding: 10px;
   padding-left: 120px;
   flex: 2;

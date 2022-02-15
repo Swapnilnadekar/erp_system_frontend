@@ -58,6 +58,7 @@ const Fee = () => {
       },
     };
     const paymentObject = new window.Razorpay(options);
+    console.log(paymentObject);
     paymentObject.open();
   };
 

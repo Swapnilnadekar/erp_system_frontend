@@ -62,7 +62,6 @@ const GetAllStudents = () => {
   }, []);
 
   const searchStudent = (e) => {
-    console.log(search);
     setSearch(e.target.value);
 
     if (search !== "") {
@@ -105,7 +104,6 @@ const GetAllStudents = () => {
     setDob(date);
   };
 
-  // const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
     window.location.reload(false);
@@ -229,40 +227,40 @@ const GetAllStudents = () => {
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="centre">Student Id</StyledTableCell>
-                <StyledTableCell align="centre">Name</StyledTableCell>
-                <StyledTableCell align="centre">Email</StyledTableCell>
-                <StyledTableCell align="centre">Contact</StyledTableCell>
-                <StyledTableCell align="centre">Roll&nbsp;no</StyledTableCell>
-                <StyledTableCell align="centre">Branch</StyledTableCell>
-                <StyledTableCell align="centre">Date of birth</StyledTableCell>
-                <StyledTableCell align="centre"></StyledTableCell>
+                <StyledTableCell align="center">Student Id</StyledTableCell>
+                <StyledTableCell align="center">Name</StyledTableCell>
+                <StyledTableCell align="center">Email</StyledTableCell>
+                <StyledTableCell align="center">Contact</StyledTableCell>
+                <StyledTableCell align="center">Roll&nbsp;no</StyledTableCell>
+                <StyledTableCell align="center">Branch</StyledTableCell>
+                <StyledTableCell align="center">Date of birth</StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {studentsList.map((std) =>
                 std.branch === "COMP" ? (
                   <StyledTableRow key={std._id}>
-                    <StyledTableCell component="th" scope="row" align="centre">
+                    <StyledTableCell component="th" scope="row" align="center">
                       {std._id}
                     </StyledTableCell>
-                    <StyledTableCell align="centre">{std.name}</StyledTableCell>
-                    <StyledTableCell align="centre">
+                    <StyledTableCell align="center">{std.name}</StyledTableCell>
+                    <StyledTableCell align="center">
                       {std.email}
                     </StyledTableCell>
-                    <StyledTableCell align="centre">
+                    <StyledTableCell align="center">
                       {std.contact}
                     </StyledTableCell>
-                    <StyledTableCell align="centre">
+                    <StyledTableCell align="center">
                       {std.roll_no}
                     </StyledTableCell>
-                    <StyledTableCell align="centre">
+                    <StyledTableCell align="center">
                       {std.branch}
                     </StyledTableCell>
-                    <StyledTableCell align="centre">
+                    <StyledTableCell align="center">
                       {std.dob.toString().substring(0, 10)}
                     </StyledTableCell>
-                    <StyledTableCell align="centre">
+                    <StyledTableCell align="center">
                       <div className="delete_update_btn_container">
                         <IconButton
                           aria-label="delete item"
@@ -317,38 +315,38 @@ const GetAllStudents = () => {
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="centre">Student Id</StyledTableCell>
-                <StyledTableCell align="centre">Name</StyledTableCell>
-                <StyledTableCell align="centre">Email</StyledTableCell>
-                <StyledTableCell align="centre">Contact</StyledTableCell>
-                <StyledTableCell align="centre">Roll&nbsp;no</StyledTableCell>
-                <StyledTableCell align="centre">Branch</StyledTableCell>
-                <StyledTableCell align="centre">Date of birth</StyledTableCell>
-                <StyledTableCell align="centre"></StyledTableCell>
+                <StyledTableCell align="center">Student Id</StyledTableCell>
+                <StyledTableCell align="center">Name</StyledTableCell>
+                <StyledTableCell align="center">Email</StyledTableCell>
+                <StyledTableCell align="center">Contact</StyledTableCell>
+                <StyledTableCell align="center">Roll&nbsp;no</StyledTableCell>
+                <StyledTableCell align="center">Branch</StyledTableCell>
+                <StyledTableCell align="center">Date of birth</StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {studentsList.map((std) =>
                 std.branch === "IT" ? (
                   <StyledTableRow key={std._id}>
-                    <StyledTableCell component="th" scope="row" align="centre">
+                    <StyledTableCell component="th" scope="row" align="center">
                       {std._id}
                     </StyledTableCell>
-                    <StyledTableCell align="centre">{std.name}</StyledTableCell>
-                    <StyledTableCell align="centre">
+                    <StyledTableCell align="center">{std.name}</StyledTableCell>
+                    <StyledTableCell align="center">
                       {std.email}
                     </StyledTableCell>
-                    <StyledTableCell align="centre">
+                    <StyledTableCell align="center">
                       {std.contact}
                     </StyledTableCell>
-                    <StyledTableCell align="centre">
+                    <StyledTableCell align="center">
                       {std.roll_no}
                     </StyledTableCell>
-                    <StyledTableCell align="centre">
+                    <StyledTableCell align="center">
                       {std.branch}
                     </StyledTableCell>
-                    <StyledTableCell align="centre">{std.dob}</StyledTableCell>
-                    <StyledTableCell align="centre">
+                    <StyledTableCell align="center">{std.dob}</StyledTableCell>
+                    <StyledTableCell align="center">
                       <div className="delete_update_btn_container">
                         <IconButton
                           aria-label="delete item"
@@ -403,38 +401,38 @@ const GetAllStudents = () => {
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="centre">Student Id</StyledTableCell>
-                <StyledTableCell align="centre">Name</StyledTableCell>
-                <StyledTableCell align="centre">Email</StyledTableCell>
-                <StyledTableCell align="centre">Contact</StyledTableCell>
-                <StyledTableCell align="centre">Roll&nbsp;no</StyledTableCell>
-                <StyledTableCell align="centre">Branch</StyledTableCell>
-                <StyledTableCell align="centre">Date of birth</StyledTableCell>
-                <StyledTableCell align="centre"></StyledTableCell>
+                <StyledTableCell align="center">Student Id</StyledTableCell>
+                <StyledTableCell align="center">Name</StyledTableCell>
+                <StyledTableCell align="center">Email</StyledTableCell>
+                <StyledTableCell align="center">Contact</StyledTableCell>
+                <StyledTableCell align="center">Roll&nbsp;no</StyledTableCell>
+                <StyledTableCell align="center">Branch</StyledTableCell>
+                <StyledTableCell align="center">Date of birth</StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {studentsList.map((std) =>
                 std.branch === "ENTC" ? (
                   <StyledTableRow key={std._id}>
-                    <StyledTableCell component="th" scope="row" align="centre">
+                    <StyledTableCell component="th" scope="row" align="center">
                       {std._id}
                     </StyledTableCell>
-                    <StyledTableCell align="centre">{std.name}</StyledTableCell>
-                    <StyledTableCell align="centre">
+                    <StyledTableCell align="center">{std.name}</StyledTableCell>
+                    <StyledTableCell align="center">
                       {std.email}
                     </StyledTableCell>
-                    <StyledTableCell align="centre">
+                    <StyledTableCell align="center">
                       {std.contact}
                     </StyledTableCell>
-                    <StyledTableCell align="centre">
+                    <StyledTableCell align="center">
                       {std.roll_no}
                     </StyledTableCell>
-                    <StyledTableCell align="centre">
+                    <StyledTableCell align="center">
                       {std.branch}
                     </StyledTableCell>
-                    <StyledTableCell align="centre">{std.dob}</StyledTableCell>
-                    <StyledTableCell align="centre">
+                    <StyledTableCell align="center">{std.dob}</StyledTableCell>
+                    <StyledTableCell align="center">
                       <div className="delete_update_btn_container">
                         <IconButton
                           aria-label="delete item"
@@ -489,33 +487,33 @@ const GetAllStudents = () => {
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="centre">Student Id</StyledTableCell>
-                <StyledTableCell align="centre">Name</StyledTableCell>
-                <StyledTableCell align="centre">Email</StyledTableCell>
-                <StyledTableCell align="centre">Contact</StyledTableCell>
-                <StyledTableCell align="centre">Roll&nbsp;no</StyledTableCell>
-                <StyledTableCell align="centre">Branch</StyledTableCell>
-                <StyledTableCell align="centre">Date of birth</StyledTableCell>
-                <StyledTableCell align="centre"></StyledTableCell>
+                <StyledTableCell align="center">Student Id</StyledTableCell>
+                <StyledTableCell align="center">Name</StyledTableCell>
+                <StyledTableCell align="center">Email</StyledTableCell>
+                <StyledTableCell align="center">Contact</StyledTableCell>
+                <StyledTableCell align="center">Roll&nbsp;no</StyledTableCell>
+                <StyledTableCell align="center">Branch</StyledTableCell>
+                <StyledTableCell align="center">Date of birth</StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {searchList.map((std) => (
                 <StyledTableRow key={std._id}>
-                  <StyledTableCell component="th" scope="row" align="centre">
+                  <StyledTableCell component="th" scope="row" align="center">
                     {std._id}
                   </StyledTableCell>
-                  <StyledTableCell align="centre">{std.name}</StyledTableCell>
-                  <StyledTableCell align="centre">{std.email}</StyledTableCell>
-                  <StyledTableCell align="centre">
+                  <StyledTableCell align="center">{std.name}</StyledTableCell>
+                  <StyledTableCell align="center">{std.email}</StyledTableCell>
+                  <StyledTableCell align="center">
                     {std.contact}
                   </StyledTableCell>
-                  <StyledTableCell align="centre">
+                  <StyledTableCell align="center">
                     {std.roll_no}
                   </StyledTableCell>
-                  <StyledTableCell align="centre">{std.branch}</StyledTableCell>
-                  <StyledTableCell align="centre">{std.dob}</StyledTableCell>
-                  <StyledTableCell align="centre">
+                  <StyledTableCell align="center">{std.branch}</StyledTableCell>
+                  <StyledTableCell align="center">{std.dob}</StyledTableCell>
+                  <StyledTableCell align="center">
                     <div className="delete_update_btn_container">
                       <IconButton
                         aria-label="delete item"

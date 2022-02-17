@@ -42,21 +42,30 @@ const GetAllHod = () => {
   }, []);
 
   const updateData = () => {
-    const updatedHod = {
-      _id,
-      name,
-      email,
-      branch,
-      contact,
-      username,
-      password,
-    };
+    if (document.getElementById("register_name").value.length === 0) {
+      setNameError(true);
+    } else if (document.getElementById("register_email").value.length === 0) {
+      setEmailError(true);
+    } else if (document.getElementById("register_contact").value.length === 0) {
+      setContactError(true);
+    } else if (document.getElementById("register_branch").value.length === 0) {
+      setBranchError(true);
+    } else {
+      const updatedHod = {
+        _id,
+        name,
+        email,
+        branch,
+        contact,
+        username,
+        password,
+      };
 
-    dispatch(updateHod(updatedHod));
-    handleClose();
+      dispatch(updateHod(updatedHod));
+      handleClose();
+    }
   };
 
-  // const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
     window.location.reload(false);
@@ -76,7 +85,6 @@ const GetAllHod = () => {
     "&:nth-of-type(odd)": {
       backgroundColor: theme.palette.action.hover,
     },
-    // hide last border
     "&:last-child td, &:last-child th": {
       border: 0,
     },
@@ -162,27 +170,27 @@ const GetAllHod = () => {
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="centre">HOD Id</StyledTableCell>
-                <StyledTableCell align="centre">Name</StyledTableCell>
-                <StyledTableCell align="centre">Email</StyledTableCell>
-                <StyledTableCell align="centre">Contact</StyledTableCell>
-                <StyledTableCell align="centre">Branch</StyledTableCell>
-                <StyledTableCell align="centre"></StyledTableCell>
+                <StyledTableCell align="center">HOD Id</StyledTableCell>
+                <StyledTableCell align="center">Name</StyledTableCell>
+                <StyledTableCell align="center">Email</StyledTableCell>
+                <StyledTableCell align="center">Contact</StyledTableCell>
+                <StyledTableCell align="center">Branch</StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {hodsList.map((hod) => (
                 <StyledTableRow key={hod._id}>
-                  <StyledTableCell component="th" scope="row" align="centre">
+                  <StyledTableCell component="th" scope="row" align="center">
                     {hod._id}
                   </StyledTableCell>
-                  <StyledTableCell align="centre">{hod.name}</StyledTableCell>
-                  <StyledTableCell align="centre">{hod.email}</StyledTableCell>
-                  <StyledTableCell align="centre">
+                  <StyledTableCell align="center">{hod.name}</StyledTableCell>
+                  <StyledTableCell align="center">{hod.email}</StyledTableCell>
+                  <StyledTableCell align="center">
                     {hod.contact}
                   </StyledTableCell>
-                  <StyledTableCell align="centre">{hod.branch}</StyledTableCell>
-                  <StyledTableCell align="centre">
+                  <StyledTableCell align="center">{hod.branch}</StyledTableCell>
+                  <StyledTableCell align="center">
                     <div className="delete_update_btn_container">
                       <IconButton
                         aria-label="delete item"

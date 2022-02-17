@@ -56,6 +56,10 @@ const UploadLearningResources = () => {
     newResources.append("file_path", file_path);
 
     dispatch(uploadResources(newResources));
+
+    setFile_name("");
+    setSubject("");
+    setFile_path("");
   };
 
   return (

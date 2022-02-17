@@ -46,7 +46,6 @@ export const registerTeacher = (teacher) => {
     const res = await axios.post(`/erp/teacher/register`, teacher);
 
     if (res.status === 201) {
-      // const { result } = res.data;
       dispatch({
         type: teacherConstants.ADD_NEW_TEACHER_SUCCESS,
       });

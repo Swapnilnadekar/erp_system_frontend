@@ -1,29 +1,29 @@
-import { hodConstants } from '../constants'
+import { hodConstants } from "../constants";
 
 const initState = {
-  token: '',
+  token: "",
   user: {
-    name: '',
-    email: '',
-    contact: '',
-    role: '',
-    branch: '',
-    userName: '',
-    profile_pic: '',
+    name: "",
+    email: "",
+    contact: "",
+    role: "",
+    branch: "",
+    userName: "",
+    profile_pic: "",
   },
-  role: 'admin',
+  role: "admin",
   authenticate: false,
   authenticating: false,
   loading: false,
-  error: '',
-  message: '',
-}
+  error: "",
+  message: "",
+};
 
 const hod = (state = initState, action) => {
   switch (action.type) {
     case hodConstants.HOD_LOGIN_REQUEST:
-      state = { ...state, authenticating: true, loading: true }
-      break
+      state = { ...state, authenticating: true, loading: true };
+      break;
 
     case hodConstants.HOD_LOGIN_SUCCESS:
       state = {
@@ -33,8 +33,8 @@ const hod = (state = initState, action) => {
         loading: false,
         user: action.payload.user,
         token: action.payload.token,
-      }
-      break
+      };
+      break;
 
     case hodConstants.HOD_LOGIN_FAILURE:
       state = {
@@ -43,30 +43,33 @@ const hod = (state = initState, action) => {
         authenticate: false,
         loading: false,
         error: action.payload.error,
-      }
-      break
+      };
+      break;
     case hodConstants.HOD_LOGOUT_REQUEST:
-      state = { ...state, loading: true }
-      break
+      state = { ...state, loading: true };
+      break;
 
     case hodConstants.HOD_LOGOUT_SUCCESS:
-      state = { ...initState, loading: false }
-      break
+      state = { ...initState, loading: false };
+      break;
     case hodConstants.HOD_LOGOUT_FAILURE:
-      state = { ...initState, error: 'error', loading: false }
-      break
+      state = { ...initState, error: "error", loading: false };
+      break;
     case hodConstants.ADD_NEW_HOD_REQEUST:
-      state = { ...state, loading: true }
-      break
+      state = { ...state, loading: true };
+      break;
 
     case hodConstants.ADD_NEW_HOD_SUCCESS:
-      state = { ...state, loading: false }
-      break
+      state = { ...state, loading: false };
+      break;
 
     case hodConstants.ADD_NEW_HOD_FAILURE:
-      state = { ...state, loading: false, error: action.payload.error }
-      break
+      state = { ...state, loading: false, error: action.payload.error };
+      break;
+
+    default:
+      break;
   }
-  return state
-}
-export default hod
+  return state;
+};
+export default hod;

@@ -40,7 +40,6 @@ const GetAllTeacher = () => {
   const [emailError, setEmailError] = useState(false);
   const [contactError, setContactError] = useState(false);
   const [branchError, setBranchError] = useState(false);
-  const [roll_noError, setRoll_noError] = useState(false);
   const [search, setSearch] = useState("");
   const [searchList, setSearchList] = useState([]);
 
@@ -191,29 +190,29 @@ const GetAllTeacher = () => {
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="centre">Teacher Id</StyledTableCell>
-                <StyledTableCell align="centre">Name</StyledTableCell>
-                <StyledTableCell align="centre">Email</StyledTableCell>
-                <StyledTableCell align="centre">Contact</StyledTableCell>
-                <StyledTableCell align="centre">Branch</StyledTableCell>
-                <StyledTableCell align="centre"></StyledTableCell>
+                <StyledTableCell align="center">Teacher Id</StyledTableCell>
+                <StyledTableCell align="center">Name</StyledTableCell>
+                <StyledTableCell align="center">Email</StyledTableCell>
+                <StyledTableCell align="center">Contact</StyledTableCell>
+                <StyledTableCell align="center">Branch</StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {teachersList.map((tech) => (
                 <StyledTableRow key={tech._id}>
-                  <StyledTableCell component="th" scope="row" align="centre">
+                  <StyledTableCell component="th" scope="row" align="center">
                     {tech._id}
                   </StyledTableCell>
-                  <StyledTableCell align="centre">{tech.name}</StyledTableCell>
-                  <StyledTableCell align="centre">{tech.email}</StyledTableCell>
-                  <StyledTableCell align="centre">
+                  <StyledTableCell align="center">{tech.name}</StyledTableCell>
+                  <StyledTableCell align="center">{tech.email}</StyledTableCell>
+                  <StyledTableCell align="center">
                     {tech.contact}
                   </StyledTableCell>
-                  <StyledTableCell align="centre">
+                  <StyledTableCell align="center">
                     {tech.branch}
                   </StyledTableCell>
-                  <StyledTableCell align="centre">
+                  <StyledTableCell align="center">
                     <div className="delete_update_btn_container">
                       <IconButton
                         aria-label="delete item"
@@ -264,29 +263,29 @@ const GetAllTeacher = () => {
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="centre">Teacher Id</StyledTableCell>
-                <StyledTableCell align="centre">Name</StyledTableCell>
-                <StyledTableCell align="centre">Email</StyledTableCell>
-                <StyledTableCell align="centre">Contact</StyledTableCell>
-                <StyledTableCell align="centre">Branch</StyledTableCell>
-                <StyledTableCell align="centre"></StyledTableCell>
+                <StyledTableCell align="center">Teacher Id</StyledTableCell>
+                <StyledTableCell align="center">Name</StyledTableCell>
+                <StyledTableCell align="center">Email</StyledTableCell>
+                <StyledTableCell align="center">Contact</StyledTableCell>
+                <StyledTableCell align="center">Branch</StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {searchList.map((tech) => (
                 <StyledTableRow key={tech._id}>
-                  <StyledTableCell component="th" scope="row" align="centre">
+                  <StyledTableCell component="th" scope="row" align="center">
                     {tech._id}
                   </StyledTableCell>
-                  <StyledTableCell align="centre">{tech.name}</StyledTableCell>
-                  <StyledTableCell align="centre">{tech.email}</StyledTableCell>
-                  <StyledTableCell align="centre">
+                  <StyledTableCell align="center">{tech.name}</StyledTableCell>
+                  <StyledTableCell align="center">{tech.email}</StyledTableCell>
+                  <StyledTableCell align="center">
                     {tech.contact}
                   </StyledTableCell>
-                  <StyledTableCell align="centre">
+                  <StyledTableCell align="center">
                     {tech.branch}
                   </StyledTableCell>
-                  <StyledTableCell align="centre">
+                  <StyledTableCell align="center">
                     <div className="delete_update_btn_container">
                       <IconButton
                         aria-label="delete item"

@@ -26,6 +26,9 @@ export default (state = initState, action) => {
     case uploadResourcesConstants.ADD_NEW_RESOURCES_FAILURE:
       state = { ...state, loading: false, error: action.payload.error };
       break;
+
+    default:
+      break;
   }
   return state;
 };

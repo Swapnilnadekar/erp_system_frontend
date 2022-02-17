@@ -1,20 +1,23 @@
-import { userRoleConstants } from '../constants'
+import { userRoleConstants } from "../constants";
 
 const initState = {
   role_admin: false,
-}
+};
 
 const userRole = (state = initState, action) => {
   switch (action.type) {
     case userRoleConstants.ADMIN:
-      state = { role_admin: true }
-      break
+      state = { role_admin: true };
+      break;
 
     case userRoleConstants.USER:
-      state = { role_admin: false }
-      break
-  }
-  return state
-}
+      state = { role_admin: false };
+      break;
 
-export default userRole
+    default:
+      break;
+  }
+  return state;
+};
+
+export default userRole;

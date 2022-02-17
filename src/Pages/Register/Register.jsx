@@ -49,135 +49,140 @@ const Register = () => {
   const submitForm = async (e) => {
     e.preventDefault();
 
-    if (document.getElementById("register_name").value.length === 0) {
-      setNameError(true);
-      alert("Enter name");
-    } else if (document.getElementById("register_email").value.length === 0) {
-      setEmailError(true);
-      alert("Enter email");
-    } else if (document.getElementById("register_contact").value.length === 0) {
-      setContactError(true);
-      alert("Enter contact");
-    } else if (
-      document.getElementById("register_username").value.length === 0
-    ) {
-      setUsernameError(true);
-      alert("Enter username");
-    } else if (document.getElementById("register_roll").value.length === 0) {
-      setRoll_noError(true);
-      alert("Enter Roll No.");
-    } else if (
-      document.getElementById("register_password").value.length === 0
-    ) {
-      setPasswordError(true);
-      alert("Enter password");
-    } else if (
-      document.getElementById("register_cpassword").value.length === 0
-    ) {
-      setCpasswordError(true);
-      alert("Enter confirm password");
+    // if (document.getElementById("register_name").value.length === 0) {
+    //   setNameError(true);
+    //   alert("Enter name");
+    // } else if (document.getElementById("register_email").value.length === 0) {
+    //   setEmailError(true);
+    //   alert("Enter email");
+    // } else if (document.getElementById("register_contact").value.length === 0) {
+    //   setContactError(true);
+    //   alert("Enter contact");
+    // } else if (
+    //   document.getElementById("register_username").value.length === 0
+    // ) {
+    //   setUsernameError(true);
+    //   alert("Enter username");
+    // } else if (document.getElementById("register_roll").value.length === 0) {
+    //   setRoll_noError(true);
+    //   alert("Enter Roll No.");
+    // } else if (
+    //   document.getElementById("register_password").value.length === 0
+    // ) {
+    //   setPasswordError(true);
+    //   alert("Enter password");
+    // } else if (
+    //   document.getElementById("register_cpassword").value.length === 0
+    // ) {
+    //   setCpasswordError(true);
+    //   alert("Enter confirm password");
+    // } else {
+
+    if (password !== cpassword) {
+      alert("Please enter same password in confirm password");
+      return;
+    }
+
+    if (role === "teacher") {
+      const newTeacher = new FormData();
+      newTeacher.append("name", name);
+      newTeacher.append("email", email);
+      newTeacher.append("branch", branch);
+      newTeacher.append("contact", contact);
+      newTeacher.append("username", username);
+      newTeacher.append("password", password);
+      newTeacher.append("profile_pic", profile_pic);
+
+      dispatch(registerTeacher(newTeacher));
+
+      setName("");
+      setEmail("");
+      setBranch("");
+      setContact("");
+      setUsername("");
+      setPassword("");
+      setCpassword("");
+      setProfile_pic("");
+    } else if (role === "hod") {
+      const newHod = new FormData();
+      newHod.append("name", name);
+      newHod.append("email", email);
+      newHod.append("branch", branch);
+      newHod.append("contact", contact);
+      newHod.append("username", username);
+      newHod.append("password", password);
+      newHod.append("profile_pic", profile_pic);
+
+      dispatch(registerHod(newHod));
+
+      setName("");
+      setEmail("");
+      setBranch("");
+      setContact("");
+      setUsername("");
+      setPassword("");
+      setCpassword("");
+      setProfile_pic("");
+    } else if (role === "admin") {
+      const newAdmin = new FormData();
+      newAdmin.append("name", name);
+      newAdmin.append("email", email);
+      newAdmin.append("contact", contact);
+      newAdmin.append("username", username);
+      newAdmin.append("password", password);
+      newAdmin.append("profile_pic", profile_pic);
+
+      dispatch(registerAdmin(newAdmin));
+
+      setName("");
+      setEmail("");
+      setContact("");
+      setUsername("");
+      setPassword("");
+      setCpassword("");
+      setProfile_pic("");
+    } else if (role === "principal") {
+      const newPrincipal = new FormData();
+      newPrincipal.append("name", name);
+      newPrincipal.append("email", email);
+      newPrincipal.append("contact", contact);
+      newPrincipal.append("username", username);
+      newPrincipal.append("password", password);
+      newPrincipal.append("profile_pic", profile_pic);
+
+      dispatch(registerPrincipal(newPrincipal));
+
+      setName("");
+      setEmail("");
+      setContact("");
+      setUsername("");
+      setPassword("");
+      setCpassword("");
+      setProfile_pic("");
     } else {
-      if (password !== cpassword) {
-        alert("Please enter same password in confirm password");
-        return;
-      }
+      const newStudent = new FormData();
+      newStudent.append("name", name);
+      newStudent.append("email", email);
+      newStudent.append("branch", branch);
+      newStudent.append("roll_no", roll_no);
+      newStudent.append("dob", dob);
+      newStudent.append("contact", contact);
+      newStudent.append("username", username);
+      newStudent.append("password", password);
+      newStudent.append("profile_pic", profile_pic);
 
-      if (role === "teacher") {
-        const newTeacher = new FormData();
-        newTeacher.append("name", name);
-        newTeacher.append("email", email);
-        newTeacher.append("branch", branch);
-        newTeacher.append("contact", contact);
-        newTeacher.append("username", username);
-        newTeacher.append("password", password);
-        newTeacher.append("profile_pic", profile_pic);
+      dispatch(registerStudent(newStudent));
 
-        dispatch(registerTeacher(newTeacher));
-
-        setName("");
-        setEmail("");
-        setBranch("");
-        setContact("");
-        setUsername("");
-        setPassword("");
-        setCpassword("");
-      } else if (role === "hod") {
-        const newHod = new FormData();
-        newHod.append("name", name);
-        newHod.append("email", email);
-        newHod.append("branch", branch);
-        newHod.append("contact", contact);
-        newHod.append("username", username);
-        newHod.append("password", password);
-        newHod.append("profile_pic", profile_pic);
-
-        dispatch(registerHod(newHod));
-
-        setName("");
-        setEmail("");
-        setBranch("");
-        setContact("");
-        setUsername("");
-        setPassword("");
-        setCpassword("");
-      } else if (role === "admin") {
-        const newAdmin = new FormData();
-        newAdmin.append("name", name);
-        newAdmin.append("email", email);
-        newAdmin.append("contact", contact);
-        newAdmin.append("username", username);
-        newAdmin.append("password", password);
-        newAdmin.append("profile_pic", profile_pic);
-
-        dispatch(registerAdmin(newAdmin));
-
-        setName("");
-        setEmail("");
-        setContact("");
-        setUsername("");
-        setPassword("");
-        setCpassword("");
-      } else if (role === "principal") {
-        const newPrincipal = new FormData();
-        newPrincipal.append("name", name);
-        newPrincipal.append("email", email);
-        newPrincipal.append("contact", contact);
-        newPrincipal.append("username", username);
-        newPrincipal.append("password", password);
-        newPrincipal.append("profile_pic", profile_pic);
-
-        dispatch(registerPrincipal(newPrincipal));
-
-        setName("");
-        setEmail("");
-        setContact("");
-        setUsername("");
-        setPassword("");
-        setCpassword("");
-      } else {
-        const newStudent = new FormData();
-        newStudent.append("name", name);
-        newStudent.append("email", email);
-        newStudent.append("branch", branch);
-        newStudent.append("roll_no", roll_no);
-        newStudent.append("dob", dob);
-        newStudent.append("contact", contact);
-        newStudent.append("username", username);
-        newStudent.append("password", password);
-        newStudent.append("profile_pic", profile_pic);
-
-        dispatch(registerStudent(newStudent));
-
-        setName("");
-        setEmail("");
-        setBranch("");
-        setRoll_no(0);
-        setDob(new Date());
-        setContact("");
-        setUsername("");
-        setPassword("");
-        setCpassword("");
-      }
+      setName("");
+      setEmail("");
+      setBranch("");
+      setRoll_no(0);
+      setDob(new Date());
+      setContact("");
+      setUsername("");
+      setPassword("");
+      setCpassword("");
+      setProfile_pic("");
     }
   };
 

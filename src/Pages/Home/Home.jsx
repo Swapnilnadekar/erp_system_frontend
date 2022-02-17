@@ -19,7 +19,6 @@ const Home = () => {
         </div>
         <div className="name_branch_container">
           <h6>Name: {admin.user.name}</h6>
-          <h6>Branch: {admin.user.branch}</h6>
         </div>
         <div className="contact_email_container">
           <h6>Contact: {admin.user.contact}</h6>

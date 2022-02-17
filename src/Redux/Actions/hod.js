@@ -41,7 +41,6 @@ export const hodLogin = (user) => {
 };
 
 export const registerHod = (hod) => {
-  console.log(hod);
   return async (dispatch) => {
     dispatch({ type: hodConstants.ADD_NEW_HOD_REQEUST });
     const res = await axios.post(`/erp/hod/register`, hod);

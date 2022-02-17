@@ -1,30 +1,30 @@
-import { studentConstants } from '../constants'
+import { studentConstants } from "../constants";
 
 const initState = {
-  token: '',
+  token: "",
   user: {
-    name: '',
-    email: '',
-    branch: '',
-    roll_no: '',
-    dob: '',
-    contact: '',
-    username: '',
-    profile_pic: '',
+    name: "",
+    email: "",
+    branch: "",
+    roll_no: "",
+    dob: "",
+    contact: "",
+    username: "",
+    profile_pic: "",
   },
-  role: 'student',
+  role: "student",
   authenticate: false,
   authenticating: false,
   loading: false,
-  error: '',
-  message: '',
-}
+  error: "",
+  message: "",
+};
 
 const student = (state = initState, action) => {
   switch (action.type) {
     case studentConstants.STUDENT_LOGIN_REQUEST:
-      state = { ...state, authenticating: true, loading: true }
-      break
+      state = { ...state, authenticating: true, loading: true };
+      break;
 
     case studentConstants.STUDENT_LOGIN_SUCCESS:
       state = {
@@ -34,8 +34,8 @@ const student = (state = initState, action) => {
         loading: false,
         user: action.payload.user,
         token: action.payload.token,
-      }
-      break
+      };
+      break;
 
     case studentConstants.STUDENT_LOGIN_FAILURE:
       state = {
@@ -44,36 +44,39 @@ const student = (state = initState, action) => {
         authenticate: false,
         loading: false,
         error: action.payload.error,
-      }
-      break
+      };
+      break;
 
     case studentConstants.STUDENT_LOGOUT_REQUEST:
-      state = { ...state, loading: true }
-      break
+      state = { ...state, loading: true };
+      break;
 
     case studentConstants.STUDENT_LOGOUT_SUCCESS:
-      state = { ...initState, loading: true }
-      break
+      state = { ...initState, loading: false };
+      break;
 
     case studentConstants.STUDENT_LOGOUT_FAILURE:
-      state = { ...initState, error: action.payload.error, loading: false }
-      break
+      state = { ...initState, error: action.payload.error, loading: false };
+      break;
 
     case studentConstants.DELETE_STUDENT_REQEUST:
-      state = { ...state, loading: true }
-      break
+      state = { ...state, loading: true };
+      break;
 
     case studentConstants.DELETE_STUDENT_SUCCESS:
       state = {
         ...state,
         loading: false,
-      }
-      break
+      };
+      break;
 
     case studentConstants.DELETE_STUDENT_FAILURE:
-      state = { ...state, loading: false, error: action.payload.error }
-      break
+      state = { ...state, loading: false, error: action.payload.error };
+      break;
+
+    default:
+      break;
   }
-  return state
-}
-export default student
+  return state;
+};
+export default student;

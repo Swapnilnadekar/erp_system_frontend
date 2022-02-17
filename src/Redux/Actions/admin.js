@@ -41,7 +41,6 @@ export const adminLogin = (user) => {
 };
 
 export const registerAdmin = (admin) => {
-  console.log(admin);
   return async (dispatch) => {
     dispatch({ type: adminConstants.ADD_NEW_ADMIN_REQEUST });
     const res = await axios.post(`/erp/admin/register`, admin);

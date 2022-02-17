@@ -172,25 +172,25 @@ const GetAllAdmin = () => {
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="centre">Admin Id</StyledTableCell>
-                <StyledTableCell align="centre">Name</StyledTableCell>
-                <StyledTableCell align="centre">Email</StyledTableCell>
-                <StyledTableCell align="centre">Contact</StyledTableCell>
-                <StyledTableCell align="centre"></StyledTableCell>
+                <StyledTableCell align="center">Admin Id</StyledTableCell>
+                <StyledTableCell align="center">Name</StyledTableCell>
+                <StyledTableCell align="center">Email</StyledTableCell>
+                <StyledTableCell align="center">Contact</StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {adminsList.map((adm) => (
                 <StyledTableRow key={adm._id}>
-                  <StyledTableCell component="th" scope="row" align="centre">
+                  <StyledTableCell component="th" scope="row" align="center">
                     {adm._id}
                   </StyledTableCell>
-                  <StyledTableCell align="centre">{adm.name}</StyledTableCell>
-                  <StyledTableCell align="centre">{adm.email}</StyledTableCell>
-                  <StyledTableCell align="centre">
+                  <StyledTableCell align="center">{adm.name}</StyledTableCell>
+                  <StyledTableCell align="center">{adm.email}</StyledTableCell>
+                  <StyledTableCell align="center">
                     {adm.contact}
                   </StyledTableCell>
-                  <StyledTableCell align="centre">
+                  <StyledTableCell align="center">
                     <div className="delete_update_btn_container">
                       <IconButton
                         aria-label="delete item"
@@ -240,21 +240,21 @@ const GetAllAdmin = () => {
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="centre">Admin Id</StyledTableCell>
-                <StyledTableCell align="centre">Name</StyledTableCell>
-                <StyledTableCell align="centre">Email</StyledTableCell>
-                <StyledTableCell align="centre">Contact</StyledTableCell>
-                <StyledTableCell align="centre"></StyledTableCell>
+                <StyledTableCell align="center">Admin Id</StyledTableCell>
+                <StyledTableCell align="center">Name</StyledTableCell>
+                <StyledTableCell align="center">Email</StyledTableCell>
+                <StyledTableCell align="center">Contact</StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {searchList.map((adm) => (
                 <StyledTableRow key={adm._id}>
-                  <StyledTableCell component="th" scope="row" align="centre">
+                  <StyledTableCell component="th" scope="row" align="center">
                     {adm._id}
                   </StyledTableCell>
-                  <StyledTableCell align="centre">{adm.name}</StyledTableCell>
-                  <StyledTableCell align="centre">{adm.email}</StyledTableCell>
+                  <StyledTableCell align="center">{adm.name}</StyledTableCell>
+                  <StyledTableCell align="center">{adm.email}</StyledTableCell>
                   <StyledTableCell align="centre">
                     {adm.contact}
                   </StyledTableCell>

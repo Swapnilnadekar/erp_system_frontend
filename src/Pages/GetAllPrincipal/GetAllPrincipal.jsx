@@ -151,25 +151,25 @@ const GetAllPrincipal = () => {
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="centre">Principal Id</StyledTableCell>
-                <StyledTableCell align="centre">Name</StyledTableCell>
-                <StyledTableCell align="centre">Email</StyledTableCell>
-                <StyledTableCell align="centre">Contact</StyledTableCell>
-                <StyledTableCell align="centre"></StyledTableCell>
+                <StyledTableCell align="center">Principal Id</StyledTableCell>
+                <StyledTableCell align="center">Name</StyledTableCell>
+                <StyledTableCell align="center">Email</StyledTableCell>
+                <StyledTableCell align="center">Contact</StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {principalsList.map((pri) => (
                 <StyledTableRow key={pri._id}>
-                  <StyledTableCell component="th" scope="row" align="centre">
+                  <StyledTableCell component="th" scope="row" align="center">
                     {pri._id}
                   </StyledTableCell>
-                  <StyledTableCell align="centre">{pri.name}</StyledTableCell>
-                  <StyledTableCell align="centre">{pri.email}</StyledTableCell>
-                  <StyledTableCell align="centre">
+                  <StyledTableCell align="center">{pri.name}</StyledTableCell>
+                  <StyledTableCell align="center">{pri.email}</StyledTableCell>
+                  <StyledTableCell align="center">
                     {pri.contact}
                   </StyledTableCell>
-                  <StyledTableCell align="centre">
+                  <StyledTableCell align="center">
                     <div className="delete_update_btn_container">
                       <IconButton
                         aria-label="delete item"

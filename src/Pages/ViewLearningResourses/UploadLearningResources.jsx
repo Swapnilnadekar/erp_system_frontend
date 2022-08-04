@@ -14,6 +14,7 @@ const UploadLearningResources = () => {
   const [file_path, setFile_path] = useState("");
   const [file_nameError, setFile_nameError] = useState(false);
   const [subjectError, setSubjectError] = useState(false);
+  const [fileError, setFileError] = useState(false);
 
   const teacher = useSelector((state) => state.teacher);
   const hod = useSelector((state) => state.hod);
@@ -33,6 +34,10 @@ const UploadLearningResources = () => {
     } else if (document.getElementById("subject").value.length === 0) {
       setSubjectError(true);
       alert("Enter Subject");
+    }
+    else if (document.getElementById("file").value.length === 0) {
+      setFileError(true);
+      alert("Please Upload File");
     }
     const currentdate = new Date();
     const time =
@@ -66,7 +71,7 @@ const UploadLearningResources = () => {
     <>
       <div>
         <Header />
-
+        <div clasName="upload_data">
         <div className="upload_container">
           {/* <h3>Upload Learning Resources</h3> */}
           <form className="upload_resources" onSubmit={uploadResource}>
@@ -97,9 +102,11 @@ const UploadLearningResources = () => {
               />
 
               <input
+                id="file"
                 type="file"
                 name="file_path"
                 className="file_path"
+                error={fileError}
                 onChange={(e) => setFile_path(e.target.files[0])}
               />
 
@@ -119,6 +126,7 @@ const UploadLearningResources = () => {
               </Button>
             </div>
           </form>
+        </div>
         </div>
       </div>
     </>
